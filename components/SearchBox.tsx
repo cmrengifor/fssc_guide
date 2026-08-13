@@ -38,7 +38,7 @@ export default function SearchBox() {
   }
 
   function handleClick(m: SearchIndexItem) {
-    if (m.type === "glossary") goTo("/glossary");
+    if (m.type === "glossary") goTo(`/glossary#${m.id}`);
     else if (m.type === "wi") goTo(`/wi/${m.id}`);
     else goTo(`/case/${m.id}`);
   }

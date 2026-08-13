@@ -1,4 +1,5 @@
 import { DATA } from "@/lib/data";
+import { slugify } from "@/lib/slug";
 import type { Case } from "@/lib/types";
 
 export interface SearchIndexItem {
@@ -28,7 +29,13 @@ function buildSearchIndex(): SearchIndexItem[] {
   });
 
   DATA.glossary.forEach((g) => {
-    idx.push({ type: "glossary", label_es: g.term_es, label_en: g.term_en, tags: [g.term_es, g.term_en] });
+    idx.push({
+      type: "glossary",
+      id: slugify(g.term_en),
+      label_es: g.term_es,
+      label_en: g.term_en,
+      tags: [g.term_es, g.term_en, g.def_es, g.def_en],
+    });
   });
 
   DATA.workInstructions.forEach((w) => {

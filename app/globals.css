@@ -270,10 +270,15 @@ h1.page-title{font-family:var(--font-display);font-size:26px;margin:0 0 6px;lett
 /* ---------- GLOSSARY ---------- */
 .glossary-item{
   background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:14px 18px;margin-bottom:8px;
+  padding:14px 18px;margin-bottom:8px;scroll-margin-top:20px;
 }
 .glossary-item b{font-family:var(--font-mono);font-size:13.5px;color:var(--teal);}
 .glossary-item p{margin:6px 0 0;font-size:13.5px;color:var(--ink-soft);}
+.glossary-item:target,
+.glossary-item.step-highlighted{
+  background:var(--blue-soft);
+  animation:step-highlight 2.4s ease-out;
+}
 
 /* ---------- FLOW DIAGRAM ---------- */
 .flow-wrap{display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 0;}
