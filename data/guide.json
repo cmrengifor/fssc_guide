@@ -29,6 +29,222 @@
       "term_en": "Sales Tax",
       "def_es": "Impuesto de venta que se coloca manualmente a nivel de línea del invoice; en este proceso no usa código de impuesto.",
       "def_en": "Sales tax entered manually at the invoice line level; in this process it does not use a tax code."
+    },
+    {
+      "term_es": "AP Inquiry",
+      "term_en": "AP Inquiry",
+      "def_es": "Responsibility (rol de acceso) de Oracle usada para buscar y consultar invoices sin editarlos; es específica por región, por ejemplo \"US AP Inquiry\" o \"CA AP Inquiry\".",
+      "def_en": "Oracle responsibility (login role) used to search and view invoices without editing them; it is region-specific, e.g. \"US AP Inquiry\" or \"CA AP Inquiry\"."
+    },
+    {
+      "term_es": "BOSS",
+      "term_en": "BOSS",
+      "def_es": "Portal interno de Oracle Applications (https://BOSS.sgs.net/) donde el equipo de AP ejecuta reportes, envía requests y accede a registros de invoices y proveedores.",
+      "def_en": "Internal Oracle Applications portal (https://BOSS.sgs.net/) where the AP team runs reports, submits requests, and accesses invoice and supplier records."
+    },
+    {
+      "term_es": "Responsibility",
+      "term_en": "Responsibility",
+      "def_es": "Rol de acceso que se selecciona al ingresar a Oracle y que determina qué país o función puede ver y operar el usuario, por ejemplo \"US AP User Payments SoD\".",
+      "def_en": "The access role selected at Oracle login that determines which country's or function's screens and reports a user can operate, e.g. \"US AP User Payments SoD\"."
+    },
+    {
+      "term_es": "Invoice Workbench",
+      "term_en": "Invoice Workbench",
+      "def_es": "Pantalla de Oracle donde se ingresan, revisan y validan el encabezado y las líneas de un invoice.",
+      "def_en": "The Oracle screen used to enter, review, and validate an invoice's header and line details."
+    },
+    {
+      "term_es": "GL Date",
+      "term_en": "GL Date",
+      "def_es": "Fecha de libro mayor (General Ledger) que se ingresa en un batch o invoice; determina en qué periodo contable se contabiliza la transacción.",
+      "def_en": "The General Ledger date entered on a batch or invoice; determines which accounting period the transaction posts to."
+    },
+    {
+      "term_es": "Batch Name",
+      "term_en": "Batch Name",
+      "def_es": "Identificador que se asigna al enviar un request o batch de invoices, generalmente con el formato iniciales + fecha (por ejemplo \"JD0512EXP\").",
+      "def_en": "The identifier assigned when submitting a request or invoice batch, typically formatted as initials + date (e.g. \"JD0512EXP\")."
+    },
+    {
+      "term_es": "Non-PO Invoice",
+      "term_en": "Non-PO Invoice",
+      "def_es": "Invoice sin PO asociado; requiere ingreso manual del encabezado y las líneas en lugar del 3-way match.",
+      "def_en": "An invoice with no associated purchase order; requires manual header/line entry instead of the 3-way match."
+    },
+    {
+      "term_es": "NOPO",
+      "term_en": "NOPO",
+      "def_es": "Marca que se agrega al número de invoice para señalar que fue cancelado o rechazado por no tener un PO válido.",
+      "def_en": "Marker appended to an invoice number to flag it as cancelled or rejected for not having a valid PO."
+    },
+    {
+      "term_es": "F-Code",
+      "term_en": "F-Code",
+      "def_es": "Código que identifica al afiliado (\"trading partner\") en un invoice intercompany; se usa para traer la información del supplier site de ese afiliado.",
+      "def_en": "Code identifying the affiliate (\"trading partner\") on an intercompany invoice; used to pull in that affiliate's supplier site information."
+    },
+    {
+      "term_es": "IDN (Internal Debit Note)",
+      "term_en": "IDN (Internal Debit Note)",
+      "def_es": "Invoice intercompany emitido por otro afiliado de SGS en un país distinto.",
+      "def_en": "A foreign intercompany invoice issued by another SGS affiliate/country."
+    },
+    {
+      "term_es": "TCC (Treasury Compensation Center)",
+      "term_en": "TCC (Treasury Compensation Center)",
+      "def_es": "Mecanismo de netting/pago intercompany que usan los afiliados de SGS para liquidar IDNs y otros invoices intercompany en lugar de transferencias individuales.",
+      "def_en": "The intercompany netting/payment mechanism SGS affiliates use to settle IDNs and other intercompany invoices instead of individual wires."
+    },
+    {
+      "term_es": "Xerox",
+      "term_en": "Xerox",
+      "def_es": "Plataforma externa de OCR que escanea e importa los invoices entrantes a Oracle antes de la revisión de AP.",
+      "def_en": "Third-party OCR platform that scans and imports incoming invoices into Oracle before AP review."
+    },
+    {
+      "term_es": "WinSCP",
+      "term_en": "WinSCP",
+      "def_es": "Cliente de transferencia de archivos usado para mover archivos bancarios (por ejemplo, el archivo diario de Citibank) entre el servidor del banco y el servidor de Oracle.",
+      "def_en": "File-transfer client used to move bank files (e.g. the daily Citibank file) between the bank server and the Oracle server."
+    },
+    {
+      "term_es": "CitiDirect",
+      "term_en": "CitiDirect",
+      "def_es": "Portal de banca en línea de Citibank, usado por ejemplo para colocar stop payments sobre cheques.",
+      "def_en": "Citibank's online banking portal, used for actions such as placing stop payments on checks."
+    },
+    {
+      "term_es": "Egencia",
+      "term_en": "Egencia",
+      "def_es": "Plataforma de reservas de viaje de Amex GBT donde se configuran las airfare cards para los empleados.",
+      "def_en": "Amex GBT's travel-booking platform where airfare cards are configured for employees."
+    },
+    {
+      "term_es": "Ghost Card",
+      "term_en": "Ghost Card",
+      "def_es": "Tarjeta de crédito de Citibank que no está asignada a un empleado en particular, usada de forma centralizada para reservas recurrentes (por ejemplo, tiquetes aéreos); se concilia con el estado de cuenta mensual de Citibank.",
+      "def_en": "A Citibank credit card not tied to a single employee, used centrally for recurring bookings (e.g. airfare); reconciled against the monthly Citibank statement."
+    },
+    {
+      "term_es": "P-Card (Purchasing Card)",
+      "term_en": "P-Card (Purchasing Card)",
+      "def_es": "Tarjeta de crédito corporativa usada para compras recurrentes o puntuales; sus transacciones se cargan a Oracle mediante el Credit Card Loader.",
+      "def_en": "Corporate credit card used for recurring or ad hoc purchases; its transactions load into Oracle via the Credit Card Loader."
+    },
+    {
+      "term_es": "Airfare Card",
+      "term_en": "Airfare Card",
+      "def_es": "Tarjeta configurada en Egencia específicamente para reservar tiquetes aéreos de los empleados.",
+      "def_en": "Card set up in Egencia specifically for booking employee air travel."
+    },
+    {
+      "term_es": "ACH (Automated Clearing House)",
+      "term_en": "ACH (Automated Clearing House)",
+      "def_es": "Método de pago electrónico banco a banco usado para desembolsos estándar en US/Canadá.",
+      "def_en": "Electronic bank-to-bank payment method used for standard US/Canada disbursements."
+    },
+    {
+      "term_es": "EFT (Electronic Funds Transfer)",
+      "term_en": "EFT (Electronic Funds Transfer)",
+      "def_es": "Método de pago electrónico que, en este proceso, se distingue del Wire por tener su propia plantilla y registro preliminar.",
+      "def_en": "Electronic payment method that, in this process, is distinguished from Wire by its own template and preliminary register."
+    },
+    {
+      "term_es": "Wire",
+      "term_en": "Wire",
+      "def_es": "Transferencia bancaria en tiempo real, usada normalmente para montos mayores o pagos a proveedores extranjeros.",
+      "def_en": "Real-time bank transfer, typically used for larger amounts or foreign/international supplier payments."
+    },
+    {
+      "term_es": "Void Check",
+      "term_en": "Void Check",
+      "def_es": "Cheque que se anula en lugar de cobrarse, generalmente para reemisión; se rastrea en reportes como Check Voids y el reporte de 120 días.",
+      "def_en": "A check that is cancelled instead of cashed, typically for reissuance; tracked in reports like Check Voids and the 120-day outstanding report."
+    },
+    {
+      "term_es": "Stop Payment",
+      "term_en": "Stop Payment",
+      "def_es": "Solicitud enviada al banco (vía CitiDirect) para bloquear que un cheque se cobre, normalmente antes de anularlo y reemitirlo.",
+      "def_en": "Request placed with the bank (via CitiDirect) to block a check from clearing, typically before voiding and reissuing it."
+    },
+    {
+      "term_es": "Disbursement Account",
+      "term_en": "Disbursement Account",
+      "def_es": "Cuenta bancaria desde la cual se emiten los pagos salientes (cheques, ACH, wire) de una región.",
+      "def_en": "The bank account a region's outgoing payments (checks, ACH, wire) are issued from."
+    },
+    {
+      "term_es": "Remittance Advice",
+      "term_en": "Remittance Advice",
+      "def_es": "Aviso enviado al proveedor indicando qué invoices cubre un pago por wire o EFT.",
+      "def_en": "The notice sent to a supplier listing which invoices a wire or EFT payment covers."
+    },
+    {
+      "term_es": "Payment Register",
+      "term_en": "Payment Register",
+      "def_es": "Reporte con los invoices seleccionados para pago en una corrida; primero se genera como Preliminary Register para revisión, y luego como Final Payment Register al completarse la corrida.",
+      "def_en": "Report listing the invoices selected for payment in a run; first generated as a Preliminary Register for review, then as the Final Payment Register once the run completes."
+    },
+    {
+      "term_es": "Credit Memo",
+      "term_en": "Credit Memo",
+      "def_es": "Documento emitido por el proveedor que acredita un monto facturado de más o devuelto; se compara contra el PO/invoice original para corregir un hold de precio o cantidad.",
+      "def_en": "A supplier-issued document crediting an overbilled or returned amount; matched against the original PO/invoice to correct a price or quantity hold."
+    },
+    {
+      "term_es": "Prepayment",
+      "term_en": "Prepayment",
+      "def_es": "Monto pagado a un proveedor antes de recibir el invoice correspondiente; se aplica contra ese invoice cuando llega.",
+      "def_en": "An amount paid to a supplier before the related invoice is received; applied against that invoice once it arrives."
+    },
+    {
+      "term_es": "1099",
+      "term_en": "1099",
+      "def_es": "Formulario de impuestos de US que se presenta por pagos reportables a ciertos tipos de proveedor (Partnership, Individual); se marca en el registro del proveedor durante su configuración.",
+      "def_en": "US tax form filed for reportable payments to certain supplier types (Partnership, Individual); flagged on the supplier record during setup."
+    },
+    {
+      "term_es": "W-9",
+      "term_en": "W-9",
+      "def_es": "Formulario de impuestos de US que el proveedor entrega para proporcionar su Taxpayer Identification Number; documento de soporte obligatorio para aprobar un nuevo proveedor.",
+      "def_en": "US tax form suppliers submit to provide their Taxpayer Identification Number; a required supporting document for new supplier approval."
+    },
+    {
+      "term_es": "TIN (Taxpayer Identification Number)",
+      "term_en": "TIN (Taxpayer Identification Number)",
+      "def_es": "Número de identificación tributaria del proveedor, recolectado mediante el formulario W-9 y usado para el reporte 1099.",
+      "def_en": "The tax ID collected from a supplier (via Form W-9) and used for 1099 reporting."
+    },
+    {
+      "term_es": "GST / HST / PST",
+      "term_en": "GST / HST / PST",
+      "def_es": "Impuestos de venta canadienses (Goods and Services Tax, Harmonized Sales Tax, Provincial Sales Tax) que se aplican a las líneas del invoice según la provincia y si son recuperables.",
+      "def_en": "Canadian sales taxes (Goods and Services Tax, Harmonized Sales Tax, Provincial Sales Tax) applied to invoice lines depending on province and recoverability."
+    },
+    {
+      "term_es": "T&E (Travel & Expense)",
+      "term_en": "T&E (Travel & Expense)",
+      "def_es": "Proceso de viajes y reembolso de gastos de empleados, distinto de los procesos de P-Card/Ghost Card aunque puede compartir las mismas tarjetas.",
+      "def_en": "Employee travel and expense reimbursement process, distinct from the P-Card/Ghost Card processes though it can share the same cards."
+    },
+    {
+      "term_es": "Month-End Close",
+      "term_en": "Month-End Close",
+      "def_es": "Proceso de cierre del periodo contable actual y apertura del siguiente en los calendarios de Purchasing y GL de Oracle.",
+      "def_en": "The period-end process of closing the current accounting period and opening the next one in Oracle's Purchasing and GL calendars."
+    },
+    {
+      "term_es": "Purchasing Period",
+      "term_en": "Purchasing Period",
+      "def_es": "Periodo del calendario de Oracle que debe estar abierto para que las transacciones de compras e invoices de ese mes puedan contabilizarse.",
+      "def_en": "The Oracle calendar period that must be open for a given month before purchasing and invoice transactions can post to it."
+    },
+    {
+      "term_es": "SoD (Segregation of Duties)",
+      "term_en": "SoD (Segregation of Duties)",
+      "def_es": "Sufijo presente en algunos nombres de responsibility de Oracle que indica que ese rol está delimitado bajo controles formales de separación de funciones.",
+      "def_en": "Suffix on some Oracle responsibility names indicating the role is scoped under formal segregation-of-duties access controls."
     }
   ],
   "flow": {
