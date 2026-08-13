@@ -2,18 +2,27 @@
 
 import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
+import { useProgress } from "@/lib/progress-context";
 import { DATA } from "@/lib/data";
 import type { WIRegion } from "@/lib/types";
+import ReminderPanel from "@/components/ReminderPanel";
 
 function RegionCard({ region }: { region: WIRegion }) {
   const { t, tf } = useLang();
-  const count = DATA.workInstructions.filter((w) => w.region === region.id).length;
+  const { progressMap, hydrated } = useProgress();
+  const regionWIs = DATA.workInstructions.filter((w) => w.region === region.id);
+  const inProgressCount = regionWIs.filter((w) => {
+    const done = progressMap[w.id]?.length ?? 0;
+    const total = (w.steps_es || w.steps_en).length;
+    return done > 0 && done < total;
+  }).length;
   return (
     <Link href={`/wi/region/${region.id}`} className="case-card">
       <div>
         <h3>{tf(region, "name")}</h3>
         <span className="case-card-count">
-          {count} {t("homeCatalogCount")}
+          {regionWIs.length} {t("homeCatalogCount")}
+          {hydrated && inProgressCount > 0 && ` · ${inProgressCount} ${t("progressInProgressLabel")}`}
         </span>
       </div>
       <span className="chevron" aria-hidden="true">
@@ -59,6 +68,7 @@ export default function HomeView() {
           <p>{t("qgGlossaryBody")}</p>
         </div>
       </div>
+      <ReminderPanel />
       <div className="category-block">
         <h2 className="category-title">{t("homeCatalogTitle")}</h2>
         <p className="category-sub">{t("homeCatalogSub")}</p>

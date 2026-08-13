@@ -118,7 +118,7 @@ A four-color semantic system on a near-monochrome neutral base — each accent o
 - **Verification Teal** (`#0E7785`, dark: `#4FC7D3`): The informational/decision accent. Glossary term headwords, flow-diagram decision diamonds, and region badges. Reserved for "this is a defined concept or a branch point," never for primary navigation.
 
 ### Tertiary
-- **Confirmed Green** (`#1F7A4D`, dark: `#57C08A`): The completion/category accent. Category labels, case category pills, and checklist item markers. Signals "grouped" or "satisfied," never used for calls to action.
+- **Confirmed Green** (`#1F7A4D`, dark: `#57C08A`): The completion/category accent. Category labels, category pills, the interactive step checkbox, and the step-progress badge (e.g. "5/8"). Signals "grouped" or "satisfied," never used for calls to action.
 
 ### Neutral
 - **Ink** (`#1A2333`, dark: `#E7EAF0`): Primary text.
@@ -131,7 +131,7 @@ A four-color semantic system on a near-monochrome neutral base — each accent o
 - **Scrim** (`rgba(10,14,22,.45)`, same value in both themes): The dimming backdrop behind the mobile off-canvas sidebar drawer. Theme-independent by design — it dims whatever is behind it regardless of light/dark, so it doesn't need a paired value.
 
 ### Status accent (used alongside the above)
-- **Flagged Amber** (`#A35B1A`, dark: `#E5A05E`): The caution/incomplete accent — the "DEMO" badge, error cards, and anything the guide hasn't finished documenting yet. Not part of the Primary/Secondary/Tertiary interactive hierarchy; it exists to interrupt, not to guide. Darkened slightly from the original `#B5651D` (3.80:1 on `--amber-soft`, failing AA) to `#A35B1A` (4.53:1).
+- **Flagged Amber** (`#A35B1A`, dark: `#E5A05E`): The caution/incomplete accent — the tip-box callout and anything the guide hasn't finished documenting yet. Not part of the Primary/Secondary/Tertiary interactive hierarchy; it exists to interrupt, not to guide. Darkened slightly from the original `#B5651D` (3.80:1 on `--amber-soft`, failing AA) to `#A35B1A` (4.53:1).
 
 ### Named Rules
 **The One Meaning Rule.** Blue means interactive, teal means informational/decision, green means completion/category, amber means incomplete/caution. A color never borrows another color's meaning to fill a gap in the palette.
@@ -202,15 +202,21 @@ This system has no generic button component — every action surface is either a
 
 ### Tags / Pills / Badges
 - **Style:** `Surface Alt` background, `Ink Soft` text, `full` (20px) radius, Label typography, tight padding (`2px 8px`).
-- **Variants:** plain tag (keyword chips), category pill (`Confirmed Green` text on `Confirmed Green Soft`), region pill (`Verification Teal` text on `Verification Teal Soft`), demo badge (`Flagged Amber` text on `Flagged Amber Soft`).
+- **Variants:** plain tag (keyword chips), category pill (`Confirmed Green` text on `Confirmed Green Soft`), region pill (`Verification Teal` text on `Verification Teal Soft`), progress badge (`Confirmed Green` text on `Confirmed Green Soft`, e.g. "5/8" — appears only once a Work Instruction has at least one checked step, never at zero).
 - **State:** Static — pills do not carry interactive states; they are labels, not controls.
 
 ### Cards / Containers
 - **Corner Style:** `10px` (`--radius`).
 - **Background:** `Surface`, 1px `Border` outline.
 - **Shadow Strategy:** None (see Elevation & Depth) — border only.
-- **Internal Padding:** `20px 22px` for generic cards; `14–18px` for list-row cards (case cards, path steps).
-- **Interactive variant:** List-row cards (case list, Work Instruction list, Learning Path steps) swap the border to `Ledger Blue` on hover — no background or shadow change, so the border-color shift alone signals interactivity.
+- **Internal Padding:** `20px 22px` for generic cards; `14–18px` for list-row cards (Work Instruction cards, path steps, Reminders panel rows — all the same pattern).
+- **Interactive variant:** List-row cards (Work Instruction list, Learning Path steps, Home's region and Reminders cards) swap the border to `Ledger Blue` on hover — no background or shadow change, so the border-color shift alone signals interactivity.
+
+### Checklist / Progress
+- **Step checkbox:** A real `<input type="checkbox">`, visually a `16px` square with `4px` radius and a `2px` `Confirmed Green` outline (no fill) — matches the shape token already reserved for compact inline marks. Checked state draws a green checkmark via `::after`, not a filled background, keeping the flat/no-heavy-fill discipline consistent with the rest of the system. Sits inline with each step's text inside a `<label>` so clicking the text also toggles it.
+- **Progress badge:** See Tags/Pills/Badges above — the same "5/8" mono chip appears on the Work Instruction detail page, its list-row card, Home's region cards (as an aggregate "N en progreso"), and the Learning Path (a fully-checked item shows ✓ instead of its sequence number, and its index circle switches from Ledger Blue to Confirmed Green).
+- **Tip box:** An amber-soft callout (`Flagged Amber` border, `Flagged Amber Soft` background) above a Work Instruction's steps list, used only when that WI has curated tips. Same visual language the retired "DEMO" banner used — repurposed, not duplicated, once the Learning Path stopped needing it.
+- **Reminders panel:** Plain `category-block`/`case-card` reuse on Home — a "continue where you left off" card and a short "pending items" list. Renders nothing at all (not an empty state) until the visitor has real progress to show.
 
 ### Inputs / Fields
 - **Style:** `Surface Alt` fill, 1px `Border` outline, `8px` radius, 38px left padding to clear an inline search icon. Carries `role="combobox"` + `aria-expanded`/`aria-controls`/`aria-autocomplete` wired to the results dropdown (`role="listbox"`, results as `role="option"` buttons) so the search feature is fully keyboard-operable, not just mouse-clickable.

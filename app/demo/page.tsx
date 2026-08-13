@@ -1,5 +1,5 @@
-import DemoView from "@/components/views/DemoView";
+import LearningPathView from "@/components/views/LearningPathView";
 
 export default function Page() {
-  return <DemoView />;
+  return <LearningPathView />;
 }

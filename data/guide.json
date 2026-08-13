@@ -253,7 +253,10 @@
         "id": "3way-match",
         "title_es": "Match 3-Way de Invoices",
         "title_en": "Invoice 3-Way Match",
-        "regions": ["ca", "us"],
+        "regions": [
+          "ca",
+          "us"
+        ],
         "chain": [
           "n-login",
           "n-search",
@@ -365,7 +368,9 @@
         "id": "nam-manual-invoice",
         "title_es": "Procesamiento Manual de Facturas (Utilities, NAM)",
         "title_en": "Manual Invoice Processing (Utilities, NAM)",
-        "regions": ["nam"],
+        "regions": [
+          "nam"
+        ],
         "chain": [
           "nam-intake",
           "nam-batch",
@@ -807,11 +812,36 @@
       }
     ]
   },
-  "demoPath": [
-    "buscar-invoice",
-    "match-3way",
-    "sales-tax"
-  ],
+  "learningPath": {
+    "ca": [
+      "wi-non-po-invoice-review-ca",
+      "wi-3way-match-ca",
+      "wi-po-discrepancies-ca",
+      "wi-cad-taxes",
+      "wi-tax-validation-ca",
+      "wi-credit-memos-ca",
+      "wi-payment-voids-ca",
+      "wi-month-end-opening-closing-ca"
+    ],
+    "us": [
+      "wi-invoice-processing-validation-us",
+      "wi-non-po-invoice-review-us",
+      "wi-resolve-po-discrepancies",
+      "wi-duplicate-invoice-delete",
+      "wi-invoice-cancellation-us",
+      "wi-credit-memos-us",
+      "wi-ach-wire-payments",
+      "wi-month-end-close"
+    ],
+    "nam": [
+      "wi-manual-invoice-utilities",
+      "wi-prepayments-recording-nam",
+      "wi-prepayments-reconciliation",
+      "wi-new-supplier-approval",
+      "wi-supplier-updates",
+      "wi-setup-bank-account"
+    ]
+  },
   "workInstructions": [
     {
       "id": "wi-airfare-card-setup",
@@ -4303,6 +4333,16 @@
         "Busca el número de PO. Ingresa el número de PO en el campo \"Number\". Haz clic en \"Find\" para obtener los detalles del PO.",
         "El sistema mostrará los detalles del PO. Ubica la columna Buyer para identificar a la persona responsable.",
         "Ve al PO Unlocking Request Tracker (PO Unlocking Request) para solicitar al comprador que revise la línea del PO y, de ser necesario, reabra el PO para el procesamiento de la factura."
+      ],
+      "tips_en": [
+        "For a Distribution Variance discrepancy, add the tax as a \"Miscellaneous\" line and start the description with \"SALES TAXES\" so it's identifiable later.",
+        "For a Line Variance caused by freight, use the \"Freight\" type and start the description with \"FREIGHT\" before continuing to Allocations.",
+        "If the PO is closed, don't force it: forward the supplier's email requesting a valid PO, or use the PO Unlocking Request Tracker if the PO needs to be reopened."
+      ],
+      "tips_es": [
+        "En una discrepancia de Distribution Variance, agrega el impuesto como línea \"Miscellaneous\" e inicia la descripción con \"SALES TAXES\" para que quede identificable.",
+        "En una Line Variance por flete, usa el tipo \"Freight\" e inicia la descripción con \"FREIGHT\" antes de continuar con Allocations.",
+        "Si el PO está cerrado, no lo fuerces: reenvía el correo del proveedor solicitando un PO válido, o usa el PO Unlocking Request Tracker si el PO necesita reabrirse."
       ]
     },
     {
@@ -7102,7 +7142,12 @@
         "In Release Name, select Invoice Quick Release and click OK.",
         "The invoice is now fully validated."
       ],
-      "steps_es": null
+      "steps_es": null,
+      "tips_en": [
+        "A \"Qty Rec\" hold means the receipt hasn't been recorded in Oracle yet — the invoice can't be paid until the goods or service are received, it isn't a data-entry error.",
+        "To follow up, the \"Requester\" column on the Lines tab identifies who to contact; Oracle emails them automatically, but AP can send a reminder too.",
+        "When releasing the hold, select \"Invoice Quick Release\" specifically under Release Name."
+      ]
     },
     {
       "id": "wi-duplicate-invoice-delete",
@@ -7537,6 +7582,18 @@
         "Asegúrate de que el estado haya cambiado a \"validated\"; si no, debería mostrar el monto de \"holds\".",
         "Revisa el monto de los holds y los motivos. Si la factura no tiene holds, el proceso ha finalizado.",
         "Completa el tracker personal."
+      ],
+      "tips_en": [
+        "Check the status first: \"Needs revalidation\" → resolve it on the Holds tab; \"Never validated\" → follow the full process; \"Validated\" needs no action from you.",
+        "There are two PO match types: amount-based (usually services) and quantity-based (usually products) — confirm which one before matching.",
+        "For additional charges: use \"Freight\" only for shipping/handling/fuel; everything else (including hazmat or sales tax when \"Calculate Tax\" doesn't apply) goes under \"Miscellaneous\".",
+        "Don't forget to fill out the personal tracker after finishing each invoice."
+      ],
+      "tips_es": [
+        "Verifica primero el estado: \"Needs revalidation\" → resuélvelo en la pestaña Holds; \"Never validated\" → sigue el proceso completo; \"Validated\" no requiere ninguna acción.",
+        "Hay dos tipos de match de PO: por monto (usualmente servicios) y por cantidad (usualmente productos) — confírmalo antes de hacer match.",
+        "Para cargos adicionales: usa \"Freight\" solo si es envío, manejo o combustible; todo lo demás (incluyendo hazmat o sales tax cuando \"Calculate Tax\" no aplica) va como \"Miscellaneous\".",
+        "No olvides completar el tracker personal al finalizar cada factura."
       ]
     },
     {
@@ -7803,6 +7860,18 @@
         "Finalmente, el PST se ingresa como una línea separada usando el tipo \"Miscellaneous\", y se selecciona la opción Allocations. En la ventana emergente, hacer clic en OK para confirmar la asignación.",
         "Cargar los adjuntos: ir a Actions, hacer clic en Add Attachment, cargar el PDF de la factura y el PDF/mensaje reenviado del correo.",
         "Validar la factura: volver a la factura en BOSS, hacer clic en Actions, marcar Validate, y confirmar que el estado cambie a Validated."
+      ],
+      "tips_en": [
+        "If the invoice number is missing, build it from the last 7 digits of the reference + month (3 letters) + last 2 digits of the year.",
+        "Put the account number in the description — it helps the supplier apply funds correctly.",
+        "Don't forget to attach both the invoice PDF and the forwarded email before validating.",
+        "If the status doesn't land on \"Validated\", it's a hold — release it via Quick Release and validate again."
+      ],
+      "tips_es": [
+        "Si falta el número de factura, constrúyelo con los últimos 7 dígitos de la referencia + mes (3 letras) + últimos 2 dígitos del año.",
+        "Coloca el número de cuenta en la descripción — ayuda al proveedor a aplicar los fondos correctamente.",
+        "No olvides adjuntar tanto el PDF de la factura como el correo reenviado antes de validar.",
+        "Si el estado no queda en \"Validated\", es un hold — libéralo con Quick Release y vuelve a validar."
       ]
     },
     {
@@ -8602,156 +8671,6 @@
       "id": "close",
       "name_es": "Cierre y Reportes",
       "name_en": "Close & Reporting"
-    }
-  ],
-  "categories": [
-    {
-      "id": "busqueda",
-      "name_es": "Búsqueda de Invoice",
-      "name_en": "Invoice Search"
-    },
-    {
-      "id": "matching",
-      "name_es": "Matching",
-      "name_en": "Matching"
-    },
-    {
-      "id": "impuestos",
-      "name_es": "Impuestos",
-      "name_en": "Taxes"
-    }
-  ],
-  "cases": [
-    {
-      "id": "buscar-invoice",
-      "category": "busqueda",
-      "title_es": "Cómo encontrar el Invoice",
-      "title_en": "How to Find the Invoice",
-      "tags": [
-        "buscar invoice",
-        "invoice number",
-        "find invoice",
-        "AP inquiry",
-        "localizar factura"
-      ],
-      "steps_es": [
-        "Contenido pendiente — aquí irá el primer paso para localizar el invoice en Oracle Applications.",
-        "Contenido pendiente — paso 2.",
-        "Contenido pendiente — paso 3."
-      ],
-      "steps_en": [
-        "Content pending — this is where step 1 for locating the invoice in Oracle Applications will go.",
-        "Content pending — step 2.",
-        "Content pending — step 3."
-      ],
-      "checklist_es": [
-        "Verifica que el número de invoice coincide exactamente con el documento recibido.",
-        "Confirma que el proveedor (Supplier) es el correcto antes de continuar."
-      ],
-      "checklist_en": [
-        "Verify that the invoice number matches the received document exactly.",
-        "Confirm the correct supplier before continuing."
-      ],
-      "errors": [
-        {
-          "id": "err-invoice-no-aparece",
-          "title_es": "El invoice no aparece en la búsqueda",
-          "title_en": "The invoice doesn't appear in the search",
-          "tags": [
-            "invoice no aparece",
-            "invoice not found",
-            "no se encuentra factura"
-          ],
-          "steps_es": [
-            "Contenido pendiente — pasos de resolución."
-          ],
-          "steps_en": [
-            "Content pending — resolution steps."
-          ]
-        }
-      ]
-    },
-    {
-      "id": "match-3way",
-      "category": "matching",
-      "title_es": "Match 3-Way (Invoice–PO–Receipt)",
-      "title_en": "3-Way Match (Invoice–PO–Receipt)",
-      "tags": [
-        "3-way match",
-        "matching",
-        "PO",
-        "receipt",
-        "match de línea",
-        "línea"
-      ],
-      "steps_es": [
-        "Contenido pendiente — paso 1 del proceso de matching.",
-        "Contenido pendiente — paso 2.",
-        "Contenido pendiente — paso 3."
-      ],
-      "steps_en": [
-        "Content pending — step 1 of the matching process.",
-        "Content pending — step 2.",
-        "Content pending — step 3."
-      ],
-      "checklist_es": [
-        "Confirma que la cantidad y el monto de la línea coinciden entre Invoice, PO y Receipt.",
-        "Verifica que no haya variaciones de precio fuera de tolerancia."
-      ],
-      "checklist_en": [
-        "Confirm quantity and line amount match across Invoice, PO, and Receipt.",
-        "Verify there are no price variances outside tolerance."
-      ],
-      "errors": [
-        {
-          "id": "err-mismatch-monto",
-          "title_es": "El monto de la línea no coincide (mismatch)",
-          "title_en": "The line amount doesn't match (mismatch)",
-          "tags": [
-            "mismatch",
-            "monto no coincide",
-            "amount mismatch",
-            "match exception"
-          ],
-          "steps_es": [
-            "Contenido pendiente — pasos de resolución."
-          ],
-          "steps_en": [
-            "Content pending — resolution steps."
-          ]
-        }
-      ]
-    },
-    {
-      "id": "sales-tax",
-      "category": "impuestos",
-      "title_es": "Colocar Sales Tax a nivel de línea",
-      "title_en": "Enter Sales Tax at the Line Level",
-      "tags": [
-        "sales tax",
-        "impuesto de venta",
-        "tax line",
-        "impuestos"
-      ],
-      "steps_es": [
-        "Contenido pendiente — paso 1 para colocar el sales tax.",
-        "Contenido pendiente — paso 2.",
-        "Contenido pendiente — paso 3."
-      ],
-      "steps_en": [
-        "Content pending — step 1 for entering sales tax.",
-        "Content pending — step 2.",
-        "Content pending — step 3."
-      ],
-      "checklist_es": [
-        "Verifica que el sales tax se aplicó a nivel de línea y no a nivel de header.",
-        "Confirma que el monto de impuesto corresponde a la jurisdicción correcta."
-      ],
-      "checklist_en": [
-        "Verify sales tax was applied at the line level, not the header level.",
-        "Confirm the tax amount matches the correct jurisdiction."
-      ],
-      "errors": []
     }
   ]
 }

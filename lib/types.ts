@@ -51,34 +51,6 @@ export interface FlowDiagram {
   chain: FlowChainItem[];
 }
 
-export interface CaseError {
-  id: string;
-  title_es: string;
-  title_en: string;
-  tags: string[];
-  steps_es: string[];
-  steps_en: string[];
-}
-
-export interface Case {
-  id: string;
-  category: string;
-  title_es: string;
-  title_en: string;
-  tags: string[];
-  steps_es: string[];
-  steps_en: string[];
-  checklist_es: string[];
-  checklist_en: string[];
-  errors: CaseError[];
-}
-
-export interface Category {
-  id: string;
-  name_es: string;
-  name_en: string;
-}
-
 export interface WIRegion {
   id: string;
   name_es: string;
@@ -104,17 +76,21 @@ export interface WorkInstruction {
   objective_es: string;
   steps_en: string[];
   steps_es?: string[];
+  /** Optional, sparse: recurring gotchas/reminders grounded in this WI's own step text.
+   *  Rendered as a callout above the steps list; most WIs won't have this. */
+  tips_en?: string[];
+  tips_es?: string[];
 }
 
 export interface GuideData {
   glossary: GlossaryTerm[];
   flow: { diagrams: FlowDiagram[]; nodes: FlowNode[] };
-  demoPath: string[];
+  /** Keyed by region id (DATA.wiRegions[].id). Curated, ordered onboarding sequence of
+   *  real Work Instruction ids for that region — not the full catalog, a suggested subset. */
+  learningPath: Record<string, string[]>;
   workInstructions: WorkInstruction[];
   wiRegions: WIRegion[];
   wiCategories: WICategory[];
-  categories: Category[];
-  cases: Case[];
 }
 
 export interface UIText {

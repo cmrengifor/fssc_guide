@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
+import { useProgress } from "@/lib/progress-context";
 import { DATA } from "@/lib/data";
 
 export default function WIListView({ regionFilter }: { regionFilter?: string }) {
   const { t, tf } = useLang();
+  const { wiProgress, hydrated } = useProgress();
   const regions = regionFilter ? DATA.wiRegions.filter((r) => r.id === regionFilter) : DATA.wiRegions;
   const title = regionFilter
     ? `${t("wiListTitle")} — ${regionFilter.toUpperCase()}`
@@ -28,21 +30,32 @@ export default function WIListView({ regionFilter }: { regionFilter?: string }) 
                 <h3 className="category-title" style={{ fontSize: 11, marginLeft: 10 }}>
                   {tf(cat, "name")}
                 </h3>
-                {items.map((w) => (
-                  <Link href={`/wi/${w.id}`} className="case-card" key={w.id}>
-                    <div>
-                      <h4>{tf(w, "title")}</h4>
-                      <div className="case-tags">
-                        {w.tags.map((tag) => (
-                          <span className="tag" key={tag}>
-                            {tag}
-                          </span>
-                        ))}
+                {items.map((w) => {
+                  const steps = w.steps_es || w.steps_en;
+                  const progress = wiProgress(w.id, steps.length);
+                  return (
+                    <Link href={`/wi/${w.id}`} className="case-card" key={w.id}>
+                      <div>
+                        <h4>{tf(w, "title")}</h4>
+                        <div className="case-tags">
+                          {w.tags.map((tag) => (
+                            <span className="tag" key={tag}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                    <span className="chevron">›</span>
-                  </Link>
-                ))}
+                      <div className="case-card-trailing">
+                        {hydrated && progress.done > 0 && (
+                          <span className="progress-badge">
+                            {progress.done}/{progress.total}
+                          </span>
+                        )}
+                        <span className="chevron">›</span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             );
           })}

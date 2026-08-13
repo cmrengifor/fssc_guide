@@ -36,11 +36,16 @@ export default function Sidebar() {
           <span className="nav-icon" aria-hidden="true">⌂</span>
           {t("navHome")}
         </Link>
-        <Link href="/demo" className={`nav-item ${pathname === "/demo" ? "active" : ""}`}>
-          <span className="nav-icon" aria-hidden="true">▸</span>
-          {t("navDemo")}
-          <span className="badge-demo">{t("demoBadge")}</span>
-        </Link>
+        {DATA.wiRegions.map((region) => (
+          <Link
+            key={region.id}
+            href={`/demo/region/${region.id}`}
+            className={`nav-item ${pathname === `/demo/region/${region.id}` ? "active" : ""}`}
+          >
+            <span className="nav-icon" aria-hidden="true">▸</span>
+            {t("navDemo")} – {region.id.toUpperCase()}
+          </Link>
+        ))}
         {DATA.wiRegions.map((region) => (
           <Link
             key={region.id}

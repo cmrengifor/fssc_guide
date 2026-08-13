@@ -6,7 +6,7 @@ import { useLang } from "@/lib/lang-context";
 import { SEARCH_INDEX, type SearchIndexItem } from "@/lib/search";
 
 export default function SearchBox() {
-  const { lang, t, tf } = useLang();
+  const { lang, t } = useLang();
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -39,13 +39,10 @@ export default function SearchBox() {
 
   function handleClick(m: SearchIndexItem) {
     if (m.type === "glossary") goTo(`/glossary#${m.id}`);
-    else if (m.type === "wi") goTo(`/wi/${m.id}`);
-    else goTo(`/case/${m.id}`);
+    else goTo(`/wi/${m.id}`);
   }
 
   const groups: Array<{ key: SearchIndexItem["type"]; label: string }> = [
-    { key: "case", label: t("srCases") },
-    { key: "error", label: t("srErrors") },
     { key: "wi", label: t("srWI") },
     { key: "glossary", label: t("srGlossary") },
   ];
@@ -90,7 +87,6 @@ export default function SearchBox() {
                       onClick={() => handleClick(m)}
                     >
                       <b>{lang === "es" ? m.label_es : m.label_en}</b>
-                      {m.parentCase && <small>{tf(m.parentCase, "title")}</small>}
                     </button>
                   ))}
                 </div>
