@@ -27,7 +27,7 @@ export default function CaseView({ id }: { id: string }) {
         </div>
       </div>
 
-      <div className="section-label">{t("stepsLabel")}</div>
+      <h2 className="section-label">{t("stepsLabel")}</h2>
       <ol className="steps-list">
         {(lang === "es" ? c.steps_es : c.steps_en).map((s, i) => (
           <li key={i}>
@@ -37,7 +37,7 @@ export default function CaseView({ id }: { id: string }) {
         ))}
       </ol>
 
-      <div className="section-label">{t("checklistLabel")}</div>
+      <h2 className="section-label">{t("checklistLabel")}</h2>
       <div className="card">
         <ul className="checklist">
           {(lang === "es" ? c.checklist_es : c.checklist_en).map((item, i) => (
@@ -46,11 +46,11 @@ export default function CaseView({ id }: { id: string }) {
         </ul>
       </div>
 
-      <div className="section-label">{t("errorsLabel")}</div>
+      <h2 className="section-label">{t("errorsLabel")}</h2>
       {c.errors.length ? (
         c.errors.map((err) => (
           <div className="error-card" key={err.id}>
-            <h5>⚠ {tf(err, "title")}</h5>
+            <h3>⚠ {tf(err, "title")}</h3>
             <ol className="steps-list">
               {(lang === "es" ? err.steps_es : err.steps_en).map((s, i) => (
                 <li key={i}>{s}</li>

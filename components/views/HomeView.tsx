@@ -10,7 +10,7 @@ function CaseCard({ c }: { c: Case }) {
   return (
     <Link href={`/case/${c.id}`} className="case-card">
       <div>
-        <h4>{tf(c, "title")}</h4>
+        <h3>{tf(c, "title")}</h3>
         <div className="case-tags">
           {c.tags.slice(0, 4).map((tag) => (
             <span className="tag" key={tag}>
@@ -33,28 +33,28 @@ export default function HomeView() {
       <div className="quick-guide-grid">
         <div className="qg-card">
           <span className="qg-icon">⌕</span>
-          <h4>{t("qgSearchTitle")}</h4>
+          <h2>{t("qgSearchTitle")}</h2>
           <p>{t("qgSearchBody")}</p>
         </div>
         <div className="qg-card">
           <span className="qg-icon">☰</span>
-          <h4>{t("qgIndexTitle")}</h4>
+          <h2>{t("qgIndexTitle")}</h2>
           <p>{t("qgIndexBody")}</p>
         </div>
         <div className="qg-card">
           <span className="qg-icon">⋔</span>
-          <h4>{t("qgFlowTitle")}</h4>
+          <h2>{t("qgFlowTitle")}</h2>
           <p>{t("qgFlowBody")}</p>
         </div>
         <div className="qg-card">
           <span className="qg-icon">§</span>
-          <h4>{t("qgGlossaryTitle")}</h4>
+          <h2>{t("qgGlossaryTitle")}</h2>
           <p>{t("qgGlossaryBody")}</p>
         </div>
       </div>
       {DATA.categories.map((cat) => (
         <div className="category-block" style={{ marginTop: 30 }} key={cat.id}>
-          <div className="category-title">{tf(cat, "name")}</div>
+          <h2 className="category-title">{tf(cat, "name")}</h2>
           {DATA.cases.filter((c) => c.category === cat.id).map((c) => (
             <CaseCard c={c} key={c.id} />
           ))}

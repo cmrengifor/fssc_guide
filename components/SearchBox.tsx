@@ -57,6 +57,11 @@ export default function SearchBox() {
         type="text"
         className="search-input"
         placeholder={t("searchPlaceholder")}
+        aria-label={t("searchPlaceholder")}
+        role="combobox"
+        aria-expanded={open && !!q}
+        aria-controls="search-results-listbox"
+        aria-autocomplete="list"
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);
@@ -65,7 +70,7 @@ export default function SearchBox() {
         onFocus={() => query && setOpen(true)}
       />
       {open && q && (
-        <div className="search-results open">
+        <div className="search-results open" role="listbox" id="search-results-listbox">
           {matches.length === 0 ? (
             <div className="sr-empty">{t("srEmpty")}</div>
           ) : (
@@ -73,13 +78,20 @@ export default function SearchBox() {
               const items = matches.filter((m) => m.type === g.key);
               if (!items.length) return null;
               return (
-                <div key={g.key}>
+                <div key={g.key} role="group" aria-label={g.label}>
                   <div className="sr-group-label">{g.label}</div>
                   {items.map((m, i) => (
-                    <div className="sr-item" key={`${g.key}-${i}`} onClick={() => handleClick(m)}>
+                    <button
+                      type="button"
+                      className="sr-item"
+                      role="option"
+                      aria-selected="false"
+                      key={`${g.key}-${i}`}
+                      onClick={() => handleClick(m)}
+                    >
                       <b>{lang === "es" ? m.label_es : m.label_en}</b>
                       {m.parentCase && <small>{tf(m.parentCase, "title")}</small>}
-                    </div>
+                    </button>
                   ))}
                 </div>
               );

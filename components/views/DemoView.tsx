@@ -18,7 +18,7 @@ export default function DemoView() {
           <Link href={`/case/${id}`} className="path-step" key={id}>
             <div className="path-index">{i + 1}</div>
             <div>
-              <h4 style={{ margin: "0 0 2px", fontSize: 14.5 }}>{tf(c, "title")}</h4>
+              <h2 style={{ margin: "0 0 2px", fontSize: 14.5 }}>{tf(c, "title")}</h2>
               <small style={{ color: "var(--ink-faint)" }}>
                 {cat ? (lang === "es" ? cat.name_es : cat.name_en) : ""}
               </small>

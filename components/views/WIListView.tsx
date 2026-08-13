@@ -17,17 +17,17 @@ export default function WIListView({ regionFilter }: { regionFilter?: string }) 
       <p className="page-sub">{t("wiListSub")}</p>
       {regions.map((region) => (
         <div className="category-block" key={region.id}>
-          <div className="category-title" style={{ color: "var(--teal)", borderBottom: "2px solid var(--teal-soft)" }}>
+          <h2 className="category-title" style={{ color: "var(--teal)", borderBottom: "2px solid var(--teal-soft)" }}>
             {tf(region, "name")}
-          </div>
+          </h2>
           {DATA.wiCategories.map((cat) => {
             const items = DATA.workInstructions.filter((w) => w.region === region.id && w.category === cat.id);
             if (!items.length) return null;
             return (
               <div key={cat.id}>
-                <div className="category-title" style={{ fontSize: 11, marginLeft: 10 }}>
+                <h3 className="category-title" style={{ fontSize: 11, marginLeft: 10 }}>
                   {tf(cat, "name")}
-                </div>
+                </h3>
                 {items.map((w) => (
                   <Link href={`/wi/${w.id}`} className="case-card" key={w.id}>
                     <div>

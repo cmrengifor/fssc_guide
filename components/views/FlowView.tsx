@@ -104,19 +104,19 @@ export default function FlowView({
           </div>
         </div>
       )}
-      <div className="section-label">
+      <h2 className="section-label">
         {lang === "es"
           ? "Diagramas de flujo de Invoice Processing (documentos originales)"
           : "Invoice Processing Flowcharts (original documents)"}
-      </div>
+      </h2>
       {flowchartWI.length > 0 ? (
         flowchartWI.map((w) => (
           <Link href={`/wi/${w.id}`} className="card" style={{ cursor: "pointer", display: "block" }} key={w.id}>
-            <h4 style={{ margin: "0 0 10px", fontSize: 14 }}>{tf(w, "title")}</h4>
+            <h3 style={{ margin: "0 0 10px", fontSize: 14 }}>{tf(w, "title")}</h3>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/${DATA.flowchartImages[w.id]}`}
-              alt=""
+              alt={`${lang === "es" ? "Diagrama de flujo original" : "Original flowchart"}: ${tf(w, "title")}`}
               style={{ maxWidth: "100%", border: "1px solid var(--border)", borderRadius: 8 }}
             />
           </Link>

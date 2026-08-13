@@ -3,14 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLang } from "@/lib/lang-context";
+import { useSidebar } from "@/lib/sidebar-context";
 import { DATA } from "@/lib/data";
 
 export default function Sidebar() {
   const { t } = useLang();
   const pathname = usePathname();
+  const { open, close } = useSidebar();
 
   return (
-    <nav className="sidebar">
+    <>
+      {open && <div className="sidebar-backdrop" onClick={close} />}
+      <nav className={`sidebar ${open ? "open" : ""}`} id="sidebar-nav">
       <div className="nav-section">
         <Link href="/" className={`nav-item ${pathname === "/" ? "active" : ""}`}>
           <span className="nav-icon">⌂</span>
@@ -46,6 +50,7 @@ export default function Sidebar() {
           {t("navGlossary")}
         </Link>
       </div>
-    </nav>
+      </nav>
+    </>
   );
 }

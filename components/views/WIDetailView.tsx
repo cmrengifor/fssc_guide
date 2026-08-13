@@ -58,15 +58,21 @@ export default function WIDetailView({ id }: { id: string }) {
           ))}
         </div>
       </div>
-      <div className="section-label">{t("stepsLabel")}</div>
+      <h2 className="section-label">{t("stepsLabel")}</h2>
       <ol className="steps-list">
         {steps.map((s, i) => (
           <li key={i} id={`step-${i + 1}`} className={highlightedStep === `step-${i + 1}` ? "step-highlighted" : ""}>
             {s}
             {w.images && w.images[i] && w.images[i].length ? (
-              w.images[i].map((src) => (
+              w.images[i].map((src, j) => (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img key={src} src={`/${src}`} alt="" className="wi-step-img" loading="lazy" />
+                <img
+                  key={src}
+                  src={`/${src}`}
+                  alt={`${tf(w, "title")} — ${t("stepsLabel")} ${i + 1}${w.images[i].length > 1 ? `.${j + 1}` : ""}`}
+                  className="wi-step-img"
+                  loading="lazy"
+                />
               ))
             ) : (
               <div className="img-placeholder">🖼 {t("wiImageNote")}</div>

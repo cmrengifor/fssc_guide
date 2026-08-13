@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LangProvider } from "@/lib/lang-context";
+import { SidebarProvider } from "@/lib/sidebar-context";
 import TopBar from "@/components/TopBar";
 import Sidebar from "@/components/Sidebar";
 
@@ -14,13 +15,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" data-lang="es">
       <body>
         <LangProvider>
-          <div id="app">
-            <TopBar />
-            <div className="layout">
-              <Sidebar />
-              <main>{children}</main>
+          <SidebarProvider>
+            <div id="app">
+              <TopBar />
+              <div className="layout">
+                <Sidebar />
+                <main>{children}</main>
+              </div>
             </div>
-          </div>
+          </SidebarProvider>
         </LangProvider>
       </body>
     </html>
