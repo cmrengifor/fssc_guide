@@ -36,6 +36,7 @@
       {
         "id": "n1",
         "caseId": "buscar-invoice",
+        "wiStepRef": { "wiId": "wi-duplicate-invoice-delete", "step": 1 },
         "label_es": "Encontrar el Invoice",
         "label_en": "Find the Invoice"
       },

@@ -7,10 +7,16 @@ export interface GlossaryTerm {
   def_en: string;
 }
 
+export interface FlowNodeWIStepRef {
+  wiId: string;
+  step: number;
+}
+
 export interface FlowNode {
   id: string;
   type?: "decision" | "pending";
   caseId?: string;
+  wiStepRef?: FlowNodeWIStepRef;
   label_es: string;
   label_en: string;
 }

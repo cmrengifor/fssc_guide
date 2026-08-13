@@ -18,13 +18,21 @@ function FlowNodeEl({ node }: { node?: FlowNode }) {
     );
   }
 
+  const code = node.wiStepRef ? `${node.wiStepRef.wiId} · step ${node.wiStepRef.step}` : node.caseId;
   const content = (
     <>
       {tf(node, "label")}
-      {node.caseId && <span className="flow-node-code">{node.caseId}</span>}
+      {code && <span className="flow-node-code">{code}</span>}
     </>
   );
 
+  if (node.wiStepRef) {
+    return (
+      <Link href={`/wi/${node.wiStepRef.wiId}#step-${node.wiStepRef.step}`} className="flow-node">
+        {content}
+      </Link>
+    );
+  }
   if (node.caseId) {
     return (
       <Link href={`/case/${node.caseId}`} className="flow-node">

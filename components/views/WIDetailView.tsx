@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
 import { DATA } from "@/lib/data";
@@ -7,6 +8,25 @@ import { DATA } from "@/lib/data";
 export default function WIDetailView({ id }: { id: string }) {
   const { lang, t, tf } = useLang();
   const w = DATA.workInstructions.find((x) => x.id === id);
+  const [highlightedStep, setHighlightedStep] = useState<string | null>(null);
+
+  useEffect(() => {
+    function syncToHash() {
+      const hash = window.location.hash.slice(1);
+      if (!hash.startsWith("step-")) return;
+      setHighlightedStep(hash);
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const timer = setTimeout(() => setHighlightedStep(null), 2400);
+      return () => clearTimeout(timer);
+    }
+    const cleanup = syncToHash();
+    window.addEventListener("hashchange", syncToHash);
+    return () => {
+      window.removeEventListener("hashchange", syncToHash);
+      cleanup?.();
+    };
+  }, [id]);
+
   if (!w) return <div className="content-inner">Not found</div>;
   const cat = DATA.wiCategories.find((x) => x.id === w.category);
   const region = DATA.wiRegions.find((x) => x.id === w.region);
@@ -41,7 +61,7 @@ export default function WIDetailView({ id }: { id: string }) {
       <div className="section-label">{t("stepsLabel")}</div>
       <ol className="steps-list">
         {steps.map((s, i) => (
-          <li key={i}>
+          <li key={i} id={`step-${i + 1}`} className={highlightedStep === `step-${i + 1}` ? "step-highlighted" : ""}>
             {s}
             {w.images && w.images[i] && w.images[i].length ? (
               w.images[i].map((src) => (

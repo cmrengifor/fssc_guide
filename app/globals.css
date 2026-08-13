@@ -218,6 +218,17 @@ h1.page-title{font-family:var(--font-display);font-size:26px;margin:0 0 6px;lett
   border-left:2px solid var(--border);margin-left:12px;font-size:14px;color:var(--ink);
 }
 .steps-list li:last-child{border-color:transparent;padding-bottom:2px;}
+.steps-list li{scroll-margin-top:20px;}
+.steps-list li:target,
+.steps-list li.step-highlighted{
+  background:var(--blue-soft);border-radius:8px;
+  animation:step-highlight 2.4s ease-out;
+}
+@keyframes step-highlight{
+  0%{background:var(--blue-soft);}
+  70%{background:var(--blue-soft);}
+  100%{background:transparent;}
+}
 .steps-list li::before{
   content:counter(step);position:absolute;left:-13px;top:0;
   width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;
