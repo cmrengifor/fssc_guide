@@ -1,15 +1,37 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
 import { DATA } from "@/lib/data";
-import type { FlowNode } from "@/lib/types";
+import { isFlowDecisionItem } from "@/lib/types";
+import type { FlowChainItem, FlowNode, FlowNodeWIStepRef } from "@/lib/types";
 
-function FlowNodeEl({ node }: { node?: FlowNode }) {
+const DEFAULT_DIAGRAM_ID = "3way-match";
+
+function findNode(id: string): FlowNode | undefined {
+  return DATA.flow.nodes.find((x) => x.id === id);
+}
+
+function resolveRef(node: FlowNode | undefined, region: string | undefined): FlowNodeWIStepRef | undefined {
+  if (!node?.wiStepRefByRegion) return undefined;
+  if (region) return node.wiStepRefByRegion[region];
+  // Unfiltered /flow page: show the first region (in DATA.wiRegions order) that has
+  // content for this node, so the page isn't entirely pending by default.
+  for (const r of DATA.wiRegions) {
+    const ref = node.wiStepRefByRegion[r.id];
+    if (ref) return ref;
+  }
+  return undefined;
+}
+
+function FlowNodeEl({ nodeId, region }: { nodeId: string; region?: string }) {
   const { t, tf } = useLang();
+  const node = findNode(nodeId);
   if (!node) return null;
 
-  if (node.type === "pending") {
+  const ref = resolveRef(node, region);
+  if (!ref) {
     return (
       <div className="flow-node pending">
         {tf(node, "label")}
@@ -18,34 +40,53 @@ function FlowNodeEl({ node }: { node?: FlowNode }) {
     );
   }
 
-  const code = node.wiStepRef ? `${node.wiStepRef.wiId} · step ${node.wiStepRef.step}` : node.caseId;
-  const content = (
-    <>
+  return (
+    <Link href={`/wi/${ref.wiId}#step-${ref.step}`} className="flow-node">
       {tf(node, "label")}
-      {code && <span className="flow-node-code">{code}</span>}
-    </>
+      <span className="flow-node-code">{`${ref.wiId} · step ${ref.step}`}</span>
+    </Link>
   );
-
-  if (node.wiStepRef) {
-    return (
-      <Link href={`/wi/${node.wiStepRef.wiId}#step-${node.wiStepRef.step}`} className="flow-node">
-        {content}
-      </Link>
-    );
-  }
-  if (node.caseId) {
-    return (
-      <Link href={`/case/${node.caseId}`} className="flow-node">
-        {content}
-      </Link>
-    );
-  }
-  return <div className="flow-node">{content}</div>;
 }
 
-export default function FlowView({ regionFilter }: { regionFilter?: string }) {
+function NodeChain({ chain, region }: { chain: FlowChainItem[]; region?: string }) {
+  const { tf } = useLang();
+  return (
+    <>
+      {chain.map((item, i) => (
+        <Fragment key={isFlowDecisionItem(item) ? item.decision : item}>
+          {i > 0 && <div className="flow-arrow" />}
+          {isFlowDecisionItem(item) ? (
+            <>
+              <div className="flow-decision">{tf(findNode(item.decision)!, "label")}</div>
+              <div className="flow-arrow" />
+              <div className="flow-branches">
+                {item.branches.map((branch) => (
+                  <div className="flow-branch" key={branch.id}>
+                    <div className="flow-branch-label">{tf(branch, "label")}</div>
+                    <NodeChain chain={branch.chain} region={region} />
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <FlowNodeEl nodeId={item} region={region} />
+          )}
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
+export default function FlowView({
+  regionFilter,
+  diagramId,
+}: {
+  regionFilter?: string;
+  diagramId?: string;
+}) {
   const { lang, t, tf } = useLang();
-  const n = (id: string) => DATA.flow.nodes.find((x) => x.id === id);
+  const diagram =
+    DATA.flow.diagrams.find((d) => d.id === (diagramId ?? DEFAULT_DIAGRAM_ID)) ?? DATA.flow.diagrams[0];
   const region = regionFilter ? DATA.wiRegions.find((r) => r.id === regionFilter) : undefined;
   const flowchartWI = DATA.workInstructions.filter(
     (w) => DATA.flowchartImages && DATA.flowchartImages[w.id] && (!regionFilter || w.region === regionFilter)
@@ -56,26 +97,13 @@ export default function FlowView({ regionFilter }: { regionFilter?: string }) {
     <div className="content-inner">
       <h1 className="page-title">{title}</h1>
       <p className="page-sub">{t("flowSub")}</p>
-      <div className="card">
-        <div className="flow-wrap">
-          <FlowNodeEl node={n("n1")} />
-          <div className="flow-arrow" />
-          <div className="flow-decision">{tf(n("d1")!, "label")}</div>
-          <div className="flow-arrow" />
-          <div className="flow-branches">
-            <div className="flow-branch">
-              <div className="flow-branch-label">{lang === "es" ? "Sí" : "Yes"}</div>
-              <FlowNodeEl node={n("n2")} />
-              <div className="flow-arrow" />
-              <FlowNodeEl node={n("n4")} />
-            </div>
-            <div className="flow-branch">
-              <div className="flow-branch-label">{lang === "es" ? "No" : "No"}</div>
-              <FlowNodeEl node={n("n3")} />
-            </div>
+      {diagram && (
+        <div className="card">
+          <div className="flow-wrap">
+            <NodeChain chain={diagram.chain} region={regionFilter} />
           </div>
         </div>
-      </div>
+      )}
       <div className="section-label">
         {lang === "es"
           ? "Diagramas de flujo de Invoice Processing (documentos originales)"

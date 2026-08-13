@@ -248,37 +248,230 @@
     }
   ],
   "flow": {
+    "diagrams": [
+      {
+        "id": "3way-match",
+        "title_es": "Match 3-Way de Invoices",
+        "title_en": "Invoice 3-Way Match",
+        "chain": [
+          "n-login",
+          "n-search",
+          "n-review",
+          "n-validate-po",
+          {
+            "decision": "d-receipt",
+            "branches": [
+              { "id": "no", "label_es": "No", "label_en": "No", "chain": ["n-hold-receiving"] },
+              { "id": "yes", "label_es": "Sí", "label_en": "Yes", "chain": [] }
+            ]
+          },
+          {
+            "decision": "d-qty",
+            "branches": [
+              { "id": "no", "label_es": "No", "label_en": "No", "chain": ["n-hold-qty"] },
+              { "id": "yes", "label_es": "Sí", "label_en": "Yes", "chain": [] }
+            ]
+          },
+          {
+            "decision": "d-price",
+            "branches": [
+              { "id": "no", "label_es": "No", "label_en": "No", "chain": ["n-hold-price"] },
+              { "id": "yes", "label_es": "Sí", "label_en": "Yes", "chain": [] }
+            ]
+          },
+          "n-review-holds",
+          "n-followup",
+          "n-revalidate",
+          {
+            "decision": "d-active-holds",
+            "branches": [
+              { "id": "yes", "label_es": "Sí", "label_en": "Yes", "chain": ["n-release"] },
+              { "id": "no", "label_es": "No", "label_en": "No", "chain": [] }
+            ]
+          },
+          "n-validated",
+          {
+            "decision": "d-taxes",
+            "branches": [
+              { "id": "yes", "label_es": "Sí", "label_en": "Yes", "chain": ["n-add-tax"] },
+              { "id": "no", "label_es": "No", "label_en": "No", "chain": [] }
+            ]
+          },
+          "n-handover"
+        ]
+      }
+    ],
     "nodes": [
       {
-        "id": "n1",
-        "caseId": "buscar-invoice",
-        "wiStepRef": { "wiId": "wi-duplicate-invoice-delete", "step": 1 },
-        "label_es": "Encontrar el Invoice",
-        "label_en": "Find the Invoice"
+        "id": "n-login",
+        "label_es": "Iniciar sesión en Oracle / Acceder al módulo de AP",
+        "label_en": "Login to Oracle / Access AP module",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 2 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 2 }
+        }
       },
       {
-        "id": "d1",
-        "type": "decision",
-        "label_es": "¿Invoice tiene PO asociado?",
-        "label_en": "Does the invoice have an associated PO?"
+        "id": "n-search",
+        "label_es": "Buscar el invoice y confirmar que tiene PO",
+        "label_en": "Search invoice, confirm PO-based",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 5 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 4 }
+        }
       },
       {
-        "id": "n2",
-        "caseId": "match-3way",
-        "label_es": "Match 3-Way (Invoice–PO–Receipt)",
-        "label_en": "3-Way Match (Invoice–PO–Receipt)"
+        "id": "n-review",
+        "label_es": "Revisar encabezado y líneas del invoice",
+        "label_en": "Review invoice header & lines",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 9 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 5 }
+        }
       },
       {
-        "id": "n3",
-        "type": "pending",
-        "label_es": "Proceso sin PO (pendiente de definir)",
-        "label_en": "No-PO process (pending definition)"
+        "id": "n-validate-po",
+        "label_es": "Verificar que el invoice esté vinculado a un PO válido",
+        "label_en": "Verify invoice linked to a valid PO",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 9 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 6 }
+        }
       },
       {
-        "id": "n4",
-        "caseId": "sales-tax",
-        "label_es": "Colocar Sales Tax",
-        "label_en": "Enter Sales Tax"
+        "id": "d-receipt",
+        "label_es": "¿El receipt existe y está completo?",
+        "label_en": "Receipt exists & complete?",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 15 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 10 }
+        }
+      },
+      {
+        "id": "n-hold-receiving",
+        "label_es": "El sistema coloca un Receiving Hold",
+        "label_en": "System places Receiving Hold",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 16 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 10 }
+        }
+      },
+      {
+        "id": "d-qty",
+        "label_es": "¿La cantidad facturada coincide con la recibida?",
+        "label_en": "Invoiced qty = received qty?",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 15 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 16 }
+        }
+      },
+      {
+        "id": "n-hold-qty",
+        "label_es": "El sistema coloca un Quantity Hold",
+        "label_en": "System places Quantity Hold",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 16 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 16 }
+        }
+      },
+      {
+        "id": "d-price",
+        "label_es": "¿El precio del invoice coincide con el del PO?",
+        "label_en": "Invoice price = PO price?",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 18 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 16 }
+        }
+      },
+      {
+        "id": "n-hold-price",
+        "label_es": "El sistema coloca un Price Hold",
+        "label_en": "System places Price Hold",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 19 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 16 }
+        }
+      },
+      {
+        "id": "n-review-holds",
+        "label_es": "Revisar todos los holds del sistema",
+        "label_en": "Review all system holds",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 15 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 2 }
+        }
+      },
+      {
+        "id": "n-followup",
+        "label_es": "Dar seguimiento y resolver las discrepancias",
+        "label_en": "Follow up / resolve discrepancies",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 17 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 19 }
+        }
+      },
+      {
+        "id": "n-revalidate",
+        "label_es": "Revalidar el invoice en Oracle",
+        "label_en": "Revalidate invoice in Oracle",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 13 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 13 }
+        }
+      },
+      {
+        "id": "d-active-holds",
+        "label_es": "¿Quedan holds activos?",
+        "label_en": "Active holds remain?",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 22 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 9 }
+        }
+      },
+      {
+        "id": "n-release",
+        "label_es": "Liberar el hold (regresa a Revalidar)",
+        "label_en": "Release hold (loops back to Revalidate)",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 23 },
+          "us": { "wiId": "wi-resolve-po-discrepancies", "step": 9 }
+        }
+      },
+      {
+        "id": "n-validated",
+        "label_es": "Invoice validado, sin holds activos",
+        "label_en": "Invoice validated, no holds remain",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 24 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 16 }
+        }
+      },
+      {
+        "id": "d-taxes",
+        "label_es": "¿Hay impuestos presentes? (GST/HST/QST)",
+        "label_en": "Taxes present? (GST/HST/QST)",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 11 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 10 }
+        }
+      },
+      {
+        "id": "n-add-tax",
+        "label_es": "Agregar línea de impuesto Miscellaneous",
+        "label_en": "Add Miscellaneous tax line",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 11 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 10 }
+        }
+      },
+      {
+        "id": "n-handover",
+        "label_es": "Invoice disponible para contabilización y entrega a AP",
+        "label_en": "Invoice available for posting, handover to AP",
+        "wiStepRefByRegion": {
+          "ca": { "wiId": "wi-3way-match-ca", "step": 24 },
+          "us": { "wiId": "wi-invoice-processing-validation-us", "step": 17 }
+        }
       }
     ]
   },

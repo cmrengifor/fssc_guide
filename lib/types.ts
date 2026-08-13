@@ -14,11 +14,38 @@ export interface FlowNodeWIStepRef {
 
 export interface FlowNode {
   id: string;
-  type?: "decision" | "pending";
-  caseId?: string;
-  wiStepRef?: FlowNodeWIStepRef;
+  /** Keyed by region id (DATA.wiRegions[].id, e.g. "us"/"ca"/"nam"). No entry for the
+   *  active region => node renders as pending (dashed, non-clickable) for that region. */
+  wiStepRefByRegion?: Record<string, FlowNodeWIStepRef>;
   label_es: string;
   label_en: string;
+}
+
+export interface FlowBranch {
+  id: string;
+  label_es: string;
+  label_en: string;
+  /** Linear sequence of FlowNode ids rendered with .flow-arrow between them. */
+  chain: string[];
+}
+
+/** A chain item is either a plain FlowNode id, or an inline decision that renders via
+ *  .flow-decision + .flow-branches and then rejoins the outer chain afterward. */
+export type FlowChainItem = string | { decision: string; branches: FlowBranch[] };
+
+export function isFlowDecisionItem(
+  item: FlowChainItem
+): item is { decision: string; branches: FlowBranch[] } {
+  return typeof item !== "string";
+}
+
+/** Describes one diagram's shape: a sequence of nodes and/or inline decisions, rendered
+ *  entirely with the existing .flow-* CSS classes (no swimlanes, no arbitrary graphs). */
+export interface FlowDiagram {
+  id: string;
+  title_es?: string;
+  title_en?: string;
+  chain: FlowChainItem[];
 }
 
 export interface CaseError {
@@ -78,7 +105,7 @@ export interface WorkInstruction {
 
 export interface GuideData {
   glossary: GlossaryTerm[];
-  flow: { nodes: FlowNode[] };
+  flow: { diagrams: FlowDiagram[]; nodes: FlowNode[] };
   demoPath: string[];
   workInstructions: WorkInstruction[];
   flowchartImages: Record<string, string>;
