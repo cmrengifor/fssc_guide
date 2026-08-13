@@ -34,7 +34,7 @@ export default function WIDetailView({ id }: { id: string }) {
 
   return (
     <div className="content-inner">
-      <Link href="/wi" className="back-link">
+      <Link href={`/wi/region/${w.region}`} className="back-link">
         ← {t("backToCases")}
       </Link>
       <div className="case-header">

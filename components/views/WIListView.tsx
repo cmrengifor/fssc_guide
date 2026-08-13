@@ -4,13 +4,18 @@ import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
 import { DATA } from "@/lib/data";
 
-export default function WIListView() {
+export default function WIListView({ regionFilter }: { regionFilter?: string }) {
   const { t, tf } = useLang();
+  const regions = regionFilter ? DATA.wiRegions.filter((r) => r.id === regionFilter) : DATA.wiRegions;
+  const title = regionFilter
+    ? `${t("wiListTitle")} — ${regionFilter.toUpperCase()}`
+    : t("wiListTitle");
+
   return (
     <div className="content-inner">
-      <h1 className="page-title">{t("wiListTitle")}</h1>
+      <h1 className="page-title">{title}</h1>
       <p className="page-sub">{t("wiListSub")}</p>
-      {DATA.wiRegions.map((region) => (
+      {regions.map((region) => (
         <div className="category-block" key={region.id}>
           <div className="category-title" style={{ color: "var(--teal)", borderBottom: "2px solid var(--teal-soft)" }}>
             {tf(region, "name")}
