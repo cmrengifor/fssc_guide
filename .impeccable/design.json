@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-13T00:00:00.000Z",
+  "generatedAt": "2026-08-13T02:00:00.000Z",
   "title": "Design System: FSSC AP Training Guide",
   "extensions": {
     "colorMeta": {
@@ -11,12 +11,19 @@
         "darkModeValue": "#6C9CE0",
         "tonalRamp": ["#0F2A4D", "#163B68", "#1E4C82", "#2C5FA8", "#4779BE", "#6C9CE0", "#9DBCE9", "#D6E4F5"]
       },
+      "on-blue": {
+        "role": "primary-foreground",
+        "displayName": "On Blue",
+        "canonical": "#FFFFFF",
+        "darkModeValue": "#1A2030",
+        "tonalRamp": ["#000000", "#12161F", "#1A2030", "#40474F", "#8A8F94", "#C8CACC", "#EAEBEB", "#FFFFFF"]
+      },
       "verification-teal": {
         "role": "secondary",
         "displayName": "Verification Teal",
-        "canonical": "#0F7D8C",
+        "canonical": "#0E7785",
         "darkModeValue": "#4FC7D3",
-        "tonalRamp": ["#0A3A42", "#0D5A66", "#0F7D8C", "#2A96A3", "#4FC7D3", "#7FDBE3", "#B3ECEF", "#E4F3F4"]
+        "tonalRamp": ["#093639", "#0C5560", "#0E7785", "#29949F", "#4FC7D3", "#7FDBE3", "#B3ECEF", "#E4F3F4"]
       },
       "confirmed-green": {
         "role": "tertiary",
@@ -28,9 +35,9 @@
       "flagged-amber": {
         "role": "status",
         "displayName": "Flagged Amber",
-        "canonical": "#B5651D",
+        "canonical": "#A35B1A",
         "darkModeValue": "#E5A05E",
-        "tonalRamp": ["#5C3110", "#7E4315", "#B5651D", "#D08736", "#E5A05E", "#F0BE8C", "#F8DCC0", "#FBEEE1"]
+        "tonalRamp": ["#4E2B0C", "#6E3D12", "#A35B1A", "#C67A34", "#E5A05E", "#EFBD8C", "#F7DBBF", "#FBEEE1"]
       },
       "ink": {
         "role": "neutral",
@@ -38,21 +45,42 @@
         "canonical": "#1A2333",
         "darkModeValue": "#E7EAF0",
         "tonalRamp": ["#12161F", "#1A2333", "#2B3244", "#5B6478", "#8A93A3", "#DCE1E8", "#EEF1F5", "#F5F6F9"]
+      },
+      "ink-faint": {
+        "role": "neutral-tertiary",
+        "displayName": "Ink Faint",
+        "canonical": "#677183",
+        "darkModeValue": "#808899",
+        "tonalRamp": ["#2E333D", "#454C59", "#5C6475", "#677183", "#808899", "#9BA1AF", "#B8BDC7", "#D5D8DE"],
+        "note": "Retuned from #8A93A3/#6B7385 — the originals fell to 2.9-3.8:1 against bg/surface at the 10-11px sizes this token actually renders at; these values clear 4.5:1 (AA) in both themes."
+      },
+      "scrim": {
+        "role": "overlay",
+        "displayName": "Scrim",
+        "canonical": "rgba(10,14,22,.45)",
+        "darkModeValue": "rgba(10,14,22,.45)",
+        "note": "Theme-independent dimming backdrop behind the mobile sidebar drawer."
       }
     },
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "Page titles only (h1.page-title). One per page." },
       "body": { "displayName": "Body", "purpose": "All prose: descriptions, step text, definitions, card copy." },
-      "label": { "displayName": "Label", "purpose": "Every non-prose string: nav captions, tags, codes, category titles, glossary headwords, region badges." }
+      "label": { "displayName": "Label", "purpose": "Every non-prose string: nav captions, tags, codes, category titles, glossary headwords, region badges." },
+      "scale": { "displayName": "Micro-scale", "purpose": "The 14 hand-tuned half-pixel sizes (9.5-26px) actually in use, declared so the design-system detector treats each as an intentional step rather than drift." }
     },
     "shadows": [
-      { "name": "overlay", "value": "0 10px 30px rgba(20,30,50,.12)", "purpose": "The floating search-results dropdown. Only UI-chrome shadow in the system." },
+      { "name": "overlay", "value": "0 10px 30px rgba(20,30,50,.12)", "purpose": "The floating search-results dropdown." },
+      { "name": "drawer", "value": "0 10px 30px rgba(20,30,50,.18)", "purpose": "The mobile off-canvas sidebar drawer — same size as overlay, slightly heavier since it displaces more of the screen." },
       { "name": "embedded-media", "value": "0 2px 8px rgba(20,30,50,.08)", "purpose": "Step screenshots (.wi-step-img) — a light lift off the surrounding card." }
     ],
     "motion": [
-      { "name": "ease-standard", "value": "ease .15s-.18s", "purpose": "Background/border-color transitions on hover, theme switch, and focus. No transform/scale motion anywhere in the system." }
+      { "name": "ease-standard", "value": "ease .15s-.18s", "purpose": "Background/border-color transitions on hover, theme switch, and focus." },
+      { "name": "drawer-slide", "value": "transform .2s ease", "purpose": "Mobile sidebar drawer open/close (translateX)." }
     ],
-    "breakpoints": []
+    "breakpoints": [
+      { "name": "mobile", "value": "767px", "purpose": "max-width breakpoint: sidebar becomes an off-canvas drawer, topbar reflows, two-column layouts collapse." },
+      { "name": "coarse-pointer", "value": "(pointer: coarse)", "purpose": "Feature query (not a width breakpoint): bumps interactive row min-height to 44px on any touch-capable device, including touch-enabled desktops." }
+    ]
   },
   "components": [
     {
@@ -91,9 +119,17 @@
       "name": "Search Input",
       "kind": "input",
       "refersTo": "search-input",
-      "description": "Topbar search field with inline icon.",
-      "html": "<div class=\"ds-search-wrap\"><span class=\"ds-search-icon\">⌕</span><input class=\"ds-search-input\" type=\"text\" placeholder=\"Buscar por palabra clave, caso o término...\"></div>",
-      "css": ".ds-search-wrap { position: relative; } .ds-search-input { width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--surface-alt); color: var(--ink); outline: none; transition: border-color .15s, background .15s; } .ds-search-input:focus { border-color: var(--blue); background: #fff; } .ds-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--ink-faint); font-size: 14px; pointer-events: none; }"
+      "description": "Topbar search field with inline icon; combobox/listbox ARIA wiring for keyboard operability.",
+      "html": "<div class=\"ds-search-wrap\"><span class=\"ds-search-icon\">⌕</span><input class=\"ds-search-input\" type=\"text\" role=\"combobox\" aria-expanded=\"false\" aria-autocomplete=\"list\" placeholder=\"Buscar por palabra clave, caso o término...\"></div>",
+      "css": ".ds-search-wrap { position: relative; } .ds-search-input { width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--surface-alt); color: var(--ink); outline: none; transition: border-color .15s, background .15s; } .ds-search-input:focus { border-color: var(--blue); background: var(--surface); outline: 2px solid var(--blue); outline-offset: 2px; } .ds-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--ink-faint); font-size: 14px; pointer-events: none; }"
+    },
+    {
+      "name": "Search Result Item",
+      "kind": "custom",
+      "refersTo": "sr-item",
+      "description": "A single search result — a real <button> (role=\"option\") so it's keyboard-focusable and activatable, not a <div onClick>.",
+      "html": "<button type=\"button\" class=\"ds-sr-item\" role=\"option\"><b>3-Way Match (Invoice–PO–Receipt)</b></button>",
+      "css": ".ds-sr-item { display: flex; flex-direction: column; gap: 2px; width: 100%; text-align: left; padding: 8px 14px; cursor: pointer; border: none; border-left: 3px solid transparent; background: none; color: inherit; font: inherit; } .ds-sr-item:hover, .ds-sr-item:focus-visible { background: var(--surface-alt); border-left-color: var(--blue); } .ds-sr-item:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }"
     },
     {
       "name": "Flow Node — Linked",
@@ -119,23 +155,29 @@
       "Cool, restrained four-color semantic palette (blue/teal/green/amber), each color owning one meaning and never used decoratively",
       "Monospace for every label, tag, code, and status string; humanist sans for everything a person reads as prose",
       "Flat by default — 1px borders delineate surfaces; shadows appear only on floating/overlay content",
-      "Numbered, connected steps (a literal spine with counter badges) as the primary content pattern, not paragraphs"
+      "Numbered, connected steps (a literal spine with counter badges) as the primary content pattern, not paragraphs",
+      "Every color/background pairing verified to WCAG AA at its actual rendered size, with dedicated on-* tokens wherever a fixed text color would fail a theme swap"
     ],
     "rules": [
       { "name": "The One Meaning Rule", "body": "Blue means interactive, teal means informational/decision, green means completion/category, amber means incomplete/caution. A color never borrows another color's meaning to fill a gap in the palette.", "section": "colors" },
+      { "name": "The No Hardcoded Text-on-Accent Rule", "body": "Any text or icon painted on a semantic accent background uses that accent's dedicated on-* token, never a literal #fff or #000 — the two themes need opposite text colors there.", "section": "colors" },
       { "name": "The Label-Is-Mono Rule", "body": "Any string that names a status, category, code, or system value renders in the Label treatment (monospace, uppercase, tracked), never as smaller Body text.", "section": "typography" },
-      { "name": "The Flat-Unless-Floating Rule", "body": "A shadow appears only when content overlaps something else in the same view (a dropdown over content, an image embedded in a step). Everything else sits flush and is separated by border alone.", "section": "elevation" }
+      { "name": "The Flat-Unless-Floating Rule", "body": "A shadow appears only when content overlaps something else in the same view (a dropdown, the mobile drawer, or an image embedded in a step). Everything else sits flush and is separated by border alone.", "section": "elevation" }
     ],
     "dos": [
       "Do put any status, code, category, or tag in the Label treatment (monospace, uppercase, tracked) — never render it as small Body text.",
       "Do use a dashed border exclusively to mean \"not yet available.\" Never use it for decoration or a different kind of emphasis.",
-      "Do keep shadows reserved for content that visually floats over other content (dropdowns, embedded images). A card sitting in normal flow never gets a shadow.",
-      "Do let a color's assigned meaning constrain its use: Ledger Blue for interactive/navigational, Verification Teal for informational/decision, Confirmed Green for completion/category, Flagged Amber for caution/incomplete."
+      "Do keep shadows reserved for content that visually floats over other content (dropdowns, the mobile drawer, embedded images). A card sitting in normal flow never gets a shadow.",
+      "Do let a color's assigned meaning constrain its use: Ledger Blue for interactive/navigational, Verification Teal for informational/decision, Confirmed Green for completion/category, Flagged Amber for caution/incomplete.",
+      "Do use var(--on-blue) — never a literal #fff/#000 — for text or icons painted on a --blue background.",
+      "Do give real content (a screenshot showing an actual step, an original flowchart) real, specific alt text; reserve alt=\"\" for genuinely decorative images only.",
+      "Do promote a visually-styled section label to a real heading (h2/h3) instead of a div — the Label visual treatment and heading semantics are independent choices."
     ],
     "donts": [
       "Don't introduce a generic filled \"primary button\" component — this system routes every action through a card, a flow node, or a toggle segment instead.",
       "Don't add illustration, photography, or gradients beyond the existing small two-color brand mark. The system is text- and structure-led.",
-      "Don't use Confirmed Green or Flagged Amber for navigation or emphasis outside their assigned meaning."
+      "Don't use Confirmed Green or Flagged Amber for navigation or emphasis outside their assigned meaning.",
+      "Don't remove an outline/focus indicator without replacing it with something at least as visible — a border-color shift alone is a weak signal for keyboard users."
     ]
   }
 }
