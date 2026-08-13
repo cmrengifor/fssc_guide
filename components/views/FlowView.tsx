@@ -77,6 +77,17 @@ function NodeChain({ chain, region }: { chain: FlowChainItem[]; region?: string 
   );
 }
 
+function resolveDiagram(regionFilter: string | undefined, diagramId: string | undefined) {
+  if (diagramId) {
+    return DATA.flow.diagrams.find((d) => d.id === diagramId);
+  }
+  if (regionFilter) {
+    const forRegion = DATA.flow.diagrams.find((d) => d.regions?.includes(regionFilter));
+    if (forRegion) return forRegion;
+  }
+  return DATA.flow.diagrams.find((d) => d.id === DEFAULT_DIAGRAM_ID) ?? DATA.flow.diagrams[0];
+}
+
 export default function FlowView({
   regionFilter,
   diagramId,
@@ -84,13 +95,8 @@ export default function FlowView({
   regionFilter?: string;
   diagramId?: string;
 }) {
-  const { lang, t, tf } = useLang();
-  const diagram =
-    DATA.flow.diagrams.find((d) => d.id === (diagramId ?? DEFAULT_DIAGRAM_ID)) ?? DATA.flow.diagrams[0];
-  const region = regionFilter ? DATA.wiRegions.find((r) => r.id === regionFilter) : undefined;
-  const flowchartWI = DATA.workInstructions.filter(
-    (w) => DATA.flowchartImages && DATA.flowchartImages[w.id] && (!regionFilter || w.region === regionFilter)
-  );
+  const { t, tf } = useLang();
+  const diagram = resolveDiagram(regionFilter, diagramId);
   const title = regionFilter ? `${t("flowTitle")} — ${regionFilter.toUpperCase()}` : t("flowTitle");
 
   return (
@@ -99,31 +105,14 @@ export default function FlowView({
       <p className="page-sub">{t("flowSub")}</p>
       {diagram && (
         <div className="card">
+          {(diagram.title_es || diagram.title_en) && (
+            <h2 className="flow-diagram-title">{tf(diagram, "title")}</h2>
+          )}
           <div className="flow-wrap">
             <NodeChain chain={diagram.chain} region={regionFilter} />
           </div>
         </div>
       )}
-      <h2 className="section-label">
-        {lang === "es"
-          ? "Diagramas de flujo de Invoice Processing (documentos originales)"
-          : "Invoice Processing Flowcharts (original documents)"}
-      </h2>
-      {flowchartWI.length > 0 ? (
-        flowchartWI.map((w) => (
-          <Link href={`/wi/${w.id}`} className="card" style={{ cursor: "pointer", display: "block" }} key={w.id}>
-            <h3 style={{ margin: "0 0 10px", fontSize: 14 }}>{tf(w, "title")}</h3>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`/${DATA.flowchartImages[w.id]}`}
-              alt={`${lang === "es" ? "Diagrama de flujo original" : "Original flowchart"}: ${tf(w, "title")}`}
-              style={{ maxWidth: "100%", border: "1px solid var(--border)", borderRadius: 8 }}
-            />
-          </Link>
-        ))
-      ) : region ? (
-        <p className="pending-note">{t("contentPendingNote")}</p>
-      ) : null}
     </div>
   );
 }

@@ -45,6 +45,9 @@ export interface FlowDiagram {
   id: string;
   title_es?: string;
   title_en?: string;
+  /** Region ids (DATA.wiRegions[].id) this diagram represents. Selects which diagram
+   *  a region-scoped /flow/region/<id> page shows; omitted on the app's default/primary diagram. */
+  regions?: string[];
   chain: FlowChainItem[];
 }
 
@@ -108,7 +111,6 @@ export interface GuideData {
   flow: { diagrams: FlowDiagram[]; nodes: FlowNode[] };
   demoPath: string[];
   workInstructions: WorkInstruction[];
-  flowchartImages: Record<string, string>;
   wiRegions: WIRegion[];
   wiCategories: WICategory[];
   categories: Category[];

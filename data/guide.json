@@ -253,6 +253,7 @@
         "id": "3way-match",
         "title_es": "Match 3-Way de Invoices",
         "title_en": "Invoice 3-Way Match",
+        "regions": ["ca", "us"],
         "chain": [
           "n-login",
           "n-search",
@@ -358,6 +359,42 @@
             ]
           },
           "n-handover"
+        ]
+      },
+      {
+        "id": "nam-manual-invoice",
+        "title_es": "Procesamiento Manual de Facturas (Utilities, NAM)",
+        "title_en": "Manual Invoice Processing (Utilities, NAM)",
+        "regions": ["nam"],
+        "chain": [
+          "nam-intake",
+          "nam-batch",
+          "nam-header",
+          "nam-pomatch",
+          "nam-tax-gst",
+          "nam-tax-pst",
+          "nam-attach",
+          "nam-validate",
+          {
+            "decision": "nam-d-validated",
+            "branches": [
+              {
+                "id": "no",
+                "label_es": "No",
+                "label_en": "No",
+                "chain": [
+                  "nam-hold",
+                  "nam-release"
+                ]
+              },
+              {
+                "id": "yes",
+                "label_es": "Sí",
+                "label_en": "Yes",
+                "chain": []
+              }
+            ]
+          }
         ]
       }
     ],
@@ -644,6 +681,127 @@
           "us": {
             "wiId": "wi-invoice-processing-validation-us",
             "step": 17
+          }
+        }
+      },
+      {
+        "id": "nam-intake",
+        "label_es": "Revisar correos entrantes e identificar nuevas facturas de servicios públicos",
+        "label_en": "Review incoming emails, identify new utility invoices",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 1
+          }
+        }
+      },
+      {
+        "id": "nam-batch",
+        "label_es": "Iniciar sesión en Oracle y crear/abrir el lote diario",
+        "label_en": "Log in to Oracle and create/open the daily batch",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 2
+          }
+        }
+      },
+      {
+        "id": "nam-header",
+        "label_es": "Ingresar la información del encabezado (proveedor, fecha, PO, monto)",
+        "label_en": "Enter invoice header info (supplier, date, PO, amount)",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 3
+          }
+        }
+      },
+      {
+        "id": "nam-pomatch",
+        "label_es": "Realizar el match con el PO, ajustar cantidades si es necesario",
+        "label_en": "Perform PO Match, adjust quantities if needed",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 4
+          }
+        }
+      },
+      {
+        "id": "nam-tax-gst",
+        "label_es": "Ingresar GST/HST/QST usando CA-Tax o Miscellaneous",
+        "label_en": "Enter GST/HST/QST using CA-Tax or Miscellaneous",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 5
+          }
+        }
+      },
+      {
+        "id": "nam-tax-pst",
+        "label_es": "Ingresar el PST como línea separada y confirmar la asignación (Allocations)",
+        "label_en": "Enter PST as a separate line and confirm the allocation",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 6
+          }
+        }
+      },
+      {
+        "id": "nam-attach",
+        "label_es": "Cargar adjuntos: PDF del invoice y del correo",
+        "label_en": "Upload attachments: invoice PDF and email",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 7
+          }
+        }
+      },
+      {
+        "id": "nam-validate",
+        "label_es": "Validar el invoice (Actions → Validate)",
+        "label_en": "Validate the invoice (Actions → Validate)",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 8
+          }
+        }
+      },
+      {
+        "id": "nam-d-validated",
+        "label_es": "¿El estado queda en Validated?",
+        "label_en": "Status = Validated?",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 8
+          }
+        }
+      },
+      {
+        "id": "nam-hold",
+        "label_es": "El invoice queda en hold",
+        "label_en": "Invoice is on hold",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 8
+          }
+        }
+      },
+      {
+        "id": "nam-release",
+        "label_es": "Liberar vía Quick Release (regresa a Validar)",
+        "label_en": "Release via Quick Release (loops back to Validate)",
+        "wiStepRefByRegion": {
+          "nam": {
+            "wiId": "wi-manual-invoice-utilities",
+            "step": 8
           }
         }
       }
@@ -8397,11 +8555,6 @@
       ]
     }
   ],
-  "flowchartImages": {
-    "wi-3way-match-ca": "assets/_flowcharts/wi-3way-match-ca.webp",
-    "wi-cad-taxes": "assets/_flowcharts/wi-cad-taxes.webp",
-    "wi-manual-invoice-utilities": "assets/_flowcharts/wi-manual-invoice-utilities.webp"
-  },
   "wiRegions": [
     {
       "id": "us",
