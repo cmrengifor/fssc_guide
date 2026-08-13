@@ -43,14 +43,18 @@ function FlowNodeEl({ node }: { node?: FlowNode }) {
   return <div className="flow-node">{content}</div>;
 }
 
-export default function FlowView() {
+export default function FlowView({ regionFilter }: { regionFilter?: string }) {
   const { lang, t, tf } = useLang();
   const n = (id: string) => DATA.flow.nodes.find((x) => x.id === id);
-  const flowchartWI = DATA.workInstructions.filter((w) => DATA.flowchartImages && DATA.flowchartImages[w.id]);
+  const region = regionFilter ? DATA.wiRegions.find((r) => r.id === regionFilter) : undefined;
+  const flowchartWI = DATA.workInstructions.filter(
+    (w) => DATA.flowchartImages && DATA.flowchartImages[w.id] && (!regionFilter || w.region === regionFilter)
+  );
+  const title = regionFilter ? `${t("flowTitle")} — ${regionFilter.toUpperCase()}` : t("flowTitle");
 
   return (
     <div className="content-inner">
-      <h1 className="page-title">{t("flowTitle")}</h1>
+      <h1 className="page-title">{title}</h1>
       <p className="page-sub">{t("flowSub")}</p>
       <div className="card">
         <div className="flow-wrap">
@@ -72,26 +76,26 @@ export default function FlowView() {
           </div>
         </div>
       </div>
-      {flowchartWI.length > 0 && (
-        <>
-          <div className="section-label">
-            {lang === "es"
-              ? "Diagramas de flujo de Invoice Processing (documentos originales)"
-              : "Invoice Processing Flowcharts (original documents)"}
-          </div>
-          {flowchartWI.map((w) => (
-            <Link href={`/wi/${w.id}`} className="card" style={{ cursor: "pointer", display: "block" }} key={w.id}>
-              <h4 style={{ margin: "0 0 10px", fontSize: 14 }}>{tf(w, "title")}</h4>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`/${DATA.flowchartImages[w.id]}`}
-                alt=""
-                style={{ maxWidth: "100%", border: "1px solid var(--border)", borderRadius: 8 }}
-              />
-            </Link>
-          ))}
-        </>
-      )}
+      <div className="section-label">
+        {lang === "es"
+          ? "Diagramas de flujo de Invoice Processing (documentos originales)"
+          : "Invoice Processing Flowcharts (original documents)"}
+      </div>
+      {flowchartWI.length > 0 ? (
+        flowchartWI.map((w) => (
+          <Link href={`/wi/${w.id}`} className="card" style={{ cursor: "pointer", display: "block" }} key={w.id}>
+            <h4 style={{ margin: "0 0 10px", fontSize: 14 }}>{tf(w, "title")}</h4>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/${DATA.flowchartImages[w.id]}`}
+              alt=""
+              style={{ maxWidth: "100%", border: "1px solid var(--border)", borderRadius: 8 }}
+            />
+          </Link>
+        ))
+      ) : region ? (
+        <p className="pending-note">{t("contentPendingNote")}</p>
+      ) : null}
     </div>
   );
 }

@@ -21,10 +21,16 @@ export default function Sidebar() {
           {t("navDemo")}
           <span className="badge-demo">{t("demoBadge")}</span>
         </Link>
-        <Link href="/flow" className={`nav-item ${pathname === "/flow" ? "active" : ""}`}>
-          <span className="nav-icon">⋔</span>
-          {t("navFlow")}
-        </Link>
+        {DATA.wiRegions.map((region) => (
+          <Link
+            key={region.id}
+            href={`/flow/region/${region.id}`}
+            className={`nav-item ${pathname === `/flow/region/${region.id}` ? "active" : ""}`}
+          >
+            <span className="nav-icon">⋔</span>
+            {t("navFlow")} – {region.id.toUpperCase()}
+          </Link>
+        ))}
         {DATA.wiRegions.map((region) => (
           <Link
             key={region.id}
