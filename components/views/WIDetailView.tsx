@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
 import { useProgress } from "@/lib/progress-context";
+import { highlightStepText } from "@/lib/highlight";
 import { DATA } from "@/lib/data";
 
 export default function WIDetailView({ id }: { id: string }) {
@@ -101,7 +102,7 @@ export default function WIDetailView({ id }: { id: string }) {
                 onChange={() => toggleStep(w.id, i + 1)}
                 aria-label={`${t("stepDoneAriaLabel")} ${i + 1}`}
               />
-              <span>{s}</span>
+              <span>{highlightStepText(s, `${w.id}-step-${i + 1}`)}</span>
             </label>
             {w.images && w.images[i] && w.images[i].length ? (
               w.images[i].map((src, j) => (
