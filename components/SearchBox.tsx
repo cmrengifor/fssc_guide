@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/lib/lang-context";
 import { SEARCH_INDEX, type SearchIndexItem } from "@/lib/search";
+import { highlightQuery, buildSnippet } from "@/lib/highlight";
 
 export default function SearchBox() {
   const { lang, t } = useLang();
@@ -77,18 +78,27 @@ export default function SearchBox() {
               return (
                 <div key={g.key} role="group" aria-label={g.label}>
                   <div className="sr-group-label">{g.label}</div>
-                  {items.map((m, i) => (
-                    <button
-                      type="button"
-                      className="sr-item"
-                      role="option"
-                      aria-selected="false"
-                      key={`${g.key}-${i}`}
-                      onClick={() => handleClick(m)}
-                    >
-                      <b>{lang === "es" ? m.label_es : m.label_en}</b>
-                    </button>
-                  ))}
+                  {items.map((m, i) => {
+                    const label = lang === "es" ? m.label_es : m.label_en;
+                    const labelMatches = label.toLowerCase().includes(q);
+                    const matchingTag = !labelMatches
+                      ? (m.tags || []).find((tag) => tag.toLowerCase().includes(q))
+                      : undefined;
+                    const snippet = matchingTag ? buildSnippet(matchingTag, q) : null;
+                    return (
+                      <button
+                        type="button"
+                        className="sr-item"
+                        role="option"
+                        aria-selected="false"
+                        key={`${g.key}-${i}`}
+                        onClick={() => handleClick(m)}
+                      >
+                        <b>{labelMatches ? highlightQuery(label, q) : label}</b>
+                        {snippet && <small>{highlightQuery(snippet, q)}</small>}
+                      </button>
+                    );
+                  })}
                 </div>
               );
             })

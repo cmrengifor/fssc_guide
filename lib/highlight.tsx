@@ -102,3 +102,35 @@ export function highlightStepText(text: string, keyBase: string): ReactNode[] {
   }
   return outer;
 }
+
+/** Wraps the first case-insensitive occurrence of `query` in `text` with a
+ *  `<mark>` so a search match is visible exactly where it landed. Returns
+ *  the plain text unchanged when there's no match or no query. Uses plain
+ *  indexOf (not a dynamic RegExp) since `query` is raw user input. */
+export function highlightQuery(text: string, query: string): ReactNode {
+  const q = query.trim();
+  if (!q) return text;
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return text;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <mark className="search-match">{text.slice(idx, idx + q.length)}</mark>
+      {text.slice(idx + q.length)}
+    </>
+  );
+}
+
+/** Extracts a short excerpt of `text` centered on the first match of `query`,
+ *  with ellipses where the excerpt was truncated. Used when a search result
+ *  matched on a tag or definition that isn't otherwise shown, so the reader
+ *  can still see *why* it matched. Returns null when there's no match. */
+export function buildSnippet(text: string, query: string, radius = 40): string | null {
+  const q = query.trim();
+  if (!q) return null;
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return null;
+  const start = Math.max(0, idx - radius);
+  const end = Math.min(text.length, idx + q.length + radius);
+  return (start > 0 ? "…" : "") + text.slice(start, end) + (end < text.length ? "…" : "");
+}
