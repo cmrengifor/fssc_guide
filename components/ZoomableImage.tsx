@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLang } from "@/lib/lang-context";
 
 /** Reusable click-to-enlarge image: renders normally in place, and opens a
@@ -89,30 +90,32 @@ export default function ZoomableImage({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} className={className} loading="lazy" />
       </button>
-      {visible && (
-        <div
-          ref={backdropRef}
-          className={`image-modal-backdrop${closing ? " is-closing" : ""}`}
-          role="dialog"
-          aria-modal="true"
-          aria-label={alt}
-          onClick={close}
-        >
-          <div className="image-modal-frame" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              className="image-modal-close"
-              onClick={close}
-              ref={closeRef}
-              aria-label={t("imageCloseLabel")}
-            >
-              ✕
-            </button>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt={alt} className="image-modal-img" />
-          </div>
-        </div>
-      )}
+      {visible &&
+        createPortal(
+          <div
+            ref={backdropRef}
+            className={`image-modal-backdrop${closing ? " is-closing" : ""}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label={alt}
+            onClick={close}
+          >
+            <div className="image-modal-frame" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                className="image-modal-close"
+                onClick={close}
+                ref={closeRef}
+                aria-label={t("imageCloseLabel")}
+              >
+                ✕
+              </button>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={src} alt={alt} className="image-modal-img" />
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }
