@@ -42,8 +42,8 @@ export default function WIDetailView({ id }: { id: string }) {
   if (!w || !detail) return <div className="content-inner">Not found</div>;
   const cat = DATA.wiCategories.find((x) => x.id === w.category);
   const region = DATA.wiRegions.find((x) => x.id === w.region);
-  const steps = detail.steps_es || detail.steps_en;
-  const tips = detail.tips_es || detail.tips_en;
+  const steps = (lang === "es" ? detail.steps_es : detail.steps_en) ?? detail.steps_en ?? detail.steps_es;
+  const tips = (lang === "es" ? detail.tips_es : detail.tips_en) ?? detail.tips_en ?? detail.tips_es;
   const progress = wiProgress(w.id, steps.length);
 
   return (
