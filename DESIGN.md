@@ -188,6 +188,17 @@ Flat by default. Surfaces are separated by a single 1px `border` color, not by s
 ### Named Rules
 **The Flat-Unless-Floating Rule.** A shadow appears only when content overlaps something else in the same view (a dropdown or drawer over content, an image embedded in a step). Everything else — cards, nav, flow nodes — sits flush and is separated by border alone.
 
+## Motion
+
+Motion here is strictly functional: it acknowledges an action or confirms a state change, never decoration or page-load choreography. Two tiers:
+
+- **Feedback (100–150ms):** the immediate-action tier. Row-card hover (`.case-card`, `.flow-node`, `.path-step` — border/background, 0.15s) and the step checkbox's checkmark (opacity + `rotate(45deg) scale()`, 0.15s each, `cubic-bezier(0.16,1,0.3,1)`) all live here — the smallest change that makes cause and result unmistakable. The checkmark's `::after` pseudo-element always exists at `opacity:0;scale(0)`, toggled by `:checked`, rather than being conditionally generated — the standard technique for a reliably-animating checkbox mark across browsers (a `:checked::after{content:""}`-only approach has no "from" state to transition from).
+- **Continuity (2.4s):** the `step-highlight` keyframe (blue-soft flash fading to transparent) that confirms which step a hash-link landed on — shared by WI steps and glossary terms, paired with a JS `scrollIntoView({behavior:"smooth"})`.
+
+No entrance/reveal animation exists anywhere (Reminders panel appearing post-hydration, tip-box, cards on scroll) — deliberately: this is an "Operate + Read" surface where routine transitions should be fast and content should never make a user wait through arrival choreography.
+
+**Reduced motion:** a global `prefers-reduced-motion: reduce` query collapses all `animation`/`transition` durations to near-zero and forces `scroll-behavior:auto`; the two `scrollIntoView` calls also check the media query directly and fall back to `"auto"` scroll. One accepted trade-off: the `step-highlight` flash's *purpose* (which step did I land on) is lost for reduced-motion users along with its timing, since the keyframe's own end-state is transparent — the scroll-to-position still happens, just without the flash cue.
+
 ## Shapes
 
 Six radius steps carry the whole system, all declared in the frontmatter `rounded` scale: `4px`/`5px`/`6px` (compact inline marks — the checklist checkbox, the inline Oracle-field code chip, the small quick-guide icon badge), `8px` (small controls — search input, toggles, nav items, the brand mark), `10px` (`--radius`, the system's primary token — cards, flow nodes, decision diamonds), and `20px`/full-round (pill shapes and true circles — tags, badges, step-number and path-index circles) — anything meant to read as a compact, self-contained label rather than a container.

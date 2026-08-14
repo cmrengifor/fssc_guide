@@ -17,7 +17,8 @@ export default function WIDetailView({ id }: { id: string }) {
       const hash = window.location.hash.slice(1);
       if (!hash.startsWith("step-")) return;
       setHighlightedStep(hash);
-      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.getElementById(hash)?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
       const timer = setTimeout(() => setHighlightedStep(null), 2400);
       return () => clearTimeout(timer);
     }

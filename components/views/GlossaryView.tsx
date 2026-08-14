@@ -14,7 +14,8 @@ export default function GlossaryView() {
       const hash = window.location.hash.slice(1);
       if (!hash) return;
       setHighlighted(hash);
-      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.getElementById(hash)?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
       const timer = setTimeout(() => setHighlighted(null), 2400);
       return () => clearTimeout(timer);
     }
