@@ -7,6 +7,7 @@ import { useProgress } from "@/lib/progress-context";
 import { highlightStepText } from "@/lib/highlight";
 import { DATA } from "@/lib/data";
 import { getWIDetail } from "@/lib/wi-detail";
+import ZoomableImage from "@/components/ZoomableImage";
 
 export default function WIDetailView({ id }: { id: string }) {
   const { lang, t, tf } = useLang();
@@ -108,13 +109,11 @@ export default function WIDetailView({ id }: { id: string }) {
             </label>
             {detail.images && detail.images[i] && detail.images[i].length ? (
               detail.images[i].map((src, j) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <ZoomableImage
                   key={src}
                   src={`/${src}`}
                   alt={`${tf(w, "title")} — ${t("stepsLabel")} ${i + 1}${detail.images[i].length > 1 ? `.${j + 1}` : ""}`}
                   className="wi-step-img"
-                  loading="lazy"
                 />
               ))
             ) : (

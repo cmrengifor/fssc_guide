@@ -303,6 +303,32 @@ h1.page-title{font-family:var(--font-display);font-size:26px;margin:0 0 6px;lett
   border:1px solid var(--border);border-radius:8px;
   box-shadow:0 2px 8px rgba(20,30,50,.08);
 }
+
+/* ---------- IMAGE MODAL (ZoomableImage) ---------- */
+.zoomable-image-trigger{
+  display:block;border:none;background:none;padding:0;margin:0;cursor:zoom-in;
+  text-align:left;
+}
+.zoomable-image-trigger:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:8px;}
+.image-modal-backdrop{
+  position:fixed;inset:0;z-index:200;background:rgba(10,14,22,.45);
+  display:flex;align-items:center;justify-content:center;padding:40px;
+  cursor:zoom-out;animation:image-modal-fade-in .15s ease;
+}
+@keyframes image-modal-fade-in{from{opacity:0;}to{opacity:1;}}
+.image-modal{position:relative;max-width:min(1100px,92vw);max-height:90vh;cursor:default;}
+.image-modal-img{
+  display:block;max-width:100%;max-height:90vh;width:auto;height:auto;
+  border-radius:var(--radius);box-shadow:0 10px 30px rgba(20,30,50,.35);
+}
+.image-modal-close{
+  position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;
+  background:var(--surface);border:1px solid var(--border);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;
+  box-shadow:0 2px 8px rgba(20,30,50,.2);transition:background .15s;
+}
+.image-modal-close:hover{background:var(--surface-alt);}
+.image-modal-close:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
 .pending-note{
   font-size:12.5px;color:var(--ink-faint);font-style:italic;margin-top:4px;
 }
