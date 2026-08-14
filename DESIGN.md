@@ -148,7 +148,7 @@ A four-color semantic system on a near-monochrome neutral base — each accent o
 
 ### Hierarchy
 - **Display** (600, 26px, 1.2, -0.2px tracking): Page titles only (`h1.page-title`). One per page.
-- **Body** (400, 15px base / 13–16px in dense contexts, 1.55): All prose — descriptions, step text, definitions, card copy.
+- **Body** (400, 15px base / 13–16px in dense contexts, 1.55 light / 1.6 dark): All prose — descriptions, step text, definitions, card copy.
 - **Label** (600, 9.5–12.5px, uppercase, 0.3–0.6px tracking, monospace): Every non-prose string — nav captions, section labels, tags, category titles, glossary headwords, flow-node codes, region badges, toggle buttons. If it's a status, a code, or a category, it's this treatment, not body copy at a smaller size.
 
 There is no distinct headline/title tier between Display and Body — component headers (card titles, case names) are set in Body at 14–14.5px with visual weight coming from color and position, not a larger size.
@@ -158,6 +158,10 @@ The system does not follow a strict ratio-based type scale — sizes were hand-t
 
 ### Named Rules
 **The Label-Is-Mono Rule.** Any string that names a status, category, code, or system value renders in the Label treatment (monospace, uppercase, tracked), never as smaller Body text. This is what lets a reader distinguish "data about the process" from "explanation of the process" at a glance.
+
+**The 70ch Measure Rule.** Any element carrying actual reading prose (`.page-sub`, `.step-check` step text, `.glossary-item p` definitions, `.tip-box` copy) caps at `max-width:70ch` — measured live, not eyeballed: unconstrained Body text at this system's 840px column ran 90–105 characters per line, well past the 45–75ch comfortable-reading range. Never applied to `.content-inner` itself or to non-prose containers (cards, the flow diagram, list rows) — those correctly use the full column width; the cap belongs on the text run, not the shell around it.
+
+**Dark-mode type compensation.** `--body-line-height` (1.55 light / 1.6 dark) and `--body-letter-spacing` (normal / .1px) are theme tokens, not fixed values — light text on a dark surface reads slightly tighter than dark text on light at the same metrics, so dark mode opens both up a notch. Font-weight was considered and deliberately left alone: contrast ratios are already independently verified per theme (see Colors), so the weight axis wasn't needed on top of it.
 
 ## Layout
 
