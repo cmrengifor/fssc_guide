@@ -213,7 +213,7 @@ This system has no generic button component — every action surface is either a
 ### Toggles (language / theme)
 - **Shape:** Segmented control, `8px` radius on the outer group, 1px border, no radius on internal dividers.
 - **Style:** Each segment is a plain button (`Surface` background, `Ink Soft` text, Label typography); the active segment fills with `Ledger Blue` + `On Blue` text (language) or `Surface Alt` + role color (theme — amber sun for light, blue moon for dark, both via `var(--amber)`/`var(--blue)` so they stay in sync with any future palette change).
-- **Hover / Focus:** No distinct hover state currently defined beyond the active-segment fill — an open gap for a future pass.
+- **Hover / Focus:** Inactive segments shift to `Surface Alt` on hover, `0.15s` transition, matching every other row-level hover in the system. Never applied to the active segment — its fill already signals state, and hovering it shouldn't visually compete with that.
 
 ### Tags / Pills / Badges
 - **Style:** `Surface Alt` background, `Ink Soft` text, `full` (20px) radius, Label typography, tight padding (`2px 8px`).
@@ -246,7 +246,7 @@ Search results wrap the matched substring in `<mark class="search-match">` — `
 - When a result matched on a tag or glossary definition that isn't otherwise visible (e.g. searching "netting" surfaces "TCC" — the match lives in TCC's definition, not its headword), a `<small>` snippet line shows ~40 characters of context around the match, ellipsis-truncated, with the same `<mark>` treatment — so a result never highlights nothing and leaves the reader to guess why it matched.
 
 ### Inputs / Fields
-- **Style:** `Surface Alt` fill, 1px `Border` outline, `8px` radius, 38px left padding to clear an inline search icon. Carries `role="combobox"` + `aria-expanded`/`aria-controls`/`aria-autocomplete` wired to the results dropdown (`role="listbox"`, results as `role="option"` buttons) so the search feature is fully keyboard-operable, not just mouse-clickable.
+- **Style:** `Surface Alt` fill, 1px `Border` outline, `8px` radius, 38px left padding to clear an inline search icon. Carries `role="combobox"` + `aria-expanded`/`aria-controls`/`aria-autocomplete`, wired to a real `aria-activedescendant`-tracked `role="listbox"` (results as `role="option"` buttons) — ArrowDown/ArrowUp move the active option, Enter activates it, Escape closes the dropdown, so the ARIA pattern it declares is the pattern it actually implements, not just Tab-reachability.
 - **Focus:** Border shifts to `Ledger Blue`, fill becomes `Surface` (theme-aware — this used to hardcode pure white, which made typed text unreadable against dark-mode's light `--ink`; fixed), plus a `2px solid var(--blue)` outline at 2px offset so focus is visible without relying on the border-color shift alone.
 - **Error / Disabled:** Not yet defined — an open gap.
 
@@ -255,7 +255,7 @@ Search results wrap the matched substring in `<mark class="search-match">` — `
 - **Default:** `Ink Soft` text, transparent background.
 - **Hover:** `Surface Alt` background, `Ink` text.
 - **Active:** `Ledger Blue Soft` background, `Ledger Blue` text, 600 weight — the only nav state that changes font weight, so "current page" is legible even at a glance or in peripheral vision.
-- **Structure:** Grouped by section with a real `<h2>`/`<h3>` heading above each group (not a styled `<div>` — screen-reader heading navigation now finds "Steps," "Banking & Payments," etc. directly), Label-styled visually either way. Below 767px the whole nav becomes an off-canvas drawer — see Layout.
+- **Structure:** Grouped by section with a real `<h2>`/`<h3>` heading above each group (not a styled `<div>` — screen-reader heading navigation now finds "Steps," "Banking & Payments," etc. directly), Label-styled visually either way. The sidebar itself follows the same rule: Learning Path, Flow Diagram, and Work Instructions each get a real `<h3 className="nav-caption">` (`role="group"`/`aria-labelledby` on the wrapping section), with the 3 region links plus an "All regions" link underneath — region link text is now just the region code ("US"/"CA"/"NAM"), since the heading already establishes what group it's in; repeating the group name on every link was pure redundancy once grouping existed. Below 767px the whole nav becomes an off-canvas drawer — see Layout.
 
 ### Flow Node (signature component)
 The interactive process-diagram building block — the system's most distinctive component, since it's the only one that encodes a state machine (available vs. not-yet-documented) directly into its border style.

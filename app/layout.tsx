@@ -11,9 +11,14 @@ export const metadata: Metadata = {
   description: "Guía de entrenamiento AP para procesos de cuentas por pagar en Oracle Applications.",
 };
 
+const THEME_INIT_SCRIPT = `try{var m=window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.setAttribute("data-theme",m?"dark":"light");}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" data-lang="es">
+    <html lang="es" data-lang="es" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <LangProvider>
           <ProgressProvider>

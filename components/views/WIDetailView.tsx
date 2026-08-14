@@ -6,6 +6,7 @@ import { useLang } from "@/lib/lang-context";
 import { useProgress } from "@/lib/progress-context";
 import { highlightStepText } from "@/lib/highlight";
 import { DATA } from "@/lib/data";
+import { getWIDetail } from "@/lib/wi-detail";
 
 export default function WIDetailView({ id }: { id: string }) {
   const { lang, t, tf } = useLang();
@@ -37,11 +38,12 @@ export default function WIDetailView({ id }: { id: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, hydrated]);
 
-  if (!w) return <div className="content-inner">Not found</div>;
+  const detail = w ? getWIDetail(w.id) : undefined;
+  if (!w || !detail) return <div className="content-inner">Not found</div>;
   const cat = DATA.wiCategories.find((x) => x.id === w.category);
   const region = DATA.wiRegions.find((x) => x.id === w.region);
-  const steps = w.steps_es || w.steps_en;
-  const tips = w.tips_es || w.tips_en;
+  const steps = detail.steps_es || detail.steps_en;
+  const tips = detail.tips_es || detail.tips_en;
   const progress = wiProgress(w.id, steps.length);
 
   return (
@@ -57,11 +59,11 @@ export default function WIDetailView({ id }: { id: string }) {
         )}
         {cat && <span className="case-cat-pill">{tf(cat, "name")}</span>}
         <h1 className="page-title">{tf(w, "title")}</h1>
-        <p className="page-sub">{tf(w, "objective")}</p>
+        <p className="page-sub">{tf(detail, "objective")}</p>
         <p className="pending-note">
           {t("wiSourceLabel")}: {w.sourceDoc}
         </p>
-        {!w.steps_es && lang === "es" && <p className="pending-note">{t("wiPendingTranslation")}</p>}
+        {!detail.steps_es && lang === "es" && <p className="pending-note">{t("wiPendingTranslation")}</p>}
         <div className="case-tags">
           {w.tags.map((tag) => (
             <span className="tag" key={tag}>
@@ -104,13 +106,13 @@ export default function WIDetailView({ id }: { id: string }) {
               />
               <span>{highlightStepText(s, `${w.id}-step-${i + 1}`)}</span>
             </label>
-            {w.images && w.images[i] && w.images[i].length ? (
-              w.images[i].map((src, j) => (
+            {detail.images && detail.images[i] && detail.images[i].length ? (
+              detail.images[i].map((src, j) => (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   key={src}
                   src={`/${src}`}
-                  alt={`${tf(w, "title")} — ${t("stepsLabel")} ${i + 1}${w.images[i].length > 1 ? `.${j + 1}` : ""}`}
+                  alt={`${tf(w, "title")} — ${t("stepsLabel")} ${i + 1}${detail.images[i].length > 1 ? `.${j + 1}` : ""}`}
                   className="wi-step-img"
                   loading="lazy"
                 />

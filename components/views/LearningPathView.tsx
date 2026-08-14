@@ -31,7 +31,7 @@ export default function LearningPathView({ regionFilter }: { regionFilter?: stri
             {path.map((id, i) => {
               const w = DATA.workInstructions.find((x) => x.id === id);
               if (!w) return null;
-              const total = (w.steps_es || w.steps_en).length;
+              const total = w.stepCount;
               const done = progressMap[id]?.length ?? 0;
               const complete = hydrated && total > 0 && done >= total;
               return (

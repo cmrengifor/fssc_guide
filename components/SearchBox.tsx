@@ -11,6 +11,7 @@ export default function SearchBox() {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,9 +33,19 @@ export default function SearchBox() {
       })
     : [];
 
+  const groups: Array<{ key: SearchIndexItem["type"]; label: string }> = [
+    { key: "wi", label: t("srWI") },
+    { key: "glossary", label: t("srGlossary") },
+  ];
+
+  // Flat, top-to-bottom order matching the rendered groups, so arrow-key
+  // navigation and aria-activedescendant agree with what's on screen.
+  const orderedMatches = groups.flatMap((g) => matches.filter((m) => m.type === g.key));
+
   function goTo(path: string) {
     setOpen(false);
     setQuery("");
+    setActiveIndex(-1);
     router.push(path);
   }
 
@@ -43,10 +54,24 @@ export default function SearchBox() {
     else goTo(`/wi/${m.id}`);
   }
 
-  const groups: Array<{ key: SearchIndexItem["type"]; label: string }> = [
-    { key: "wi", label: t("srWI") },
-    { key: "glossary", label: t("srGlossary") },
-  ];
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (!open || orderedMatches.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.min(i + 1, orderedMatches.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.max(i - 1, -1));
+    } else if (e.key === "Enter") {
+      if (activeIndex >= 0 && orderedMatches[activeIndex]) {
+        e.preventDefault();
+        handleClick(orderedMatches[activeIndex]);
+      }
+    } else if (e.key === "Escape") {
+      setOpen(false);
+      setActiveIndex(-1);
+    }
+  }
 
   return (
     <div className="search-wrap" ref={wrapRef}>
@@ -60,12 +85,15 @@ export default function SearchBox() {
         aria-expanded={open && !!q}
         aria-controls="search-results-listbox"
         aria-autocomplete="list"
+        aria-activedescendant={activeIndex >= 0 ? `sr-opt-${activeIndex}` : undefined}
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);
           setOpen(true);
+          setActiveIndex(-1);
         }}
         onFocus={() => query && setOpen(true)}
+        onKeyDown={handleKeyDown}
       />
       {open && q && (
         <div className="search-results open" role="listbox" id="search-results-listbox">
@@ -78,7 +106,8 @@ export default function SearchBox() {
               return (
                 <div key={g.key} role="group" aria-label={g.label}>
                   <div className="sr-group-label">{g.label}</div>
-                  {items.map((m, i) => {
+                  {items.map((m) => {
+                    const flatIndex = orderedMatches.indexOf(m);
                     const label = lang === "es" ? m.label_es : m.label_en;
                     const labelMatches = label.toLowerCase().includes(q);
                     const matchingTag = !labelMatches
@@ -88,11 +117,13 @@ export default function SearchBox() {
                     return (
                       <button
                         type="button"
-                        className="sr-item"
+                        className={`sr-item ${activeIndex === flatIndex ? "active" : ""}`}
                         role="option"
-                        aria-selected="false"
-                        key={`${g.key}-${i}`}
+                        id={`sr-opt-${flatIndex}`}
+                        aria-selected={activeIndex === flatIndex}
+                        key={`${g.key}-${flatIndex}`}
                         onClick={() => handleClick(m)}
+                        onMouseEnter={() => setActiveIndex(flatIndex)}
                       >
                         <b>{labelMatches ? highlightQuery(label, q) : label}</b>
                         {snippet && <small>{highlightQuery(snippet, q)}</small>}

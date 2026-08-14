@@ -20,7 +20,7 @@ export default function ReminderPanel() {
 
   const wiTotal = (id: string) => {
     const w = DATA.workInstructions.find((x) => x.id === id);
-    return w ? (w.steps_es || w.steps_en).length : 0;
+    return w ? w.stepCount : 0;
   };
 
   const continueWI = (() => {

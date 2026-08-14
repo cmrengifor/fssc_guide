@@ -31,8 +31,7 @@ export default function WIListView({ regionFilter }: { regionFilter?: string }) 
                   {tf(cat, "name")}
                 </h3>
                 {items.map((w) => {
-                  const steps = w.steps_es || w.steps_en;
-                  const progress = wiProgress(w.id, steps.length);
+                  const progress = wiProgress(w.id, w.stepCount);
                   return (
                     <Link href={`/wi/${w.id}`} className="case-card" key={w.id}>
                       <div>

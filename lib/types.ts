@@ -63,15 +63,30 @@ export interface WICategory {
   name_en: string;
 }
 
+/** The lightweight slice of a Work Instruction: identity, searchable metadata,
+ *  and step COUNT (not the steps themselves) — everything list/card/progress
+ *  UI needs without pulling in the heavy per-WI content. This is what ships in
+ *  `DATA.workInstructions` and therefore in every client bundle that imports
+ *  `lib/data.ts`. The actual steps/images/tips/objective live in
+ *  `WorkInstructionDetail`, loaded only by the WI detail page — see `lib/wi-detail.ts`. */
 export interface WorkInstruction {
   id: string;
   region: string;
   category: string;
   sourceDoc: string;
   tags: string[];
-  images: string[][];
   title_en: string;
   title_es: string;
+  /** Precomputed `(steps_es ?? steps_en).length` — avoids needing the heavy
+   *  step content just to compute a progress denominator. */
+  stepCount: number;
+}
+
+/** The heavy content for one Work Instruction, keyed by id in `data/wi-details.json`
+ *  and loaded only via `getWIDetail()` — not part of `DATA`, so it never ships to
+ *  routes that only need the light `WorkInstruction` slice above. */
+export interface WorkInstructionDetail {
+  images: string[][];
   objective_en: string;
   objective_es: string;
   steps_en: string[];

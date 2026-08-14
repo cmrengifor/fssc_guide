@@ -13,8 +13,7 @@ function RegionCard({ region }: { region: WIRegion }) {
   const regionWIs = DATA.workInstructions.filter((w) => w.region === region.id);
   const inProgressCount = regionWIs.filter((w) => {
     const done = progressMap[w.id]?.length ?? 0;
-    const total = (w.steps_es || w.steps_en).length;
-    return done > 0 && done < total;
+    return done > 0 && done < w.stepCount;
   }).length;
   return (
     <Link href={`/wi/region/${region.id}`} className="case-card">
@@ -32,6 +31,20 @@ function RegionCard({ region }: { region: WIRegion }) {
   );
 }
 
+function LearningPathCard({ region }: { region: WIRegion }) {
+  const { tf } = useLang();
+  return (
+    <Link href={`/demo/region/${region.id}`} className="case-card">
+      <div>
+        <h3>{tf(region, "name")}</h3>
+      </div>
+      <span className="chevron" aria-hidden="true">
+        ›
+      </span>
+    </Link>
+  );
+}
+
 export default function HomeView() {
   const { t } = useLang();
   return (
@@ -40,34 +53,45 @@ export default function HomeView() {
       <p className="page-sub">{t("homeSub")}</p>
       <ReminderPanel />
       <div className="quick-guide-grid">
-        <div className="qg-card">
+        <button
+          type="button"
+          className="qg-card"
+          onClick={() => document.querySelector<HTMLInputElement>(".search-input")?.focus()}
+        >
           <span className="qg-icon" aria-hidden="true">
             ⌕
           </span>
           <h2>{t("qgSearchTitle")}</h2>
           <p>{t("qgSearchBody")}</p>
-        </div>
-        <div className="qg-card">
+        </button>
+        <Link href="/wi" className="qg-card">
           <span className="qg-icon" aria-hidden="true">
             ☰
           </span>
           <h2>{t("qgIndexTitle")}</h2>
           <p>{t("qgIndexBody")}</p>
-        </div>
-        <div className="qg-card">
+        </Link>
+        <Link href="/flow" className="qg-card">
           <span className="qg-icon" aria-hidden="true">
             ⋔
           </span>
           <h2>{t("qgFlowTitle")}</h2>
           <p>{t("qgFlowBody")}</p>
-        </div>
-        <div className="qg-card">
+        </Link>
+        <Link href="/glossary" className="qg-card">
           <span className="qg-icon" aria-hidden="true">
             §
           </span>
           <h2>{t("qgGlossaryTitle")}</h2>
           <p>{t("qgGlossaryBody")}</p>
-        </div>
+        </Link>
+      </div>
+      <div className="category-block">
+        <h2 className="category-title">{t("homeLearningPathCtaTitle")}</h2>
+        <p className="category-sub">{t("homeLearningPathCtaBody")}</p>
+        {DATA.wiRegions.map((region) => (
+          <LearningPathCard region={region} key={region.id} />
+        ))}
       </div>
       <div className="category-block">
         <h2 className="category-title">{t("homeCatalogTitle")}</h2>

@@ -36,6 +36,12 @@ export default function Sidebar() {
           <span className="nav-icon" aria-hidden="true">⌂</span>
           {t("navHome")}
         </Link>
+      </div>
+
+      <div className="nav-section" role="group" aria-labelledby="nav-group-demo">
+        <h3 className="nav-caption" id="nav-group-demo">
+          {t("navDemo")}
+        </h3>
         {DATA.wiRegions.map((region) => (
           <Link
             key={region.id}
@@ -43,9 +49,19 @@ export default function Sidebar() {
             className={`nav-item ${pathname === `/demo/region/${region.id}` ? "active" : ""}`}
           >
             <span className="nav-icon" aria-hidden="true">▸</span>
-            {t("navDemo")} – {region.id.toUpperCase()}
+            {region.id.toUpperCase()}
           </Link>
         ))}
+        <Link href="/demo" className={`nav-item ${pathname === "/demo" ? "active" : ""}`}>
+          <span className="nav-icon" aria-hidden="true">▸</span>
+          {t("navAllRegions")}
+        </Link>
+      </div>
+
+      <div className="nav-section" role="group" aria-labelledby="nav-group-flow">
+        <h3 className="nav-caption" id="nav-group-flow">
+          {t("navFlow")}
+        </h3>
         {DATA.wiRegions.map((region) => (
           <Link
             key={region.id}
@@ -53,9 +69,19 @@ export default function Sidebar() {
             className={`nav-item ${pathname === `/flow/region/${region.id}` ? "active" : ""}`}
           >
             <span className="nav-icon" aria-hidden="true">⋔</span>
-            {t("navFlow")} – {region.id.toUpperCase()}
+            {region.id.toUpperCase()}
           </Link>
         ))}
+        <Link href="/flow" className={`nav-item ${pathname === "/flow" ? "active" : ""}`}>
+          <span className="nav-icon" aria-hidden="true">⋔</span>
+          {t("navAllRegions")}
+        </Link>
+      </div>
+
+      <div className="nav-section" role="group" aria-labelledby="nav-group-wi">
+        <h3 className="nav-caption" id="nav-group-wi">
+          {t("navWI")}
+        </h3>
         {DATA.wiRegions.map((region) => (
           <Link
             key={region.id}
@@ -63,9 +89,16 @@ export default function Sidebar() {
             className={`nav-item ${pathname === `/wi/region/${region.id}` ? "active" : ""}`}
           >
             <span className="nav-icon" aria-hidden="true">▤</span>
-            {t("navWI")} – {region.id.toUpperCase()}
+            {region.id.toUpperCase()}
           </Link>
         ))}
+        <Link href="/wi" className={`nav-item ${pathname === "/wi" ? "active" : ""}`}>
+          <span className="nav-icon" aria-hidden="true">▤</span>
+          {t("navAllRegions")}
+        </Link>
+      </div>
+
+      <div className="nav-section">
         <Link href="/glossary" className={`nav-item ${pathname === "/glossary" ? "active" : ""}`}>
           <span className="nav-icon" aria-hidden="true">§</span>
           {t("navGlossary")}
