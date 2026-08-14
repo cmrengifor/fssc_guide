@@ -12,29 +12,21 @@ export default function ThemeToggle() {
     if (current === "dark" || current === "light") setMode(current);
   }, []);
 
-  function apply(next: "light" | "dark") {
+  function toggle() {
+    const next = mode === "light" ? "dark" : "light";
     setMode(next);
     document.documentElement.setAttribute("data-theme", next);
   }
 
   return (
-    <div className="theme-toggle">
-      <button
-        className={`is-light ${mode === "light" ? "active" : ""}`}
-        onClick={() => apply("light")}
-        aria-label={t("themeLightLabel")}
-        aria-pressed={mode === "light"}
-      >
-        ☀
-      </button>
-      <button
-        className={`is-dark ${mode === "dark" ? "active" : ""}`}
-        onClick={() => apply("dark")}
-        aria-label={t("themeDarkLabel")}
-        aria-pressed={mode === "dark"}
-      >
-        ☾
-      </button>
-    </div>
+    <button
+      type="button"
+      className={`theme-toggle ${mode === "dark" ? "is-dark" : "is-light"}`}
+      onClick={toggle}
+      aria-label={t("themeToggleLabel")}
+      aria-pressed={mode === "dark"}
+    >
+      <span aria-hidden="true">{mode === "dark" ? "☾" : "☀"}</span>
+    </button>
   );
 }

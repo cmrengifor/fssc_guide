@@ -211,9 +211,10 @@ Borders are 1–1.5px solid in the semantic accent or neutral border color, with
 This system has no generic button component — every action surface is either a full clickable row/card, a flow-diagram node, or a segmented toggle. There is no `<button class="primary">` pattern to extend; new actionable elements should adopt the Card, Flow Node, or Toggle patterns below rather than introduce a new button style.
 
 ### Toggles (language / theme)
-- **Shape:** Segmented control, `8px` radius on the outer group, 1px border, no radius on internal dividers.
-- **Style:** Each segment is a plain button (`Surface` background, `Ink Soft` text, Label typography); the active segment fills with `Ledger Blue` + `On Blue` text (language) or `Surface Alt` + role color (theme — amber sun for light, blue moon for dark, both via `var(--amber)`/`var(--blue)` so they stay in sync with any future palette change).
-- **Hover / Focus:** Inactive segments shift to `Surface Alt` on hover, `0.15s` transition, matching every other row-level hover in the system. Never applied to the active segment — its fill already signals state, and hovering it shouldn't visually compete with that.
+- **Shape:** Single icon-style button, `38×38px`, `8px` radius, 1px border — matching `.menu-toggle`'s established square icon-button footprint, not a two-segment control. Both toggles are binary (ES/EN, light/dark), so only the currently-active state renders; there's no second option sitting beside it to compare against.
+- **Style:** `Surface` background, `Ink Soft` text/icon by default. Theme's icon tints by state — amber sun for light, blue moon for dark, via `var(--amber)`/`var(--blue)` so both stay in sync with any future palette change. Language shows the active code (`ES`/`EN`) in Label typography, no color coding (no semantic color maps to "which language," so it stays neutral per the One Meaning Rule).
+- **Interaction:** A real toggle button — `aria-pressed` reflects state (`true` = dark for theme, `true` = EN for language, an arbitrary but consistent anchor since neither pair has an inherent on/off direction), one constant `aria-label` names the control itself ("Toggle dark mode" / "Change language") rather than per-state text, since there's only one button to label now.
+- **Hover:** `Surface Alt` background, `0.15s` transition, matching every other row-level hover in the system.
 
 ### Tags / Pills / Badges
 - **Style:** `Surface Alt` background, `Ink Soft` text, `full` (20px) radius, Label typography, tight padding (`2px 8px`).
