@@ -98,25 +98,19 @@ export default function ZoomableImage({
           aria-label={alt}
           onClick={close}
         >
-          <button
-            type="button"
-            className="image-modal-close"
-            onClick={(e) => {
-              e.stopPropagation();
-              close();
-            }}
-            ref={closeRef}
-            aria-label={t("imageCloseLabel")}
-          >
-            ✕
-          </button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={src}
-            alt={alt}
-            className="image-modal-img"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="image-modal-frame" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="image-modal-close"
+              onClick={close}
+              ref={closeRef}
+              aria-label={t("imageCloseLabel")}
+            >
+              ✕
+            </button>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt={alt} className="image-modal-img" />
+          </div>
         </div>
       )}
     </>
