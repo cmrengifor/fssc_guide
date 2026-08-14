@@ -29,7 +29,7 @@ export default function ReminderPanel() {
     if (!w) return null;
     const total = wiTotal(w.id);
     const done = progressMap[w.id]?.length ?? 0;
-    if (total === 0 || done >= total) return null;
+    if (total === 0 || done === 0 || done >= total) return null;
     return { w, done, total, nextStep: nextIncompleteStep(progressMap[w.id] ?? [], total) };
   })();
 

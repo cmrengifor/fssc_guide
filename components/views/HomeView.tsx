@@ -38,6 +38,7 @@ export default function HomeView() {
     <div className="content-inner">
       <h1 className="page-title">{t("homeTitle")}</h1>
       <p className="page-sub">{t("homeSub")}</p>
+      <ReminderPanel />
       <div className="quick-guide-grid">
         <div className="qg-card">
           <span className="qg-icon" aria-hidden="true">
@@ -68,7 +69,6 @@ export default function HomeView() {
           <p>{t("qgGlossaryBody")}</p>
         </div>
       </div>
-      <ReminderPanel />
       <div className="category-block">
         <h2 className="category-title">{t("homeCatalogTitle")}</h2>
         <p className="category-sub">{t("homeCatalogSub")}</p>
