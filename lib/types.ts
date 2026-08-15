@@ -63,6 +63,11 @@ export interface WICategory {
   name_en: string;
 }
 
+export interface WorkInstructionTag {
+  en: string;
+  es: string;
+}
+
 /** The lightweight slice of a Work Instruction: identity, searchable metadata,
  *  and step COUNT (not the steps themselves) — everything list/card/progress
  *  UI needs without pulling in the heavy per-WI content. This is what ships in
@@ -74,7 +79,7 @@ export interface WorkInstruction {
   region: string;
   category: string;
   sourceDoc: string;
-  tags: string[];
+  tags: WorkInstructionTag[];
   title_en: string;
   title_es: string;
   /** Precomputed `(steps_es ?? steps_en).length` — avoids needing the heavy

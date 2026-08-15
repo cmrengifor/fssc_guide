@@ -219,7 +219,12 @@ This system has no generic button component — every action surface is either a
 ### Tags / Pills / Badges
 - **Style:** `Surface Alt` background, `Ink Soft` text, `full` (20px) radius, Label typography, tight padding (`2px 8px`).
 - **Variants:** plain tag (keyword chips), category pill (`Confirmed Green` text on `Confirmed Green Soft`), region pill (`Verification Teal` text on `Verification Teal Soft`), progress badge (`Confirmed Green` text on `Confirmed Green Soft`, e.g. "5/8" — appears only once a Work Instruction has at least one checked step, never at zero).
-- **State:** Static — pills do not carry interactive states; they are labels, not controls.
+- **State:** Mostly static — pills are labels, not controls. The one exception is a translated keyword tag (below), which is genuinely interactive.
+
+### Translated keyword tags (`WITag`)
+- **What it is:** every Work Instruction keyword (`WorkInstructionTag`) now carries both `en` and `es` forms. The pill shows whichever matches the app's current language; when the two forms actually differ, the pill gets the `Verification Teal` outline+tint (the same "defined concept" role `.glossary-inline` uses) and a `cursor:help`, signaling there's a translation to see. Tags whose form is identical either way (acronyms, tool names — "BOSS", "WinSCP", "ACH") render as a plain, untinted tag, since there's nothing to reveal.
+- **Reveal:** hovering (or, where the tag is `interactive`, focusing) shows a small dark tooltip above the pill with the other language's term — a quick translation without navigating away or switching the whole page's language. `aria-label` carries both forms together for screen readers, since the visible tag text alone only shows one.
+- **Where it's interactive:** only on the Work Instruction detail page, where a single set of ~4–5 tags renders once. On the list/catalog cards the same highlight and hover both work, but the pill isn't a tab stop — with dozens of cards on one page, making every tag individually focusable would bloat keyboard navigation for a secondary, decorative affordance.
 
 ### Cards / Containers
 - **Corner Style:** `10px` (`--radius`).

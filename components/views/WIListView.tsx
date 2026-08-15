@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
 import { useProgress } from "@/lib/progress-context";
 import { DATA } from "@/lib/data";
+import WITag from "@/components/WITag";
 
 export default function WIListView({ regionFilter }: { regionFilter?: string }) {
   const { t, tf } = useLang();
@@ -38,9 +39,7 @@ export default function WIListView({ regionFilter }: { regionFilter?: string }) 
                         <h4>{tf(w, "title")}</h4>
                         <div className="case-tags">
                           {w.tags.map((tag) => (
-                            <span className="tag" key={tag}>
-                              {tag}
-                            </span>
+                            <WITag tag={tag} key={`${tag.en}-${tag.es}`} />
                           ))}
                         </div>
                       </div>

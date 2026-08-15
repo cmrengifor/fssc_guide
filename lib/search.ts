@@ -28,7 +28,7 @@ function buildSearchIndex(): SearchIndexItem[] {
       id: w.id,
       label_es: w.title_es,
       label_en: w.title_en,
-      tags: [...w.tags, w.region],
+      tags: [...w.tags.flatMap((tag) => [tag.en, tag.es]), w.region],
     });
   });
 

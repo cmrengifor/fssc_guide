@@ -8,6 +8,7 @@ import { highlightStepText } from "@/lib/highlight";
 import { DATA } from "@/lib/data";
 import { getWIDetail } from "@/lib/wi-detail";
 import ZoomableImage from "@/components/ZoomableImage";
+import WITag from "@/components/WITag";
 
 export default function WIDetailView({ id }: { id: string }) {
   const { lang, t, tf } = useLang();
@@ -67,9 +68,7 @@ export default function WIDetailView({ id }: { id: string }) {
         {!detail.steps_es && lang === "es" && <p className="pending-note">{t("wiPendingTranslation")}</p>}
         <div className="case-tags">
           {w.tags.map((tag) => (
-            <span className="tag" key={tag}>
-              {tag}
-            </span>
+            <WITag tag={tag} interactive key={`${tag.en}-${tag.es}`} />
           ))}
         </div>
         {hydrated && progress.done > 0 && (

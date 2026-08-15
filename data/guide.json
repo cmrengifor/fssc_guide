@@ -849,11 +849,18 @@
       "category": "travel",
       "sourceDoc": "001 - EN - US - Airfare Card Setup Process - WI-FIN-R2P-01.docx",
       "tags": [
-        "airfare card",
-        "egencia",
-        "travel card",
-        "tarjeta aerea",
-        "corporate card"
+        {
+          "en": "airfare card",
+          "es": "tarjeta aérea"
+        },
+        {
+          "en": "Egencia",
+          "es": "Egencia"
+        },
+        {
+          "en": "corporate card",
+          "es": "tarjeta corporativa"
+        }
       ],
       "title_en": "Airfare Card Setup Process",
       "title_es": "Proceso de Configuración de Tarjeta Aérea",
@@ -865,11 +872,22 @@
       "category": "banking",
       "sourceDoc": "002 - EN - NAM - Bank Audit Report WI-FIN-R2P-01.docx",
       "tags": [
-        "bank audit report",
-        "ach form",
-        "void check",
-        "bank letter",
-        "auditoria bancaria"
+        {
+          "en": "bank audit report",
+          "es": "auditoría bancaria"
+        },
+        {
+          "en": "ach form",
+          "es": "formulario ACH"
+        },
+        {
+          "en": "void check",
+          "es": "void check"
+        },
+        {
+          "en": "bank letter",
+          "es": "carta bancaria"
+        }
       ],
       "title_en": "Bank Audit Report (Canada & US)",
       "title_es": "Reporte de Auditoría Bancaria (Canadá y US)",
@@ -881,11 +899,22 @@
       "category": "banking",
       "sourceDoc": "004 - EN - US - CHECK RECONCILIATION FOR US DISBURSEMENT ACCOUNT - WI-FIN-R2P-01.docx",
       "tags": [
-        "check reconciliation",
-        "citibank file",
-        "winscp",
-        "conciliacion de cheques",
-        "disbursement account"
+        {
+          "en": "check reconciliation",
+          "es": "conciliación de cheques"
+        },
+        {
+          "en": "citibank file",
+          "es": "archivo de Citibank"
+        },
+        {
+          "en": "winscp",
+          "es": "winscp"
+        },
+        {
+          "en": "disbursement account",
+          "es": "disbursement account"
+        }
       ],
       "title_en": "Check Reconciliation – US Disbursement Account",
       "title_es": "Conciliación de Cheques – Cuenta de Desembolso US",
@@ -897,10 +926,18 @@
       "category": "travel",
       "sourceDoc": "006 - EN - US - EXPENSE REPORT EXPORT-WI-FIN-R2P-01.docx",
       "tags": [
-        "expense report export",
-        "boss export",
-        "ach payment cycle",
-        "exportar reporte de gastos"
+        {
+          "en": "expense report export",
+          "es": "exportar reporte de gastos"
+        },
+        {
+          "en": "boss export",
+          "es": "exportación BOSS"
+        },
+        {
+          "en": "ach payment cycle",
+          "es": "ciclo de pago ACH"
+        }
       ],
       "title_en": "Expense Report Export (US)",
       "title_es": "Exportación de Reporte de Gastos (US)",
@@ -912,10 +949,22 @@
       "category": "suppliers",
       "sourceDoc": "007 - EN - NAM - Intercompany Setup - WI-FIN-R2P-01.docx",
       "tags": [
-        "intercompany",
-        "f code",
-        "supplier site",
-        "proveedor intercompany"
+        {
+          "en": "intercompany",
+          "es": "intercompañía"
+        },
+        {
+          "en": "f code",
+          "es": "F-Code"
+        },
+        {
+          "en": "supplier site",
+          "es": "sitio de proveedor"
+        },
+        {
+          "en": "intercompany supplier",
+          "es": "proveedor intercompañía"
+        }
       ],
       "title_en": "Intercompany Supplier Site Setup",
       "title_es": "Configuración de Sitio de Proveedor Intercompañía",
@@ -927,10 +976,18 @@
       "category": "suppliers",
       "sourceDoc": "008 - EN - US - Linking employees in BOSS WI-FIN-R2P-01.docx",
       "tags": [
-        "linking employees",
-        "boss",
-        "employee supplier record",
-        "vincular empleado"
+        {
+          "en": "linking employees",
+          "es": "vincular empleado"
+        },
+        {
+          "en": "BOSS",
+          "es": "BOSS"
+        },
+        {
+          "en": "employee supplier record",
+          "es": "registro de proveedor empleado"
+        }
       ],
       "title_en": "Linking Employees in BOSS",
       "title_es": "Vinculación de Empleados en BOSS",
@@ -942,10 +999,14 @@
       "category": "travel",
       "sourceDoc": "009 - EN - NAM - MANUAL EXPENSES REPORTS-WI-FIN-R2P-01.docx",
       "tags": [
-        "manual expense report",
-        "reimbursement",
-        "gastos manuales",
-        "reembolso manual"
+        {
+          "en": "manual expense report",
+          "es": "gastos manuales"
+        },
+        {
+          "en": "reimbursement",
+          "es": "reembolso manual"
+        }
       ],
       "title_en": "Manual Expense Reports (NAM)",
       "title_es": "Reportes de Gastos Manuales (NAM)",
@@ -957,11 +1018,22 @@
       "category": "suppliers",
       "sourceDoc": "010 - EN - NAM - New Supplier Approval FIN-WI-01 - NAM.docx",
       "tags": [
-        "new supplier approval",
-        "w-9",
-        "ach form",
-        "aprobacion de proveedor",
-        "tin"
+        {
+          "en": "new supplier approval",
+          "es": "aprobación de proveedor"
+        },
+        {
+          "en": "W-9",
+          "es": "W-9"
+        },
+        {
+          "en": "ach form",
+          "es": "formulario ACH"
+        },
+        {
+          "en": "TIN",
+          "es": "TIN"
+        }
       ],
       "title_en": "New Supplier Approval (NAM)",
       "title_es": "Aprobación de Nuevo Proveedor (NAM)",
@@ -973,10 +1045,18 @@
       "category": "suppliers",
       "sourceDoc": "011 - EN - NAM - New Supplier for Refund - WI-FIN-R2P-01.docx",
       "tags": [
-        "new supplier refund",
-        "one-time supplier",
-        "customer refund",
-        "proveedor de reembolso"
+        {
+          "en": "new supplier refund",
+          "es": "proveedor de reembolso"
+        },
+        {
+          "en": "one-time supplier",
+          "es": "proveedor de una sola vez"
+        },
+        {
+          "en": "customer refund",
+          "es": "reembolso a cliente"
+        }
       ],
       "title_en": "New Supplier for Refund (US)",
       "title_es": "Nuevo Proveedor para Reembolso (US)",
@@ -988,11 +1068,18 @@
       "category": "banking",
       "sourceDoc": "013 - EN - US - Stop Payments WI-FIN-R2P-01.docx",
       "tags": [
-        "stop payment",
-        "citidirect",
-        "void check",
-        "cancelar cheque",
-        "parar pago"
+        {
+          "en": "stop payment",
+          "es": "parar pago"
+        },
+        {
+          "en": "CitiDirect",
+          "es": "CitiDirect"
+        },
+        {
+          "en": "void check",
+          "es": "cancelar cheque"
+        }
       ],
       "title_en": "Stop Payments (US Checks)",
       "title_es": "Detener Pagos (Cheques US)",
@@ -1004,10 +1091,18 @@
       "category": "suppliers",
       "sourceDoc": "014 - EN - NAM - Supplier Updates - WI-FIN-R2P-01.docx",
       "tags": [
-        "supplier updates",
-        "supplier address",
-        "sharepoint request",
-        "actualizar proveedor"
+        {
+          "en": "supplier updates",
+          "es": "actualizar proveedor"
+        },
+        {
+          "en": "supplier address",
+          "es": "dirección de proveedor"
+        },
+        {
+          "en": "sharepoint request",
+          "es": "solicitud en SharePoint"
+        }
       ],
       "title_en": "Supplier Updates (NAM)",
       "title_es": "Actualizaciones de Proveedor (NAM)",
@@ -1019,10 +1114,18 @@
       "category": "travel",
       "sourceDoc": "017 - EN - US - T&E AUDITORY-WI-FIN-R2P-01.docx",
       "tags": [
-        "t&e audit",
-        "expense audit",
-        "boss oie auditor",
-        "auditoria de gastos"
+        {
+          "en": "expense audit",
+          "es": "auditoría de gastos"
+        },
+        {
+          "en": "t&e audit",
+          "es": "auditoría de T&E"
+        },
+        {
+          "en": "boss oie auditor",
+          "es": "auditor OIE de BOSS"
+        }
       ],
       "title_en": "Travel & Expense (T&E) Audit (US)",
       "title_es": "Auditoría de Viajes y Gastos (T&E) (US)",
@@ -1034,12 +1137,18 @@
       "category": "payroll",
       "sourceDoc": "018 - EN - US - Recording payroll, tax, and benefits-WI-FIN-R2P-01.docx",
       "tags": [
-        "payroll",
-        "tax",
-        "benefits",
-        "nomina",
-        "impuestos",
-        "beneficios"
+        {
+          "en": "payroll",
+          "es": "nómina"
+        },
+        {
+          "en": "tax",
+          "es": "impuestos"
+        },
+        {
+          "en": "benefits",
+          "es": "beneficios"
+        }
       ],
       "title_en": "Recording Payroll, Tax & Benefits (US)",
       "title_es": "Registro de Nómina, Impuestos y Beneficios (US)",
@@ -1051,10 +1160,18 @@
       "category": "banking",
       "sourceDoc": "021 - EN - US - CreditCard Transaction Loader WI-FIN-R2P-01.docx",
       "tags": [
-        "credit card loader",
-        "p-card",
-        "citibank mastercard",
-        "cargar transacciones"
+        {
+          "en": "credit card loader",
+          "es": "cargar transacciones"
+        },
+        {
+          "en": "P-Card",
+          "es": "P-Card"
+        },
+        {
+          "en": "Citibank Mastercard",
+          "es": "Citibank Mastercard"
+        }
       ],
       "title_en": "Credit Card Transaction Loader",
       "title_es": "Cargador de Transacciones de Tarjeta de Crédito",
@@ -1066,10 +1183,18 @@
       "category": "invoicing",
       "sourceDoc": "022 - EN - US - Importing Xerox Invoices - WI-FIN-R2P-01.docx",
       "tags": [
-        "xerox import",
-        "ocr invoices",
-        "daily import",
-        "importar facturas xerox"
+        {
+          "en": "xerox import",
+          "es": "importar facturas Xerox"
+        },
+        {
+          "en": "ocr invoices",
+          "es": "facturas OCR"
+        },
+        {
+          "en": "daily import",
+          "es": "importación diaria"
+        }
       ],
       "title_en": "Importing Xerox Invoices",
       "title_es": "Importación de Facturas Xerox",
@@ -1081,11 +1206,18 @@
       "category": "close",
       "sourceDoc": "023-EN-US -1099 -Issuance -WI-FIN-R2P-01.docx",
       "tags": [
-        "1099",
-        "tax filing",
-        "irs",
-        "emision 1099",
-        "reporte de impuestos"
+        {
+          "en": "1099",
+          "es": "emisión 1099"
+        },
+        {
+          "en": "tax filing",
+          "es": "reporte de impuestos"
+        },
+        {
+          "en": "IRS",
+          "es": "IRS"
+        }
       ],
       "title_en": "1099 Issuance",
       "title_es": "Emisión de Formulario 1099",
@@ -1097,11 +1229,18 @@
       "category": "invoicing",
       "sourceDoc": "024-EN-CA-AP-Exception-Identification-and-Corrective-Action-WI-FIN-R2P-01.docx",
       "tags": [
-        "payment run reject",
-        "exception handling",
-        "corrective action",
-        "excepcion de pago",
-        "rechazo de pago"
+        {
+          "en": "payment run reject",
+          "es": "rechazo de pago"
+        },
+        {
+          "en": "exception handling",
+          "es": "excepción de pago"
+        },
+        {
+          "en": "corrective action",
+          "es": "acción correctiva"
+        }
       ],
       "title_en": "AP Exception Identification & Corrective Action (CA)",
       "title_es": "Identificación de Excepciones de CxP y Acción Correctiva (CA)",
@@ -1113,11 +1252,22 @@
       "category": "banking",
       "sourceDoc": "027-EN-US-Cash Management Remittance Advice-WI-FIN-R2P-01.docx",
       "tags": [
-        "remittance advice",
-        "wire",
-        "eft",
-        "aviso de remesa",
-        "registro de pago"
+        {
+          "en": "remittance advice",
+          "es": "aviso de remesa"
+        },
+        {
+          "en": "wire",
+          "es": "wire"
+        },
+        {
+          "en": "EFT",
+          "es": "EFT"
+        },
+        {
+          "en": "payment recording",
+          "es": "registro de pago"
+        }
       ],
       "title_en": "Cash Management Remittance Advice (Wires/EFT)",
       "title_es": "Aviso de Remesa de Cash Management (Transferencias/EFT)",
@@ -1129,10 +1279,18 @@
       "category": "invoicing",
       "sourceDoc": "031-EN-US-Creating Tickets for Xerox Errors-WI-FIN-R2P-01.docx",
       "tags": [
-        "xerox errors",
-        "ocr index accuracy",
-        "ticket creation",
-        "tickets de error xerox"
+        {
+          "en": "xerox errors",
+          "es": "tickets de error Xerox"
+        },
+        {
+          "en": "ocr index accuracy",
+          "es": "precisión de índice OCR"
+        },
+        {
+          "en": "ticket creation",
+          "es": "creación de tickets"
+        }
       ],
       "title_en": "Creating Tickets for Xerox Errors",
       "title_es": "Creación de Tickets para Errores de Xerox",
@@ -1144,11 +1302,22 @@
       "category": "banking",
       "sourceDoc": "032-EN-US-Credit Cards-WI-FIN-R2P-01.docx",
       "tags": [
-        "credit card",
-        "citi file",
-        "p-card",
-        "t&e",
-        "procesar tarjetas de credito"
+        {
+          "en": "credit card",
+          "es": "procesar tarjetas de crédito"
+        },
+        {
+          "en": "citi file",
+          "es": "archivo Citi"
+        },
+        {
+          "en": "P-Card",
+          "es": "P-Card"
+        },
+        {
+          "en": "T&E",
+          "es": "T&E"
+        }
       ],
       "title_en": "Credit Cards (Citi Files) Processing",
       "title_es": "Procesamiento de Tarjetas de Crédito (Archivos Citi)",
@@ -1160,10 +1329,14 @@
       "category": "suppliers",
       "sourceDoc": "033-EN-US-Customer Refund-WI-FIN-R2P-01.docx",
       "tags": [
-        "customer refund",
-        "refund request",
-        "reembolso a cliente",
-        "procesar reembolso"
+        {
+          "en": "customer refund",
+          "es": "reembolso a cliente"
+        },
+        {
+          "en": "refund request",
+          "es": "procesar reembolso"
+        }
       ],
       "title_en": "Customer Refund Processing",
       "title_es": "Procesamiento de Reembolso a Cliente",
@@ -1175,11 +1348,18 @@
       "category": "invoicing",
       "sourceDoc": "034-EN-US-Foreign Intercompany IDN Invoice Processing-WI-FIN-R2P-01.docx",
       "tags": [
-        "idn",
-        "internal debit note",
-        "intercompany invoice",
-        "nota de debito interna",
-        "factura intercompany"
+        {
+          "en": "IDN",
+          "es": "IDN"
+        },
+        {
+          "en": "internal debit note",
+          "es": "nota de débito interna"
+        },
+        {
+          "en": "intercompany invoice",
+          "es": "factura intercompañía"
+        }
       ],
       "title_en": "Foreign Intercompany IDN Invoice Processing",
       "title_es": "Procesamiento de Facturas Intercompañía Extranjeras (IDN)",
@@ -1191,10 +1371,14 @@
       "category": "close",
       "sourceDoc": "038-EN-US Month End Close-WI-FIN-R2P-01.docx",
       "tags": [
-        "month end close",
-        "purchasing period",
-        "cierre de mes",
-        "periodo contable"
+        {
+          "en": "month end close",
+          "es": "cierre de mes"
+        },
+        {
+          "en": "purchasing period",
+          "es": "periodo contable"
+        }
       ],
       "title_en": "Month-End Close",
       "title_es": "Cierre de Fin de Mes",
@@ -1206,11 +1390,22 @@
       "category": "banking",
       "sourceDoc": "040-EN-US-Monthly 120 Day Outstanding Issuance Report-WI-FIN-R2P-01.docx",
       "tags": [
-        "stale-dated checks",
-        "void checks",
-        "citidirect",
-        "cheques vencidos",
-        "reporte 120 dias"
+        {
+          "en": "stale-dated checks",
+          "es": "cheques vencidos"
+        },
+        {
+          "en": "void checks",
+          "es": "void checks"
+        },
+        {
+          "en": "CitiDirect",
+          "es": "CitiDirect"
+        },
+        {
+          "en": "120-day report",
+          "es": "reporte 120 días"
+        }
       ],
       "title_en": "Monthly 120-Day Outstanding Issuance Report",
       "title_es": "Reporte Mensual de Cheques Pendientes a 120 Días",
@@ -1222,10 +1417,18 @@
       "category": "close",
       "sourceDoc": "041-EN-US-Monthly TCC Payments-WI-FIN-R2P-01.docx",
       "tags": [
-        "tcc payments",
-        "payment register",
-        "final payment register",
-        "pagos mensuales tcc"
+        {
+          "en": "tcc payments",
+          "es": "pagos mensuales TCC"
+        },
+        {
+          "en": "payment register",
+          "es": "payment register"
+        },
+        {
+          "en": "final payment register",
+          "es": "registro final de pago"
+        }
       ],
       "title_en": "Monthly TCC Payments",
       "title_es": "Pagos Mensuales TCC",
@@ -1237,11 +1440,18 @@
       "category": "close",
       "sourceDoc": "043-EN-US-Payment Registers-WI-FIN-R2P-01.docx",
       "tags": [
-        "payment register",
-        "payment calendar",
-        "preliminary register",
-        "registro de pago",
-        "calendario de pagos"
+        {
+          "en": "payment register",
+          "es": "registro de pago"
+        },
+        {
+          "en": "payment calendar",
+          "es": "calendario de pagos"
+        },
+        {
+          "en": "preliminary register",
+          "es": "registro preliminar"
+        }
       ],
       "title_en": "Payment Registers (Generation & Approval)",
       "title_es": "Registros de Pago (Generación y Aprobación)",
@@ -1253,9 +1463,14 @@
       "category": "travel",
       "sourceDoc": "044-EN-US-PCards audit process-WI-FIN-R2P-01.docx",
       "tags": [
-        "p-card audit",
-        "expense report audit",
-        "auditoria de p-card"
+        {
+          "en": "p-card audit",
+          "es": "auditoría de P-Card"
+        },
+        {
+          "en": "expense report audit",
+          "es": "auditoría de reporte de gastos"
+        }
       ],
       "title_en": "P-Cards Audit Process",
       "title_es": "Proceso de Auditoría de P-Cards",
@@ -1267,11 +1482,18 @@
       "category": "banking",
       "sourceDoc": "047-EN-US-Recording ACH and Wire payments-WI-FIN-R2P-01.docx",
       "tags": [
-        "ach payment",
-        "wire payment",
-        "cash management folder",
-        "registrar pago ach",
-        "pago por transferencia"
+        {
+          "en": "ach payment",
+          "es": "registrar pago ACH"
+        },
+        {
+          "en": "wire payment",
+          "es": "pago por transferencia"
+        },
+        {
+          "en": "cash management folder",
+          "es": "carpeta de cash management"
+        }
       ],
       "title_en": "Recording ACH and Wire Payments",
       "title_es": "Registro de Pagos ACH y por Transferencia",
@@ -1283,11 +1505,18 @@
       "category": "invoicing",
       "sourceDoc": "048-EN-US-Resolve PO Invoice discrepancies-WI-FIN-R2P-01.docx",
       "tags": [
-        "po discrepancy",
-        "invoice hold",
-        "po unlocking",
-        "discrepancia de po",
-        "desbloqueo de factura"
+        {
+          "en": "po discrepancy",
+          "es": "discrepancia de PO"
+        },
+        {
+          "en": "invoice hold",
+          "es": "Hold de factura"
+        },
+        {
+          "en": "po unlocking",
+          "es": "desbloqueo de factura"
+        }
       ],
       "title_en": "Resolve PO Invoice Discrepancies (US)",
       "title_es": "Resolución de Discrepancias de Factura vs. PO (US)",
@@ -1299,11 +1528,18 @@
       "category": "banking",
       "sourceDoc": "049-EN-US-Returned payments processing-WI-FIN-R2P-01.docx",
       "tags": [
-        "returned payment",
-        "citidirect",
-        "void and reissue",
-        "pago devuelto",
-        "reemision de pago"
+        {
+          "en": "returned payment",
+          "es": "pago devuelto"
+        },
+        {
+          "en": "CitiDirect",
+          "es": "CitiDirect"
+        },
+        {
+          "en": "void and reissue",
+          "es": "reemisión de pago"
+        }
       ],
       "title_en": "Returned Payments Processing (US)",
       "title_es": "Procesamiento de Pagos Devueltos (US)",
@@ -1315,9 +1551,14 @@
       "category": "banking",
       "sourceDoc": "050-EN-NAM-Setup Bank Account-WI-FIN-R2P-01.docx",
       "tags": [
-        "bank account setup",
-        "banks and bank branches",
-        "configurar cuenta bancaria"
+        {
+          "en": "bank account setup",
+          "es": "configurar cuenta bancaria"
+        },
+        {
+          "en": "banks and bank branches",
+          "es": "bancos y sucursales bancarias"
+        }
       ],
       "title_en": "Bank Account Setup (NAM)",
       "title_es": "Configuración de Cuenta Bancaria (NAM)",
@@ -1329,11 +1570,18 @@
       "category": "banking",
       "sourceDoc": "051-EN-NAM-Setup Bank adquisitions-WI-FIN-R2P-01.docx",
       "tags": [
-        "bank acquisitions",
-        "new legal entity",
-        "new bank entity",
-        "adquisiciones bancarias",
-        "nueva entidad legal"
+        {
+          "en": "bank acquisitions",
+          "es": "adquisiciones bancarias"
+        },
+        {
+          "en": "new legal entity",
+          "es": "nueva entidad legal"
+        },
+        {
+          "en": "new bank entity",
+          "es": "nueva entidad bancaria"
+        }
       ],
       "title_en": "Bank Setup for Acquisitions (NAM)",
       "title_es": "Configuración Bancaria para Adquisiciones (NAM)",
@@ -1345,9 +1593,14 @@
       "category": "banking",
       "sourceDoc": "052-EN-US-Setup credit cards-WI-FIN-R2P-01.docx",
       "tags": [
-        "credit card setup",
-        "citi commercial cards",
-        "configurar tarjeta de credito"
+        {
+          "en": "credit card setup",
+          "es": "configurar tarjeta de crédito"
+        },
+        {
+          "en": "citi commercial cards",
+          "es": "tarjetas comerciales Citi"
+        }
       ],
       "title_en": "Credit Card Setup & Maintenance (US)",
       "title_es": "Configuración y Mantenimiento de Tarjeta de Crédito (US)",
@@ -1359,10 +1612,14 @@
       "category": "suppliers",
       "sourceDoc": "053-EN-US-Supplier inquiries Management-WI-FIN-R2P-01.docx",
       "tags": [
-        "supplier inquiries",
-        "us apgroup mailbox",
-        "consultas de proveedor",
-        "buzon compartido"
+        {
+          "en": "supplier inquiries",
+          "es": "consultas de proveedor"
+        },
+        {
+          "en": "us apgroup mailbox",
+          "es": "buzón compartido"
+        }
       ],
       "title_en": "Supplier Inquiries Management (US)",
       "title_es": "Gestión de Consultas de Proveedor (US)",
@@ -1374,10 +1631,18 @@
       "category": "banking",
       "sourceDoc": "055-EN-US-Check-Voids-WI-FIN-R2P-01.docx",
       "tags": [
-        "check void",
-        "payments inquiry report",
-        "anular cheque",
-        "void semanal"
+        {
+          "en": "check void",
+          "es": "anular cheque"
+        },
+        {
+          "en": "payments inquiry report",
+          "es": "reporte de consulta de pagos"
+        },
+        {
+          "en": "weekly void",
+          "es": "void semanal"
+        }
       ],
       "title_en": "Check Voids (Weekly, US)",
       "title_es": "Anulación de Cheques (Semanal, US)",
@@ -1389,10 +1654,18 @@
       "category": "banking",
       "sourceDoc": "056-EN-US-Wire or ACH payments to Foreign Suppliers-WI-FIN-R2P-01.docx",
       "tags": [
-        "wire request",
-        "foreign supplier payment",
-        "ach a proveedor extranjero",
-        "pago internacional"
+        {
+          "en": "wire request",
+          "es": "solicitud de transferencia"
+        },
+        {
+          "en": "foreign supplier payment",
+          "es": "ACH a proveedor extranjero"
+        },
+        {
+          "en": "international payment",
+          "es": "pago internacional"
+        }
       ],
       "title_en": "Wire/ACH Payments to Foreign Suppliers (US)",
       "title_es": "Pagos por Transferencia/ACH a Proveedores Extranjeros (US)",
@@ -1404,11 +1677,18 @@
       "category": "banking",
       "sourceDoc": "059-EN-NAM-Process EFT and check payments file received from AP, using APRO-WI-FIN-R2P-01.docx",
       "tags": [
-        "eft batch",
-        "apro",
-        "encrypt payment file",
-        "archivo de pago eft",
-        "cifrar archivo"
+        {
+          "en": "eft batch",
+          "es": "archivo de pago EFT"
+        },
+        {
+          "en": "APRO",
+          "es": "APRO"
+        },
+        {
+          "en": "encrypt payment file",
+          "es": "cifrar archivo"
+        }
       ],
       "title_en": "Process EFT and Check Payments File via APRO (NAM)",
       "title_es": "Procesamiento de Archivo de Pagos EFT y Cheques vía APRO (NAM)",
@@ -1420,10 +1700,18 @@
       "category": "close",
       "sourceDoc": "003 - EN - CA - TCC payments to Affiliates FIN - WI - R2P - 01.docx",
       "tags": [
-        "tcc netting",
-        "payment process request",
-        "intercompany payment ca",
-        "pago tcc canada"
+        {
+          "en": "tcc netting",
+          "es": "pago TCC Canadá"
+        },
+        {
+          "en": "payment process request",
+          "es": "solicitud de proceso de pago"
+        },
+        {
+          "en": "intercompany payment ca",
+          "es": "pago intercompañía CA"
+        }
       ],
       "title_en": "TCC Payments to Affiliates (Canada)",
       "title_es": "Pagos TCC a Afiliadas (Canadá)",
@@ -1435,9 +1723,14 @@
       "category": "travel",
       "sourceDoc": "005 - EN - CA - EXPENSE REPORT EXPORT-WI-FIN-R2P-01.docx",
       "tags": [
-        "expense report export canada",
-        "ca oie auditor",
-        "exportar reporte de gastos canada"
+        {
+          "en": "expense report export canada",
+          "es": "exportar reporte de gastos Canadá"
+        },
+        {
+          "en": "ca oie auditor",
+          "es": "auditor OIE CA"
+        }
       ],
       "title_en": "Expense Report Export (Canada)",
       "title_es": "Exportación de Reporte de Gastos (Canadá)",
@@ -1449,10 +1742,18 @@
       "category": "travel",
       "sourceDoc": "012 - EN - CA - REIMBURSEMENTS 0 - WI-FIN-R2P-01.docx",
       "tags": [
-        "0 cad reimbursement",
-        "p-card reimbursement",
-        "airfare reimbursement canada",
-        "reembolso cero canada"
+        {
+          "en": "0 cad reimbursement",
+          "es": "reembolso cero Canadá"
+        },
+        {
+          "en": "p-card reimbursement",
+          "es": "reembolso P-Card"
+        },
+        {
+          "en": "airfare reimbursement canada",
+          "es": "reembolso de tarjeta aérea Canadá"
+        }
       ],
       "title_en": "0-CAD Reimbursements (P-Card / Airfare, Canada)",
       "title_es": "Reembolsos de $0 CAD (P-Card / Tarjeta Aérea, Canadá)",
@@ -1464,9 +1765,14 @@
       "category": "travel",
       "sourceDoc": "015 - EN - CA - T&E AUDITORY-WI-FIN-R2P-01.docx",
       "tags": [
-        "t&e audit canada",
-        "expense audit ca",
-        "auditoria de gastos canada"
+        {
+          "en": "expense audit ca",
+          "es": "auditoría de gastos Canadá"
+        },
+        {
+          "en": "t&e audit canada",
+          "es": "auditoría de T&E Canadá"
+        }
       ],
       "title_en": "Travel & Expense (T&E) Audit (Canada)",
       "title_es": "Auditoría de Viajes y Gastos (T&E) (Canadá)",
@@ -1478,9 +1784,14 @@
       "category": "banking",
       "sourceDoc": "019 - EN - CA Voids WI-FIN-R2P-01.docx",
       "tags": [
-        "payment void canada",
-        "void request",
-        "anular pago canada"
+        {
+          "en": "payment void canada",
+          "es": "anular pago Canadá"
+        },
+        {
+          "en": "void request",
+          "es": "solicitud de anulación"
+        }
       ],
       "title_en": "Payment Voids (Canada)",
       "title_es": "Anulación de Pagos (Canadá)",
@@ -1492,9 +1803,14 @@
       "category": "banking",
       "sourceDoc": "020 - EN - CA - CreditCard Transaction Loader - WI-FIN-R2P-01.docx",
       "tags": [
-        "credit card loader canada",
-        "citibank mastercard ca",
-        "cargar transacciones canada"
+        {
+          "en": "credit card loader canada",
+          "es": "cargar transacciones Canadá"
+        },
+        {
+          "en": "Citibank Mastercard CA",
+          "es": "Citibank Mastercard CA"
+        }
       ],
       "title_en": "Credit Card Transaction Loader (Canada)",
       "title_es": "Cargador de Transacciones de Tarjeta de Crédito (Canadá)",
@@ -1506,9 +1822,14 @@
       "category": "suppliers",
       "sourceDoc": "025-EN-CA-Costumer refunds-WI-FIN-R2P-01.docx",
       "tags": [
-        "customer refund canada",
-        "refund request ca",
-        "reembolso a cliente canada"
+        {
+          "en": "customer refund canada",
+          "es": "reembolso a cliente Canadá"
+        },
+        {
+          "en": "refund request ca",
+          "es": "solicitud de reembolso CA"
+        }
       ],
       "title_en": "Customer Refund Processing (Canada)",
       "title_es": "Procesamiento de Reembolso a Cliente (Canadá)",
@@ -1520,9 +1841,14 @@
       "category": "banking",
       "sourceDoc": "028-EN-CA-Check or Payment Request Processed Through Email Submission-WI-FIN-R2P-01.docx",
       "tags": [
-        "check request email canada",
-        "payment request submission",
-        "solicitud de cheque por correo"
+        {
+          "en": "check request email canada",
+          "es": "solicitud de cheque por correo"
+        },
+        {
+          "en": "payment request submission",
+          "es": "envío de solicitud de pago"
+        }
       ],
       "title_en": "Check/Payment Request via Email Submission (Canada)",
       "title_es": "Solicitud de Cheque/Pago vía Correo Electrónico (Canadá)",
@@ -1534,9 +1860,14 @@
       "category": "banking",
       "sourceDoc": "029-EN-CA-Check Request for Citibank Ghost Credit Card-WI-FIN-R2P-01.docx",
       "tags": [
-        "ghost card check request",
-        "citibank statement",
-        "solicitud de cheque ghost card"
+        {
+          "en": "ghost card check request",
+          "es": "solicitud de cheque Ghost Card"
+        },
+        {
+          "en": "citibank statement",
+          "es": "estado de cuenta Citibank"
+        }
       ],
       "title_en": "Check Request for Citibank Ghost Credit Card (Canada)",
       "title_es": "Solicitud de Cheque para Ghost Credit Card de Citibank (Canadá)",
@@ -1548,9 +1879,14 @@
       "category": "banking",
       "sourceDoc": "030-EN-CA-Check Requests for tax Installments-WI-FIN-R2P-01.docx",
       "tags": [
-        "tax installments",
-        "docusign tax remittance",
-        "cuotas de impuestos canada"
+        {
+          "en": "tax installments",
+          "es": "cuotas de impuestos Canadá"
+        },
+        {
+          "en": "docusign tax remittance",
+          "es": "remesa de impuestos DocuSign"
+        }
       ],
       "title_en": "Check Requests for Tax Installments (Canada)",
       "title_es": "Solicitudes de Cheque para Cuotas de Impuestos (Canadá)",
@@ -1562,9 +1898,18 @@
       "category": "banking",
       "sourceDoc": "035-EN-CA-Ghost Card-CA -WI-FIN-R2P-01.docx",
       "tags": [
-        "ghost card us lines",
-        "citibank statement",
-        "ghost card tarjeta fantasma"
+        {
+          "en": "ghost card us lines",
+          "es": "Ghost Card líneas US"
+        },
+        {
+          "en": "citibank statement",
+          "es": "estado de cuenta Citibank"
+        },
+        {
+          "en": "ghost card",
+          "es": "tarjeta fantasma"
+        }
       ],
       "title_en": "Ghost Card Check Request – US Billing Lines (Canada)",
       "title_es": "Solicitud de Cheque Ghost Card – Líneas de Facturación US (Canadá)",
@@ -1576,9 +1921,18 @@
       "category": "banking",
       "sourceDoc": "037-EN-CA-GhostCard Check Request-WI-FIN-R2P-01.docx",
       "tags": [
-        "ghost card canada lines",
-        "sgs canada billing",
-        "ghost card cuentas canada"
+        {
+          "en": "ghost card canada lines",
+          "es": "Ghost Card líneas Canadá"
+        },
+        {
+          "en": "sgs canada billing",
+          "es": "facturación SGS Canadá"
+        },
+        {
+          "en": "ghost card accounts canada",
+          "es": "Ghost Card cuentas Canadá"
+        }
       ],
       "title_en": "Ghost Card Check Request – Canada Billing Lines",
       "title_es": "Solicitud de Cheque Ghost Card – Líneas de Facturación Canadá",
@@ -1590,9 +1944,14 @@
       "category": "close",
       "sourceDoc": "039-EN-CA-Month End Opening and Closing-WI-FIN-R2P-01.docx",
       "tags": [
-        "month end close canada",
-        "purchasing period canada",
-        "apertura y cierre de mes"
+        {
+          "en": "month end close canada",
+          "es": "apertura y cierre de mes"
+        },
+        {
+          "en": "purchasing period canada",
+          "es": "periodo contable Canadá"
+        }
       ],
       "title_en": "Month-End Opening and Closing (Canada)",
       "title_es": "Apertura y Cierre de Fin de Mes (Canadá)",
@@ -1604,9 +1963,14 @@
       "category": "close",
       "sourceDoc": "042-EN-CA-Payment Registers Processing-WI-FIN-R2P-01.docx",
       "tags": [
-        "payment register canada",
-        "payments manager",
-        "registro de pago canada"
+        {
+          "en": "payment register canada",
+          "es": "registro de pago Canadá"
+        },
+        {
+          "en": "Payments Manager",
+          "es": "Payments Manager"
+        }
       ],
       "title_en": "Payment Registers Processing (Canada)",
       "title_es": "Procesamiento de Registros de Pago (Canadá)",
@@ -1618,9 +1982,18 @@
       "category": "invoicing",
       "sourceDoc": "045-EN-NAM-Prepayments Reconciliation-WI-FIN-R2P-01.docx",
       "tags": [
-        "prepayment application",
-        "apply prepayment to invoice",
-        "conciliacion de anticipos"
+        {
+          "en": "prepayment application",
+          "es": "aplicación de anticipo"
+        },
+        {
+          "en": "apply prepayment to invoice",
+          "es": "aplicar anticipo a factura"
+        },
+        {
+          "en": "prepayment reconciliation",
+          "es": "conciliación de anticipos"
+        }
       ],
       "title_en": "Prepayments Reconciliation (NAM)",
       "title_es": "Conciliación de Anticipos (NAM)",
@@ -1632,9 +2005,14 @@
       "category": "invoicing",
       "sourceDoc": "046-EN-CA-Record and apply Credit Memos-WI-FIN-R2P-01.docx",
       "tags": [
-        "credit memo",
-        "overbilled quantity",
-        "nota de credito canada"
+        {
+          "en": "credit memo",
+          "es": "nota de crédito Canadá"
+        },
+        {
+          "en": "overbilled quantity",
+          "es": "cantidad facturada en exceso"
+        }
       ],
       "title_en": "Record and Apply Credit Memos (Canada)",
       "title_es": "Registro y Aplicación de Notas de Crédito (Canadá)",
@@ -1646,8 +2024,10 @@
       "category": "invoicing",
       "sourceDoc": "054-EN-CA-Tax Validation-WI-FIN-R2P-01.docx",
       "tags": [
-        "tax validation canada",
-        "validacion de impuestos canada"
+        {
+          "en": "tax validation canada",
+          "es": "validación de impuestos Canadá"
+        }
       ],
       "title_en": "Tax Validation (Canada)",
       "title_es": "Validación de Impuestos (Canadá)",
@@ -1659,9 +2039,14 @@
       "category": "banking",
       "sourceDoc": "057-EN-CA-Wire Payments-WI-FIN-R2P-01.docx",
       "tags": [
-        "wire payment canada",
-        "payments manager ca",
-        "pago por transferencia canada"
+        {
+          "en": "wire payment canada",
+          "es": "pago por transferencia Canadá"
+        },
+        {
+          "en": "Payments Manager CA",
+          "es": "Payments Manager CA"
+        }
       ],
       "title_en": "Wire Payments Processing (Canada)",
       "title_es": "Procesamiento de Pagos por Transferencia (Canadá)",
@@ -1673,9 +2058,14 @@
       "category": "invoicing",
       "sourceDoc": "058-EN-CA-Xerox Ticket Creation WI-FIN-R2P-01.docx",
       "tags": [
-        "xerox ticket canada",
-        "xerox supplier portal",
-        "crear ticket xerox canada"
+        {
+          "en": "xerox ticket canada",
+          "es": "crear ticket Xerox Canadá"
+        },
+        {
+          "en": "xerox supplier portal",
+          "es": "portal de proveedores Xerox"
+        }
       ],
       "title_en": "Xerox Ticket Creation (Canada)",
       "title_es": "Creación de Tickets Xerox (Canadá)",
@@ -1687,9 +2077,14 @@
       "category": "invoicing",
       "sourceDoc": "060-EN-CA- 3-way match - WI-FIN-R2P-01.docx",
       "tags": [
-        "3-way match canada",
-        "po receipt invoice match",
-        "match de 3 vias canada"
+        {
+          "en": "3-way match canada",
+          "es": "match de 3 vías Canadá"
+        },
+        {
+          "en": "po receipt invoice match",
+          "es": "match de PO, recibo y factura"
+        }
       ],
       "title_en": "3-Way Match (Canada)",
       "title_es": "Match a 3 Vías (Canadá)",
@@ -1701,9 +2096,14 @@
       "category": "invoicing",
       "sourceDoc": "061-EN-US-Duplicate invoice delete process- WI-FIN-R2P-01.docx",
       "tags": [
-        "duplicate invoice",
-        "delete invoice",
-        "factura duplicada eliminar"
+        {
+          "en": "duplicate invoice",
+          "es": "factura duplicada"
+        },
+        {
+          "en": "delete invoice",
+          "es": "eliminar factura duplicada"
+        }
       ],
       "title_en": "Duplicate Invoice Delete Process (US)",
       "title_es": "Proceso de Eliminación de Factura Duplicada (US)",
@@ -1715,9 +2115,14 @@
       "category": "invoicing",
       "sourceDoc": "062-EN-US LOCAL INTERCOMPANY INV PROCESSING WI-FIN-R2P-01.docx",
       "tags": [
-        "local intercompany invoice",
-        "idn local",
-        "factura intercompany local"
+        {
+          "en": "local intercompany invoice",
+          "es": "factura intercompañía local"
+        },
+        {
+          "en": "IDN local",
+          "es": "IDN local"
+        }
       ],
       "title_en": "Local Intercompany Invoice Processing (US)",
       "title_es": "Procesamiento de Factura Intercompañía Local (US)",
@@ -1729,9 +2134,14 @@
       "category": "invoicing",
       "sourceDoc": "063-EN-CA-CAD-TAXES-WI-FIN-R2P-01.docx",
       "tags": [
-        "cad taxes",
-        "gst hst pst",
-        "impuestos canadienses en factura"
+        {
+          "en": "cad taxes",
+          "es": "impuestos canadienses en factura"
+        },
+        {
+          "en": "gst hst pst",
+          "es": "GST / HST / PST"
+        }
       ],
       "title_en": "CAD Taxes on Invoices (Canada)",
       "title_es": "Impuestos CAD en Facturas (Canadá)",
@@ -1743,9 +2153,10 @@
       "category": "invoicing",
       "sourceDoc": "064-EN-US-Invoice Cancellation-WI-FIN-R2P-01.docx",
       "tags": [
-        "cancel invoice",
-        "invoice cancellation",
-        "cancelar factura"
+        {
+          "en": "invoice cancellation",
+          "es": "cancelar factura"
+        }
       ],
       "title_en": "Invoice Cancellation (US)",
       "title_es": "Cancelación de Factura (US)",
@@ -1757,9 +2168,14 @@
       "category": "invoicing",
       "sourceDoc": "065-EN-US-Invoice processing validation-WI-FIN-R2P-01.docx",
       "tags": [
-        "never validated invoices",
-        "invoice validation us",
-        "validar facturas nunca validadas"
+        {
+          "en": "never validated invoices",
+          "es": "facturas nunca validadas"
+        },
+        {
+          "en": "invoice validation us",
+          "es": "validación de facturas US"
+        }
       ],
       "title_en": "Invoice Processing Validation (US)",
       "title_es": "Validación de Procesamiento de Facturas (US)",
@@ -1771,9 +2187,14 @@
       "category": "invoicing",
       "sourceDoc": "066-EN-US-Manual Invoice processing-WI-FIN-R2P-01.docx",
       "tags": [
-        "manual invoice entry",
-        "manual matching",
-        "procesamiento manual de factura"
+        {
+          "en": "manual invoice entry",
+          "es": "procesamiento manual de factura"
+        },
+        {
+          "en": "manual matching",
+          "es": "match manual"
+        }
       ],
       "title_en": "Manual Invoice Processing (US)",
       "title_es": "Procesamiento Manual de Facturas (US)",
@@ -1785,9 +2206,14 @@
       "category": "invoicing",
       "sourceDoc": "067-EN-NAM-Manual invoice (utilities)-WI-FIN-R2P-01.docx",
       "tags": [
-        "utilities invoice",
-        "manual invoice utilities",
-        "factura de servicios publicos"
+        {
+          "en": "utilities invoice",
+          "es": "factura de servicios públicos"
+        },
+        {
+          "en": "manual invoice utilities",
+          "es": "factura manual de servicios públicos"
+        }
       ],
       "title_en": "Manual Invoice Processing (Utilities, NAM)",
       "title_es": "Procesamiento Manual de Facturas (Servicios Públicos, NAM)",
@@ -1799,9 +2225,14 @@
       "category": "invoicing",
       "sourceDoc": "068-EN-CA-Non-PO Invoice Review and Validation-WI-FIN-R2P-01.docx",
       "tags": [
-        "non-po invoice canada",
-        "invoice review ca",
-        "revision de factura sin po canada"
+        {
+          "en": "non-po invoice canada",
+          "es": "Non-PO Invoice Canadá"
+        },
+        {
+          "en": "invoice review ca",
+          "es": "revisión de factura sin PO Canadá"
+        }
       ],
       "title_en": "Non-PO Invoice Review and Validation (Canada)",
       "title_es": "Revisión y Validación de Factura sin PO (Canadá)",
@@ -1813,9 +2244,14 @@
       "category": "invoicing",
       "sourceDoc": "069-EN-US-Non-PO Invoice Review and Validation-WI-FIN-R2P-01.docx",
       "tags": [
-        "non-po invoice us",
-        "invoice review us",
-        "revision de factura sin po us"
+        {
+          "en": "non-po invoice us",
+          "es": "non-po invoice us"
+        },
+        {
+          "en": "invoice review us",
+          "es": "revisión de factura sin PO US"
+        }
       ],
       "title_en": "Non-PO Invoice Review and Validation (US)",
       "title_es": "Revisión y Validación de Factura sin PO (US)",
@@ -1827,9 +2263,14 @@
       "category": "invoicing",
       "sourceDoc": "070-EN-CA-PO Discrepancies-WI-FIN-R2P-01.docx",
       "tags": [
-        "po discrepancy canada",
-        "po line audit",
-        "discrepancia de po canada"
+        {
+          "en": "po discrepancy canada",
+          "es": "discrepancia de PO Canadá"
+        },
+        {
+          "en": "po line audit",
+          "es": "auditoría de línea de PO"
+        }
       ],
       "title_en": "PO Discrepancies (Canada)",
       "title_es": "Discrepancias de PO (Canadá)",
@@ -1841,9 +2282,14 @@
       "category": "invoicing",
       "sourceDoc": "071-EN-NAM-Prepayments-WI-FIN-R2P-01.docx",
       "tags": [
-        "record prepayment invoice",
-        "prepayment entry",
-        "registrar factura de anticipo"
+        {
+          "en": "record prepayment invoice",
+          "es": "registrar factura de anticipo"
+        },
+        {
+          "en": "prepayment entry",
+          "es": "asiento de anticipo"
+        }
       ],
       "title_en": "Recording Prepayment Invoices (NAM)",
       "title_es": "Registro de Facturas de Anticipo (NAM)",
@@ -1855,9 +2301,14 @@
       "category": "invoicing",
       "sourceDoc": "072-EN-CA-TCC invoice processing-WI-FIN-R2P-01.docx",
       "tags": [
-        "tcc invoice canada",
-        "intercompany invoice ca",
-        "factura tcc canada"
+        {
+          "en": "tcc invoice canada",
+          "es": "factura TCC Canadá"
+        },
+        {
+          "en": "intercompany invoice ca",
+          "es": "factura intercompañía CA"
+        }
       ],
       "title_en": "TCC Invoice Processing (Canada)",
       "title_es": "Procesamiento de Factura TCC (Canadá)",
@@ -1869,9 +2320,14 @@
       "category": "invoicing",
       "sourceDoc": "073-EN-US-TCC Invoices processing-WI-FIN-R2P-01.docx",
       "tags": [
-        "tcc invoice us",
-        "intercompany invoice us",
-        "factura tcc us"
+        {
+          "en": "tcc invoice us",
+          "es": "factura TCC US"
+        },
+        {
+          "en": "intercompany invoice us",
+          "es": "factura intercompañía US"
+        }
       ],
       "title_en": "TCC Invoice Processing (US)",
       "title_es": "Procesamiento de Factura TCC (US)",
@@ -1883,9 +2339,14 @@
       "category": "invoicing",
       "sourceDoc": "074-EN-US-Credit memos-WI-FIN-R2P-01.docx",
       "tags": [
-        "credit memo us",
-        "supplier credit memo",
-        "nota de credito us"
+        {
+          "en": "credit memo us",
+          "es": "nota de crédito US"
+        },
+        {
+          "en": "supplier credit memo",
+          "es": "nota de crédito de proveedor"
+        }
       ],
       "title_en": "Credit Memo Recording (US)",
       "title_es": "Registro de Nota de Crédito (US)",
