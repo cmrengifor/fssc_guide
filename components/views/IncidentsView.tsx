@@ -17,10 +17,10 @@ const PRIORITY_LABEL_KEYS: Record<IncidentPriority, string> = {
   green: "priorityGreenLabel",
 };
 
-const PRIORITY_NAV_KEYS: Record<IncidentPriority, string> = {
-  red: "navPriorityRed",
-  yellow: "navPriorityYellow",
-  green: "navPriorityGreen",
+const PRIORITY_DESC_KEYS: Record<IncidentPriority, string> = {
+  red: "priorityRedDesc",
+  yellow: "priorityYellowDesc",
+  green: "priorityGreenDesc",
 };
 
 const STATUS_LABEL_KEYS: Record<IncidentStatus, string> = {
@@ -29,27 +29,24 @@ const STATUS_LABEL_KEYS: Record<IncidentStatus, string> = {
   resolved: "statusResolvedLabel",
 };
 
-export default function IncidentsView({ priorityFilter }: { priorityFilter?: IncidentPriority }) {
+export default function IncidentsView() {
   const { t } = useLang();
   const { hydrated, incidents, updateIncident, deleteIncident } = useIncidents();
   const [showForm, setShowForm] = useState(false);
   const [statusFilter, setStatusFilter] = useState<IncidentStatus | "all">("all");
+  const [priorityFilter, setPriorityFilter] = useState<IncidentPriority | "all">("all");
 
   const filtered = incidents.filter((incident) => {
-    if (priorityFilter && incident.priority !== priorityFilter) return false;
+    if (priorityFilter !== "all" && incident.priority !== priorityFilter) return false;
     if (statusFilter !== "all" && incident.status !== statusFilter) return false;
     return true;
   });
-
-  const title = priorityFilter
-    ? `${t("incidentsTitle")} — ${t(PRIORITY_NAV_KEYS[priorityFilter])}`
-    : t("incidentsTitle");
 
   return (
     <div className="content-inner">
       <div className="incidents-header">
         <div>
-          <h1 className="page-title">{title}</h1>
+          <h1 className="page-title">{t("incidentsTitle")}</h1>
           <p className="page-sub">{t("incidentsSub")}</p>
         </div>
         <button type="button" className="btn btn-primary" onClick={() => setShowForm((v) => !v)}>
@@ -57,9 +54,24 @@ export default function IncidentsView({ priorityFilter }: { priorityFilter?: Inc
         </button>
       </div>
 
+      <PriorityLegend />
+
       {showForm && <NewIncidentForm onCreated={() => setShowForm(false)} />}
 
       <div className="incidents-filter-row">
+        <select
+          value={priorityFilter}
+          onChange={(e) => setPriorityFilter(e.target.value as IncidentPriority | "all")}
+          className="incident-select"
+          aria-label={t("incidentsFilterPriorityAll")}
+        >
+          <option value="all">{t("incidentsFilterPriorityAll")}</option>
+          {PRIORITIES.map((p) => (
+            <option key={p} value={p}>
+              {t(PRIORITY_LABEL_KEYS[p])}
+            </option>
+          ))}
+        </select>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value as IncidentStatus | "all")}
@@ -82,6 +94,21 @@ export default function IncidentsView({ priorityFilter }: { priorityFilter?: Inc
           <IncidentCard key={incident.id} incident={incident} onUpdate={updateIncident} onDelete={deleteIncident} />
         ))}
       </div>
+    </div>
+  );
+}
+
+function PriorityLegend() {
+  const { t } = useLang();
+  return (
+    <div className="incident-legend">
+      <h2 className="incident-legend-title">{t("incidentPriorityLegendTitle")}</h2>
+      {PRIORITIES.map((p) => (
+        <div className="incident-legend-row" key={p}>
+          <span className={`incident-priority-badge incident-priority-${p}`}>{t(PRIORITY_LABEL_KEYS[p])}</span>
+          <p>{t(PRIORITY_DESC_KEYS[p])}</p>
+        </div>
+      ))}
     </div>
   );
 }
@@ -275,6 +302,7 @@ function NewIncidentForm({ onCreated }: { onCreated: () => void }) {
             </button>
           ))}
         </div>
+        <p className="incident-priority-picker-desc">{t(PRIORITY_DESC_KEYS[priority])}</p>
       </div>
       <div className="incident-form-row">
         <span className="incident-form-label">{t("incidentFormWiLabel")}</span>
