@@ -548,6 +548,7 @@ h1.page-title{font-family:var(--font-display);font-size:26px;margin:0 0 6px;lett
 .signin-card .brand-mark svg{width:34px;height:34px;}
 .signin-card h1{font-family:var(--font-display);font-size:19px;margin:0 0 4px;}
 .signin-sub{font-family:var(--font-mono);font-size:11px;letter-spacing:.4px;color:var(--ink-faint);margin:0 0 28px;}
+.signin-btn-group{display:flex;flex-direction:column;gap:10px;}
 .signin-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;font-size:14px;}
 .signin-note{font-size:12px;color:var(--ink-faint);margin:16px 0 0;}
 .signout-btn{
