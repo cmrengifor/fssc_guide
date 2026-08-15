@@ -292,6 +292,12 @@ A single-user operational log — created entirely client-side, persisted to `lo
 - **WI link:** optional, via `WIPicker` — a scoped reuse of the topbar `SearchBox`'s result-list styling (`.search-results`/`.sr-item`) filtered to the live WI catalog only, so linking an incident to a real Work Instruction doesn't require inventing a second dropdown pattern.
 - **Nav placement:** a single link directly under Home — not grouped/sub-divided in the sidebar the way Work Instructions/Flow/Learning Path are, since this feature reads as one destination, not a set of regional variants. Priority and status filtering both live inside the page itself (two plain `<select>`s), the same in-page-filter pattern already used for status alone before priority filtering moved here from a now-removed `/incidents/priority/[priority]` route.
 
+### Access gate (sign-in)
+The first real server-side concern this app has had — everything before this was static JSON plus `localStorage`. Auth.js (`next-auth`) gates every route through `proxy.ts` (Next.js 16's renamed `middleware.ts` convention): no session, no page — redirected straight to `/signin`, which renders standalone via `AppShell` (no topbar/sidebar chrome leaks through before sign-in).
+- **Provider:** GitHub only, chosen over Google for this pass. No allow-list is applied — **any** GitHub account can sign in. That's a deliberate, temporary posture for an IT-review demo, not a real access policy. Before this goes out with real (even PII-redacted) operational content, add a real restriction — a GitHub org-membership check or an email allow-list — inside `auth.ts`'s `signIn` callback.
+- **Visual treatment:** the sign-in card reuses the brand mark (same globe SVG, just scaled up) and the same card/button tokens as everywhere else — it's meant to look like a locked front door on the same house, not a bolted-on third-party auth screen.
+- **Secrets:** `AUTH_SECRET` + `AUTH_GITHUB_ID` + `AUTH_GITHUB_SECRET` live in environment variables only (`.env.local` locally, Vercel's env var dashboard in production) — see `.env.local.example`. Never in code, never committed; `.gitignore`'s existing `.env*` rule already covers this.
+
 ## Do's and Don'ts
 
 ### Do:

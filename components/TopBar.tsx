@@ -6,6 +6,7 @@ import { useSidebar } from "@/lib/sidebar-context";
 import SearchBox from "@/components/SearchBox";
 import LangToggle from "@/components/LangToggle";
 import ThemeToggle from "@/components/ThemeToggle";
+import SignOutButton from "@/components/SignOutButton";
 
 export default function TopBar() {
   const { t } = useLang();
@@ -39,6 +40,7 @@ export default function TopBar() {
       <div className="topbar-right">
         <LangToggle />
         <ThemeToggle />
+        <SignOutButton />
       </div>
     </header>
   );

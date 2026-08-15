@@ -4,8 +4,8 @@ import { LangProvider } from "@/lib/lang-context";
 import { SidebarProvider } from "@/lib/sidebar-context";
 import { ProgressProvider } from "@/lib/progress-context";
 import { IncidentsProvider } from "@/lib/incidents-context";
-import TopBar from "@/components/TopBar";
-import Sidebar from "@/components/Sidebar";
+import AuthSessionProvider from "@/components/AuthSessionProvider";
+import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: "Knowledge Share Center · Financial Shared Services Center",
@@ -21,21 +21,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body>
-        <LangProvider>
-          <ProgressProvider>
-            <IncidentsProvider>
-              <SidebarProvider>
-                <div id="app">
-                  <TopBar />
-                  <div className="layout">
-                    <Sidebar />
-                    <main>{children}</main>
-                  </div>
-                </div>
-              </SidebarProvider>
-            </IncidentsProvider>
-          </ProgressProvider>
-        </LangProvider>
+        <AuthSessionProvider>
+          <LangProvider>
+            <ProgressProvider>
+              <IncidentsProvider>
+                <SidebarProvider>
+                  <AppShell>{children}</AppShell>
+                </SidebarProvider>
+              </IncidentsProvider>
+            </ProgressProvider>
+          </LangProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );

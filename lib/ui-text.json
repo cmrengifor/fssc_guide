@@ -93,7 +93,8 @@
     "holdsSub": "Referencia de los holds más comunes en Oracle Applications, agrupados por área.",
     "holdsCategoryProcurement": "Holds Relacionados con Compras",
     "holdsCategoryInvoiceProcessing": "Holds Relacionados con Procesamiento de Facturas",
-    "srHolds": "Holds"
+    "srHolds": "Holds",
+    "signOutLabel": "Cerrar sesión"
   },
   "en": {
     "brandTitle": "Knowledge Share Center",
@@ -189,6 +190,7 @@
     "holdsSub": "Reference for the most common holds in Oracle Applications, grouped by area.",
     "holdsCategoryProcurement": "Procurement-related Holds",
     "holdsCategoryInvoiceProcessing": "Invoice Processing-related Holds",
-    "srHolds": "Holds"
+    "srHolds": "Holds",
+    "signOutLabel": "Sign out"
   }
 }
