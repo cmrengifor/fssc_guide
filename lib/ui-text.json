@@ -87,7 +87,14 @@
     "incidentLinkedWiLabel": "Work Instruction",
     "incidentDeleteButton": "Eliminar",
     "incidentDeleteConfirmMessage": "¿Eliminar este incidente? Esta acción no se puede deshacer.",
-    "srIncidents": "Incidentes"
+    "srIncidents": "Incidentes",
+    "navHolds": "Holds",
+    "holdsTitle": "Holds",
+    "holdsSub": "Referencia de los holds más comunes en Oracle Applications, agrupados por área.",
+    "holdsPendingNote": "Esta sección está en construcción — iremos ampliando el contenido con más detalle y pasos de resolución.",
+    "holdsCategoryProcurement": "Holds Relacionados con Compras",
+    "holdsCategoryInvoiceProcessing": "Holds Relacionados con Procesamiento de Facturas",
+    "srHolds": "Holds"
   },
   "en": {
     "brandTitle": "AP Training Guide",
@@ -177,6 +184,13 @@
     "incidentLinkedWiLabel": "Work Instruction",
     "incidentDeleteButton": "Delete",
     "incidentDeleteConfirmMessage": "Delete this incident? This action cannot be undone.",
-    "srIncidents": "Incidents"
+    "srIncidents": "Incidents",
+    "navHolds": "Holds",
+    "holdsTitle": "Holds",
+    "holdsSub": "Reference for the most common holds in Oracle Applications, grouped by area.",
+    "holdsPendingNote": "This section is still in progress — we'll keep expanding it with more detail and resolution steps.",
+    "holdsCategoryProcurement": "Procurement-related Holds",
+    "holdsCategoryInvoiceProcessing": "Invoice Processing-related Holds",
+    "srHolds": "Holds"
   }
 }

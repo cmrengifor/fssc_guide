@@ -5,6 +5,25 @@ export interface GlossaryTerm {
   term_en: string;
   def_es: string;
   def_en: string;
+  /** Optional pointer to a fuller explanation living elsewhere in the app
+   *  (e.g. Hold -> /holds), rendered as a small link under the definition. */
+  seeAlsoHref?: string;
+  seeAlsoLabel_es?: string;
+  seeAlsoLabel_en?: string;
+}
+
+export type HoldCategory = "procurement" | "invoice-processing";
+
+/** A specific Oracle hold code (e.g. "Qty Rec"). Distinct from the generic
+ *  "Hold" glossary concept — this is the per-code breakdown that concept's
+ *  definition points to. The code itself is never translated (same literal
+ *  Oracle vocabulary in both languages), only its explanation is. */
+export interface HoldType {
+  id: string;
+  code: string;
+  category: HoldCategory;
+  def_es: string;
+  def_en: string;
 }
 
 export interface FlowNodeWIStepRef {
@@ -111,6 +130,7 @@ export interface GuideData {
   workInstructions: WorkInstruction[];
   wiRegions: WIRegion[];
   wiCategories: WICategory[];
+  holds: HoldType[];
 }
 
 export interface UIText {

@@ -362,6 +362,8 @@ h1.page-title{font-family:var(--font-display);font-size:26px;margin:0 0 6px;lett
   font-family:var(--font-mono);font-size:12px;background:var(--surface-alt);
   border:1px solid var(--border);padding:1px 7px;border-radius:5px;color:var(--ink);
 }
+.oracle-field-link{display:inline-block;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+.oracle-field-link:hover{background:var(--teal-soft);border-color:var(--teal);color:var(--teal);}
 .glossary-inline{
   color:var(--teal);font-weight:600;text-decoration:underline;
   text-decoration-style:dotted;text-underline-offset:2px;
@@ -375,6 +377,7 @@ h1.page-title{font-family:var(--font-display);font-size:26px;margin:0 0 6px;lett
 }
 .glossary-item b{font-family:var(--font-mono);font-size:13.5px;color:var(--teal);}
 .glossary-item p{margin:6px 0 0;font-size:13.5px;color:var(--ink-soft);max-width:70ch;}
+.glossary-see-also{display:inline-block;margin-top:6px;font-size:12.5px;color:var(--teal);font-weight:600;}
 .glossary-item:target,
 .glossary-item.step-highlighted{
   background:var(--blue-soft);

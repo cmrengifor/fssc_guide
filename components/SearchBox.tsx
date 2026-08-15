@@ -45,6 +45,7 @@ export default function SearchBox() {
   const groups: Array<{ key: SearchIndexItem["type"]; label: string }> = [
     { key: "incident", label: t("srIncidents") },
     { key: "wi", label: t("srWI") },
+    { key: "hold", label: t("srHolds") },
     { key: "glossary", label: t("srGlossary") },
   ];
 
@@ -62,6 +63,7 @@ export default function SearchBox() {
   function handleClick(m: SearchIndexItem) {
     if (m.type === "glossary") goTo(`/glossary#${m.id}`);
     else if (m.type === "incident") goTo(`/incidents#${m.id}`);
+    else if (m.type === "hold") goTo(`/holds#${m.id}`);
     else goTo(`/wi/${m.id}`);
   }
 

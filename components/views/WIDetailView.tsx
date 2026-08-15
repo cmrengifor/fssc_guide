@@ -86,7 +86,7 @@ export default function WIDetailView({ id }: { id: string }) {
             <span className="tip-box-label">{t("tipBoxLabel")}</span>
             <ul>
               {tips.map((tip, i) => (
-                <li key={i}>{tip}</li>
+                <li key={i}>{highlightStepText(tip, `${w.id}-tip-${i}`)}</li>
               ))}
             </ul>
           </div>

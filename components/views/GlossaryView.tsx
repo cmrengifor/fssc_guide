@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
 import { DATA } from "@/lib/data";
 import { slugify } from "@/lib/slug";
@@ -41,6 +42,11 @@ export default function GlossaryView() {
           >
             <b>{tf(g, "term")}</b>
             <p>{tf(g, "def")}</p>
+            {g.seeAlsoHref && (
+              <Link href={g.seeAlsoHref} className="glossary-see-also">
+                {tf(g, "seeAlsoLabel")} →
+              </Link>
+            )}
           </div>
         );
       })}

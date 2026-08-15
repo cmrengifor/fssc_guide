@@ -21,8 +21,11 @@
     {
       "term_es": "Hold",
       "term_en": "Hold",
-      "def_es": "Bloqueo que impide el pago de un invoice hasta resolver una discrepancia. (Definición pendiente de ampliar)",
-      "def_en": "A block that prevents an invoice from being paid until a discrepancy is resolved. (Definition pending expansion)"
+      "def_es": "Bloqueo que impide el pago de un invoice hasta resolver una discrepancia.",
+      "def_en": "A block that prevents an invoice from being paid until a discrepancy is resolved.",
+      "seeAlsoHref": "/holds",
+      "seeAlsoLabel_es": "Ver los tipos de holds",
+      "seeAlsoLabel_en": "See hold types"
     },
     {
       "term_es": "Sales Tax",
@@ -2400,6 +2403,57 @@
       "id": "close",
       "name_es": "Cierre y Reportes",
       "name_en": "Close & Reporting"
+    }
+  ],
+  "holds": [
+    {
+      "id": "qty-ord",
+      "code": "Qty Ord",
+      "category": "procurement",
+      "def_en": "Occurs when the invoiced quantity exceeds the quantity originally ordered on the PO.",
+      "def_es": "Ocurre cuando la cantidad facturada supera la cantidad originalmente ordenada en la PO."
+    },
+    {
+      "id": "qty-rec",
+      "code": "Qty Rec",
+      "category": "procurement",
+      "def_en": "Occurs when the total quantity from the PO has not yet been fully received.",
+      "def_es": "Ocurre cuando la cantidad total de la PO aún no ha sido recibida por completo."
+    },
+    {
+      "id": "max-ship-amount",
+      "code": "Max Ship Amount",
+      "category": "procurement",
+      "def_en": "Occurs when the invoiced amount exceeds the maximum amount configured on the purchase order.",
+      "def_es": "Ocurre cuando el monto facturado supera el monto máximo configurado en la orden de compra."
+    },
+    {
+      "id": "price",
+      "code": "Price",
+      "category": "procurement",
+      "def_en": "Occurs when the supplier’s invoiced price differs from the price registered on the PO item lines.",
+      "def_es": "Ocurre cuando el precio facturado por el proveedor difiere del precio registrado en las líneas de artículo de la PO."
+    },
+    {
+      "id": "dist-variance",
+      "code": "Dist Variance",
+      "category": "invoice-processing",
+      "def_en": "Occurs when a manually added line was not properly allocated, or when the system automatically adds a line but fails to assign the PO correctly.",
+      "def_es": "Ocurre cuando una línea agregada manualmente no fue distribuida correctamente, o cuando el sistema agrega una línea automáticamente pero no logra asignar la PO de forma correcta."
+    },
+    {
+      "id": "line-variance",
+      "code": "Line Variance",
+      "category": "invoice-processing",
+      "def_en": "Occurs when the total amount of the lines entered in the system does not match the invoice total, either due to human error or because the system performed an incomplete automatic validation.",
+      "def_es": "Ocurre cuando el monto total de las líneas ingresadas en el sistema no coincide con el total de la factura, ya sea por error humano o porque el sistema realizó una validación automática incompleta."
+    },
+    {
+      "id": "tax-variance",
+      "code": "Tax Variance",
+      "category": "invoice-processing",
+      "def_en": "Occurs when taxes were not calculated correctly or when there is a discrepancy between the invoice and the amounts registered in the system.",
+      "def_es": "Ocurre cuando los impuestos no se calcularon correctamente o cuando hay una discrepancia entre la factura y los montos registrados en el sistema."
     }
   ]
 }

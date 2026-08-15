@@ -3,7 +3,7 @@ import { slugify } from "@/lib/slug";
 import type { Incident, IncidentPriority } from "@/lib/types";
 
 export interface SearchIndexItem {
-  type: "glossary" | "wi" | "incident";
+  type: "glossary" | "wi" | "incident" | "hold";
   id?: string;
   label_es: string;
   label_en: string;
@@ -32,6 +32,16 @@ function buildSearchIndex(): SearchIndexItem[] {
       label_es: w.title_es,
       label_en: w.title_en,
       tags: [...w.tags.flatMap((tag) => [tag.en, tag.es]), w.region],
+    });
+  });
+
+  DATA.holds.forEach((h) => {
+    idx.push({
+      type: "hold",
+      id: h.id,
+      label_es: h.code,
+      label_en: h.code,
+      tags: [h.def_es, h.def_en],
     });
   });
 

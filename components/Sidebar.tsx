@@ -40,6 +40,10 @@ export default function Sidebar() {
           <span className="nav-icon" aria-hidden="true">●</span>
           {t("navIncidents")}
         </Link>
+        <Link href="/holds" className={`nav-item ${pathname === "/holds" ? "active" : ""}`}>
+          <span className="nav-icon" aria-hidden="true">⛔</span>
+          {t("navHolds")}
+        </Link>
       </div>
 
       <div className="nav-section" role="group" aria-labelledby="nav-group-demo">
