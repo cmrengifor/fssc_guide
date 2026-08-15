@@ -121,3 +121,25 @@ export interface UIDict {
   es: UIText;
   en: UIText;
 }
+
+export type IncidentPriority = "red" | "yellow" | "green";
+export type IncidentStatus = "open" | "in_progress" | "resolved";
+
+/** A user-logged incident, persisted client-side (localStorage) — this app has no
+ *  backend, so there is no server-issued id/timestamp; both are generated locally
+ *  at creation time. Optionally links to a real Work Instruction via `wiId`. */
+export interface Incident {
+  id: string;
+  title_es: string;
+  title_en: string;
+  description_es?: string;
+  description_en?: string;
+  priority: IncidentPriority;
+  status: IncidentStatus;
+  wiId?: string;
+  resolutionNotes_es?: string;
+  resolutionNotes_en?: string;
+  createdAt: string;
+  updatedAt: string;
+  resolvedAt?: string;
+}

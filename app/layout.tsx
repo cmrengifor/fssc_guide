@@ -3,6 +3,7 @@ import "./globals.css";
 import { LangProvider } from "@/lib/lang-context";
 import { SidebarProvider } from "@/lib/sidebar-context";
 import { ProgressProvider } from "@/lib/progress-context";
+import { IncidentsProvider } from "@/lib/incidents-context";
 import TopBar from "@/components/TopBar";
 import Sidebar from "@/components/Sidebar";
 
@@ -22,15 +23,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <LangProvider>
           <ProgressProvider>
-            <SidebarProvider>
-              <div id="app">
-                <TopBar />
-                <div className="layout">
-                  <Sidebar />
-                  <main>{children}</main>
+            <IncidentsProvider>
+              <SidebarProvider>
+                <div id="app">
+                  <TopBar />
+                  <div className="layout">
+                    <Sidebar />
+                    <main>{children}</main>
+                  </div>
                 </div>
-              </div>
-            </SidebarProvider>
+              </SidebarProvider>
+            </IncidentsProvider>
           </ProgressProvider>
         </LangProvider>
       </body>

@@ -1,18 +1,27 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/lib/lang-context";
-import { SEARCH_INDEX, type SearchIndexItem } from "@/lib/search";
+import { useIncidents } from "@/lib/incidents-context";
+import { SEARCH_INDEX, buildIncidentSearchItems, type SearchIndexItem } from "@/lib/search";
 import { highlightQuery, buildSnippet } from "@/lib/highlight";
 
 export default function SearchBox() {
   const { lang, t } = useLang();
   const router = useRouter();
+  const { incidents } = useIncidents();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Incidents live in localStorage, not the static DATA SEARCH_INDEX is built
+  // from — merged in per-render so newly created/edited incidents show up live.
+  const fullIndex = useMemo(
+    () => [...SEARCH_INDEX, ...buildIncidentSearchItems(incidents)],
+    [incidents]
+  );
 
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
@@ -26,7 +35,7 @@ export default function SearchBox() {
 
   const q = query.trim().toLowerCase();
   const matches: SearchIndexItem[] = q
-    ? SEARCH_INDEX.filter((item) => {
+    ? fullIndex.filter((item) => {
         const label = (lang === "es" ? item.label_es : item.label_en).toLowerCase();
         const tags = (item.tags || []).join(" ").toLowerCase();
         return label.includes(q) || tags.includes(q);
@@ -34,6 +43,7 @@ export default function SearchBox() {
     : [];
 
   const groups: Array<{ key: SearchIndexItem["type"]; label: string }> = [
+    { key: "incident", label: t("srIncidents") },
     { key: "wi", label: t("srWI") },
     { key: "glossary", label: t("srGlossary") },
   ];
@@ -51,6 +61,7 @@ export default function SearchBox() {
 
   function handleClick(m: SearchIndexItem) {
     if (m.type === "glossary") goTo(`/glossary#${m.id}`);
+    else if (m.type === "incident") goTo(`/incidents#${m.id}`);
     else goTo(`/wi/${m.id}`);
   }
 
@@ -125,7 +136,14 @@ export default function SearchBox() {
                         onClick={() => handleClick(m)}
                         onMouseEnter={() => setActiveIndex(flatIndex)}
                       >
-                        <b>{labelMatches ? highlightQuery(label, q) : label}</b>
+                        <b>
+                          {m.priority && (
+                            <span className={`nav-icon-priority-${m.priority}`} aria-hidden="true">
+                              ●{" "}
+                            </span>
+                          )}
+                          {labelMatches ? highlightQuery(label, q) : label}
+                        </b>
                         {snippet && <small>{highlightQuery(snippet, q)}</small>}
                       </button>
                     );

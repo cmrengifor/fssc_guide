@@ -132,9 +132,10 @@ A four-color semantic system on a near-monochrome neutral base — each accent o
 
 ### Status accent (used alongside the above)
 - **Flagged Amber** (`#A35B1A`, dark: `#E5A05E`): The caution/incomplete accent — the tip-box callout and anything the guide hasn't finished documenting yet. Not part of the Primary/Secondary/Tertiary interactive hierarchy; it exists to interrupt, not to guide. Darkened slightly from the original `#B5651D` (3.80:1 on `--amber-soft`, failing AA) to `#A35B1A` (4.53:1).
+- **Danger Red** (`#B3261E`, dark: `#E8756D`): The critical accent — reserved for the Incidents priority semaphore's "red" level and its delete action's hover state. The first use of red anywhere in the system; introduced deliberately rather than reused from an existing token, since nothing before Incidents needed a "this is critical" signal distinct from amber's "this is incomplete."
 
 ### Named Rules
-**The One Meaning Rule.** Blue means interactive, teal means informational/decision, green means completion/category, amber means incomplete/caution. A color never borrows another color's meaning to fill a gap in the palette.
+**The One Meaning Rule.** Blue means interactive, teal means informational/decision, green means completion/category, amber means incomplete/caution, red means critical. A color never borrows another color's meaning to fill a gap in the palette.
 
 **The No Hardcoded Text-on-Accent Rule.** Any text or icon painted on a semantic accent background uses that accent's dedicated `on-*` token (currently `--on-blue`), never a literal `#fff` or `#000`. A literal white passed a contrast check once, in one theme, and silently broke in the other — that failure mode is exactly what this rule exists to prevent.
 
@@ -277,6 +278,14 @@ The interactive process-diagram building block — the system's most distinctive
 - **Hover:** Background shifts to `Ledger Blue Soft`; no movement, no shadow.
 - **Pending variant:** Dashed `Ink Faint` border, `Ink Faint` text, not clickable, cursor stays default. This is the system's only dashed-border usage — see Shapes.
 - **Decision variant:** `Verification Teal` fill (`Verification Teal Soft` background), used only for yes/no branch points, never for a regular step.
+
+### Incidents (priority semaphore)
+A single-user operational log — created entirely client-side, persisted to `localStorage` (`fssc-incidents-v1`), the same pattern as step progress. No backend: this app is fully static and has no database, so an incident only exists in the browser that created it.
+- **Card:** `Surface` background, `1px Border` outline, `4px` left border in the incident's priority color (`Danger Red` / `Flagged Amber` / `Confirmed Green`) — a colored spine rather than a filled background, so a long list of incidents scans by color without turning into a wall of tinted blocks. Anchors by `id`, so a search result can deep-link straight to it (`:target` gets the same `step-highlight` glow used for step/glossary anchors).
+- **Priority badge:** Same pill shape as Tags/Pills/Badges, colored per priority — this is the one place `Danger Red` appears as a fill (`Red Soft` background, `Red` text), since nothing before this feature needed "critical" as a distinct meaning from `Flagged Amber`'s "incomplete."
+- **Bilingual by design, not by translation:** every other piece of bilingual content in this app was translated once by a content author ahead of time. An incident is typed by the user in the moment, so there's no automatic translation step — the form asks for the Spanish and English title/description as two explicit fields rather than pretending one language can stand in for the other.
+- **WI link:** optional, via `WIPicker` — a scoped reuse of the topbar `SearchBox`'s result-list styling (`.search-results`/`.sr-item`) filtered to the live WI catalog only, so linking an incident to a real Work Instruction doesn't require inventing a second dropdown pattern.
+- **Nav placement:** grouped like Work Instructions/Flow/Learning Path, but subdivided by priority (Red/Yellow/Green/All) instead of region — incidents don't have a region, but they do have the one dimension this feature is actually organized around.
 
 ## Do's and Don'ts
 

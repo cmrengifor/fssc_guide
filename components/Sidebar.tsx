@@ -98,6 +98,26 @@ export default function Sidebar() {
         </Link>
       </div>
 
+      <div className="nav-section" role="group" aria-labelledby="nav-group-incidents">
+        <h3 className="nav-caption" id="nav-group-incidents">
+          {t("navIncidents")}
+        </h3>
+        {(["red", "yellow", "green"] as const).map((priority) => (
+          <Link
+            key={priority}
+            href={`/incidents/priority/${priority}`}
+            className={`nav-item ${pathname === `/incidents/priority/${priority}` ? "active" : ""}`}
+          >
+            <span className={`nav-icon nav-icon-priority-${priority}`} aria-hidden="true">●</span>
+            {t(`navPriority${priority.charAt(0).toUpperCase()}${priority.slice(1)}`)}
+          </Link>
+        ))}
+        <Link href="/incidents" className={`nav-item ${pathname === "/incidents" ? "active" : ""}`}>
+          <span className="nav-icon" aria-hidden="true">●</span>
+          {t("navAllPriorities")}
+        </Link>
+      </div>
+
       <div className="nav-section">
         <Link href="/glossary" className={`nav-item ${pathname === "/glossary" ? "active" : ""}`}>
           <span className="nav-icon" aria-hidden="true">§</span>
