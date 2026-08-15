@@ -1,7 +1,7 @@
 {
   "es": {
-    "brandTitle": "Guía de Entrenamiento AP",
-    "brandSub": "ORACLE APPLICATIONS",
+    "brandTitle": "Knowledge Share Center",
+    "brandSub": "FINANCIAL SHARED SERVICES CENTER",
     "searchPlaceholder": "Buscar por palabra clave o término...",
     "navMenuToggle": "Abrir o cerrar el menú de navegación",
     "navHome": "Inicio",
@@ -96,8 +96,8 @@
     "srHolds": "Holds"
   },
   "en": {
-    "brandTitle": "AP Training Guide",
-    "brandSub": "ORACLE APPLICATIONS",
+    "brandTitle": "Knowledge Share Center",
+    "brandSub": "FINANCIAL SHARED SERVICES CENTER",
     "searchPlaceholder": "Search by keyword or term...",
     "navMenuToggle": "Open or close the navigation menu",
     "navHome": "Home",

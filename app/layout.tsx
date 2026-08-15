@@ -8,8 +8,8 @@ import TopBar from "@/components/TopBar";
 import Sidebar from "@/components/Sidebar";
 
 export const metadata: Metadata = {
-  title: "Guía de Entrenamiento AP · Oracle Applications",
-  description: "Guía de entrenamiento AP para procesos de cuentas por pagar en Oracle Applications.",
+  title: "Knowledge Share Center · Financial Shared Services Center",
+  description: "Knowledge Share Center para procesos de cuentas por pagar en Financial Shared Services Center.",
 };
 
 const THEME_INIT_SCRIPT = `try{var m=window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.setAttribute("data-theme",m?"dark":"light");}catch(e){}`;
