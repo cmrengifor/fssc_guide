@@ -1,8 +1,21 @@
 "use client";
 
+import { Suspense } from "react";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 export default function SignInPage() {
+  return (
+    <Suspense fallback={null}>
+      <SignInCard />
+    </Suspense>
+  );
+}
+
+function SignInCard() {
+  const params = useSearchParams();
+  const denied = params.get("error") === "AccessDenied";
+
   return (
     <div className="signin-page">
       <div className="signin-card">
@@ -15,6 +28,11 @@ export default function SignInPage() {
         </div>
         <h1>Knowledge Share Center</h1>
         <p className="signin-sub">FINANCIAL SHARED SERVICES CENTER</p>
+        {denied && (
+          <p className="signin-error" role="alert">
+            Esta cuenta no tiene acceso autorizado. Contacta al administrador del proyecto.
+          </p>
+        )}
         <div className="signin-btn-group">
           <button
             type="button"
