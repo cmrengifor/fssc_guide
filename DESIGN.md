@@ -125,9 +125,9 @@ A four-color semantic system on a near-monochrome neutral base — each accent o
 - **Ink Soft** (`#5B6478`, dark: `#A7AFBF`): Secondary text — subtitles, nav labels, body copy inside cards.
 - **Ink Faint** (`#677183`, dark: `#808899`): Tertiary text — placeholders, captions, disabled/pending states. Tuned to clear 4.5:1 against both `--bg` and `--surface` in both themes at its smallest real usage size (10–11px); the original values (`#8A93A3`/`#6B7385`) fell to 2.9–3.8:1 at that size and have been retired.
 - **Border** (`#DCE1E8`, dark: `#2B3244`): All surface dividers and 1px card outlines.
-- **Surface** (`#FFFFFF`, dark: `#1A2030`): Card, sidebar, and topbar background.
+- **Surface** (`#F7F9FC`, dark: `#1A2030`): Card, sidebar, and topbar background. A cool, dimmed off-white rather than pure `#FFFFFF` — stark white read as too bright/glary across large card areas; this keeps the same "lightest surface" role without the harsh jump.
 - **Surface Alt** (`#EEF1F5`, dark: `#212838`): Recessed backgrounds — search input, tags, hover states.
-- **Bg** (`#F5F6F9`, dark: `#12161F`): Page background, one step further back than Surface.
+- **Bg** (`#F1F3F7`, dark: `#12161F`): Page background, one step further back than Surface. Nudged down alongside Surface's dimming so the two layers stay visually distinct instead of the gap between them shrinking.
 - **Scrim** (`rgba(10,14,22,.45)`, same value in both themes): The dimming backdrop behind the mobile off-canvas sidebar drawer. Theme-independent by design — it dims whatever is behind it regardless of light/dark, so it doesn't need a paired value.
 
 ### Status accent (used alongside the above)
