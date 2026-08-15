@@ -94,7 +94,8 @@
     "holdsCategoryProcurement": "Holds Relacionados con Compras",
     "holdsCategoryInvoiceProcessing": "Holds Relacionados con Procesamiento de Facturas",
     "srHolds": "Holds",
-    "signOutLabel": "Cerrar sesión"
+    "signOutLabel": "Cerrar sesión",
+    "signedInAsLabel": "Sesión iniciada como"
   },
   "en": {
     "brandTitle": "Knowledge Share Center",
@@ -191,6 +192,7 @@
     "holdsCategoryProcurement": "Procurement-related Holds",
     "holdsCategoryInvoiceProcessing": "Invoice Processing-related Holds",
     "srHolds": "Holds",
-    "signOutLabel": "Sign out"
+    "signOutLabel": "Sign out",
+    "signedInAsLabel": "Signed in as"
   }
 }
