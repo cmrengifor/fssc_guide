@@ -91,7 +91,6 @@
     "navHolds": "Holds",
     "holdsTitle": "Holds",
     "holdsSub": "Referencia de los holds más comunes en Oracle Applications, agrupados por área.",
-    "holdsPendingNote": "Esta sección está en construcción — iremos ampliando el contenido con más detalle y pasos de resolución.",
     "holdsCategoryProcurement": "Holds Relacionados con Compras",
     "holdsCategoryInvoiceProcessing": "Holds Relacionados con Procesamiento de Facturas",
     "srHolds": "Holds"
@@ -188,7 +187,6 @@
     "navHolds": "Holds",
     "holdsTitle": "Holds",
     "holdsSub": "Reference for the most common holds in Oracle Applications, grouped by area.",
-    "holdsPendingNote": "This section is still in progress — we'll keep expanding it with more detail and resolution steps.",
     "holdsCategoryProcurement": "Procurement-related Holds",
     "holdsCategoryInvoiceProcessing": "Invoice Processing-related Holds",
     "srHolds": "Holds"

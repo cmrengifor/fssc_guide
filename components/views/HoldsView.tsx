@@ -36,7 +36,6 @@ export default function HoldsView() {
     <div className="content-inner">
       <h1 className="page-title">{t("holdsTitle")}</h1>
       <p className="page-sub">{t("holdsSub")}</p>
-      <p className="pending-note">{t("holdsPendingNote")}</p>
       {CATEGORIES.map((cat) => {
         const items = DATA.holds.filter((h) => h.category === cat.id);
         if (!items.length) return null;
